@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}</style>
+<title>Green Red Toggle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: one centered control on a quiet field, live frame readout pinned underneath */
+  :root {
+    --bg: #eef0f3;
+    --fg: #1b1f27;
+    --muted: #6a7180;
+    --ring: #d5d9e0;
+    --idle: #9aa1ad;
+    --display: "Sora", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12151b; --fg: #e8ebf0; --muted: #8b93a2; --ring: #262b35; --idle: #5b6270;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12151b; --fg: #e8ebf0; --muted: #8b93a2; --ring: #262b35; --idle: #5b6270;
+    color-scheme: dark;
+  }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--display);
+    display: grid;
+    place-items: center;
+    padding-block: 24px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+  main { display: grid; justify-items: center; gap: 28px; }
+  #toggle {
+    width: min(64vw, 240px);
+    aspect-ratio: 1;
+    max-width: 100%;
+    border-radius: 50%;
+    border: 10px solid var(--ring);
+    background: var(--idle);
+    color: #fff;
+    font: 700 1.25rem/1 var(--display);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    will-change: background-color, transform, box-shadow;
+    touch-action: manipulation;
+  }
+  #toggle:focus-visible { outline: 3px solid var(--fg); outline-offset: 6px; }
+  .label { font-size: 0.95rem; color: var(--muted); }
+  .fps {
+    font: 400 0.8rem var(--mono);
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+<main>
+  <button id="toggle" type="button" aria-pressed="false">Push</button>
+  <div class="label" id="label">Tap the button</div>
+  <div class="fps" id="fps">— fps</div>
+</main>
+
+<script>
+  const btn = document.getElementById('toggle');
+  const label = document.getElementById('label');
+  const fpsEl = document.getElementById('fps');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const GREEN = [34, 197, 94];
+  const RED = [239, 68, 68];
+  const idleColor = () => {
+    const c = getComputedStyle(btn).backgroundColor.match(/\d+/g).map(Number);
+    return c.slice(0, 3);
+  };
+
+  // Animation state, all advanced with real elapsed time so it looks the same at 60, 120 or 240 Hz
+  let color = idleColor();
+  let target = color.slice();
+  let scale = 1, scaleVel = 0;
+  let isGreen = null;
+  let last = performance.now();
+  let frames = 0, fpsTimer = 0;
+
+  btn.addEventListener('click', () => {
+    isGreen = isGreen === null ? true : !isGreen;
+    target = isGreen ? GREEN : RED;
+    btn.textContent = isGreen ? 'On' : 'Off';
+    label.textContent = isGreen ? 'Green' : 'Red';
+    btn.setAttribute('aria-pressed', String(isGreen));
+    if (!reduce) scaleVel -= 4.5; // quick squash, spring brings it back
+    if (reduce) color = target.slice();
+  });
+
+  function frame(now) {
+    const dt = Math.min((now - last) / 1000, 0.05);
+    last = now;
+
+    // Exponential color easing: frame-rate independent
+    const k = 1 - Math.exp(-dt * 10);
+    for (let i = 0; i < 3; i++) color[i] += (target[i] - color[i]) * k;
+
+    // Damped spring for the press bounce
+    const stiffness = 320, damping = 18;
+    scaleVel += (-(scale - 1) * stiffness - scaleVel * damping) * dt;
+    scale += scaleVel * dt;
+
+    const [r, g, b] = color.map(Math.round);
+    btn.style.backgroundColor = `rgb(${r},${g},${b})`;
+    btn.style.transform = `scale(${scale.toFixed(4)})`;
+    btn.style.boxShadow = isGreen === null ? 'none' : `0 12px 48px rgba(${r},${g},${b},0.45)`;
+
+    frames++; fpsTimer += dt;
+    if (fpsTimer >= 0.5) {
+      fpsEl.textContent = `${Math.round(frames / fpsTimer)} fps`;
+      frames = 0; fpsTimer = 0;
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+</script>
+</body>
+</html>
