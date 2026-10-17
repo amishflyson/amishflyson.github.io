@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Toggle">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>body{margin:0}</style>
 <title>Green Red Toggle</title>
@@ -29,6 +32,7 @@
     color-scheme: dark;
   }
   html, body { height: 100%; overflow: hidden; overscroll-behavior: none; }
+  html { position: fixed; inset: 0; }
   body {
     background: var(--bg);
     color: var(--fg);
@@ -84,7 +88,15 @@
   const label = document.getElementById('label');
   const fpsEl = document.getElementById('fps');
   // Block all page scrolling and the rubber-band bounce
-  document.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
+  // On iPhone, cancelling every touch at the start means Safari never begins a scroll,
+  // so there is nothing to rubber-band. The button gets its tap from touchstart instead.
+  const stop = e => e.preventDefault();
+  document.addEventListener('touchstart', e => {
+    e.preventDefault();
+    if (e.target.closest('#toggle') && e.touches.length === 1) toggle();
+  }, { passive: false });
+  document.addEventListener('touchmove', stop, { passive: false });
+  document.addEventListener('gesturestart', stop, { passive: false });
   document.addEventListener('wheel', e => e.preventDefault(), { passive: false });
 
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -104,7 +116,7 @@
   let last = performance.now();
   let frames = 0, fpsTimer = 0;
 
-  btn.addEventListener('click', () => {
+  function toggle() {
     isGreen = isGreen === null ? true : !isGreen;
     target = isGreen ? GREEN : RED;
     btn.textContent = isGreen ? 'On' : 'Off';
@@ -112,7 +124,8 @@
     btn.setAttribute('aria-pressed', String(isGreen));
     if (!reduce) scaleVel -= 4.5; // quick squash, spring brings it back
     if (reduce) color = target.slice();
-  });
+  }
+  btn.addEventListener('click', toggle); // mouse and keyboard
 
   function frame(now) {
     const dt = Math.min((now - last) / 1000, 0.05);
