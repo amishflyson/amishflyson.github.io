@@ -28,7 +28,7 @@
     --bg: #12151b; --fg: #e8ebf0; --muted: #8b93a2; --ring: #262b35; --idle: #5b6270;
     color-scheme: dark;
   }
-  html, body { height: 100%; }
+  html, body { height: 100%; overflow: hidden; overscroll-behavior: none; }
   body {
     background: var(--bg);
     color: var(--fg);
@@ -40,6 +40,11 @@
     padding-right: max(16px, env(safe-area-inset-right, 0px));
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
+    position: fixed;
+    inset: 0;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
   }
   main { display: grid; justify-items: center; gap: 28px; }
   #toggle {
@@ -78,6 +83,10 @@
   const btn = document.getElementById('toggle');
   const label = document.getElementById('label');
   const fpsEl = document.getElementById('fps');
+  // Block all page scrolling and the rubber-band bounce
+  document.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
+  document.addEventListener('wheel', e => e.preventDefault(), { passive: false });
+
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const GREEN = [34, 197, 94];
