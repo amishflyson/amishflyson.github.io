@@ -1,7 +1,7 @@
 {
  "about": "Generated from the Refract Motion source. Everything a .refract.json project file can contain. See README.md for how to use it.",
- "generatedAt": "2026-10-22T13:34:11.028Z",
- "schema": 1,
+ "generatedAt": "2026-10-22T18:40:42.285Z",
+ "schema": 2,
  "fileFormat": {
   "format": "refract-project",
   "version": 2
@@ -2241,246 +2241,1096 @@
    ]
   },
   {
-   "id": "vhs",
-   "name": "VHS Tape",
+   "id": "analog",
+   "name": "CRT / VHS",
    "category": "retro",
-   "description": "Wobbly tracking waves, color bleed, tape noise, rolling tracking bands and head-switch tearing.",
-   "about": "Makes footage look like it was played from a worn VHS tape: wobbly lines, smeared colors, rolling noise bands and a torn bottom edge.",
+   "description": "A physical analog video chain: tape, signal, sync and a real CRT tube — soft, unstable and glowing, from clean broadcast to destroyed tape.",
+   "about": "Sends the layer through a simulated analog video system: recorded to VHS tape, played back on an imperfect deck, sent down a cable and shown on a real tube TV. Start with a preset and the six big sliders; open Advanced controls for every part of the chain. Put it on an adjustment layer to run the whole picture through a TV.",
    "params": [
     {
-     "id": "waves",
-     "label": "Wave height",
-     "type": "number",
-     "default": 6,
-     "min": 0,
-     "softMax": 60,
-     "unit": "px",
-     "help": "How far the picture sways sideways in slow waves."
-    },
-    {
-     "id": "waveSize",
-     "label": "Wave length",
-     "type": "number",
-     "default": 260,
-     "min": 8,
-     "softMax": 1500,
-     "unit": "px",
-     "help": "How tall each wave is. Small is a fast wiggle, big is a slow lean."
-    },
-    {
-     "id": "waveSpeed",
-     "label": "Wave speed",
-     "type": "number",
-     "default": 0.5,
-     "softMin": -3,
-     "softMax": 3,
-     "unit": "/s",
-     "help": "How fast the waves travel."
-    },
-    {
-     "id": "jitter",
-     "label": "Line jitter",
-     "type": "number",
-     "default": 1.5,
-     "min": 0,
-     "softMax": 20,
-     "unit": "px",
-     "help": "Each line shakes a little sideways, like a shaky tape."
-    },
-    {
-     "id": "tracking",
-     "label": "Tracking band",
+     "id": "intensity",
+     "label": "Intensity",
      "type": "percent",
-     "default": 0.4,
+     "default": 1,
      "min": 0,
      "max": 1,
-     "help": "A band of static that rolls up the picture, like bad tracking."
+     "help": "How much of the analog chain you see. 0 is your clean original; animate it from 0 to 100% for a clean-to-tape transition."
     },
     {
-     "id": "trackingSpeed",
-     "label": "Band speed",
-     "type": "number",
-     "default": 0.22,
-     "softMin": -2,
-     "softMax": 2,
-     "unit": "/s",
-     "help": "How fast that static band rolls. Negative goes the other way."
-    },
-    {
-     "id": "bandHeight",
-     "label": "Band height",
-     "type": "number",
-     "default": 70,
-     "min": 4,
-     "softMax": 400,
-     "unit": "px",
-     "help": "How tall the static band is."
-    },
-    {
-     "id": "bleed",
-     "label": "Color bleed",
-     "type": "number",
-     "default": 7,
-     "min": 0,
-     "softMax": 40,
-     "unit": "px",
-     "help": "How far colors smear sideways past the edges of things."
-    },
-    {
-     "id": "chromaShift",
-     "label": "Color shift",
-     "type": "number",
-     "default": 3,
-     "softMin": -20,
-     "softMax": 20,
-     "unit": "px",
-     "help": "Slides the colors sideways away from the picture, like a misaligned tape."
-    },
-    {
-     "id": "softness",
-     "label": "Softness",
-     "type": "number",
-     "default": 1.2,
-     "min": 0,
-     "softMax": 8,
-     "unit": "px",
-     "help": "Blurs the picture slightly sideways. VHS was never sharp."
-    },
-    {
-     "id": "noise",
-     "label": "Tape noise",
-     "type": "percent",
-     "default": 0.25,
-     "min": 0,
-     "max": 1,
-     "help": "Grainy tape static all over."
-    },
-    {
-     "id": "dropouts",
-     "label": "Dropouts",
+     "id": "fuzz",
+     "label": "Analog fuzz",
      "type": "percent",
      "default": 0.3,
      "min": 0,
      "max": 1,
-     "help": "Short white streaks where the tape lost its signal."
+     "help": "The single \"make it feel analog\" slider: softer detail sideways, softer color, softer beam, a little glow, tiny color fringes and noise. 20–40% makes crisp graphics feel like they are on a real monitor."
     },
     {
-     "id": "headSwitch",
-     "label": "Bottom tear",
+     "id": "tapeAge",
+     "label": "Tape age",
      "type": "percent",
-     "default": 0.5,
+     "default": 0.3,
      "min": 0,
      "max": 1,
-     "help": "The ragged, torn strip at the very bottom of the frame."
+     "help": "How old and worn the tape is. Older means more noise, more color smear, weaker color, more dropouts and wobble."
     },
     {
-     "id": "scanlines",
-     "label": "Scanlines",
+     "id": "signal",
+     "label": "Signal quality",
      "type": "percent",
-     "default": 0.15,
+     "default": 0.7,
      "min": 0,
      "max": 1,
-     "help": "Faint horizontal lines across the picture."
+     "help": "How clean the cable/antenna signal is. 100% is a perfect connection. Lower adds rainbow patterns, crawling dots, ghosts, interference and, at the bottom, snow."
     },
     {
-     "id": "saturation",
-     "label": "Saturation",
-     "type": "number",
-     "default": 0.85,
+     "id": "glow",
+     "label": "CRT glow",
+     "type": "percent",
+     "default": 0.45,
      "min": 0,
-     "softMax": 2,
-     "step": 0.01,
-     "help": "How colorful it is. VHS colors were a bit washed out."
+     "max": 1,
+     "help": "How much the tube glows: bloom around bright things, a wide soft halo, slightly fuzzy bright edges."
     },
     {
-     "id": "rate",
-     "label": "Noise rate",
-     "type": "number",
-     "default": 30,
-     "min": 0,
-     "softMax": 60,
-     "unit": "fps",
-     "help": "How many times per second the noise changes. 30 feels like real video."
-    }
-   ]
-  },
-  {
-   "id": "crt",
-   "name": "CRT Screen",
-   "category": "retro",
-   "description": "A tube TV or monitor: curved glass, beam scanlines, phosphor masks, bloom, convergence, flicker and roll.",
-   "about": "Makes the layer look like an old tube TV or arcade monitor: curved glass, glowing scanlines, colored phosphor dots, bloom and flicker.",
-   "params": [
-    {
-     "id": "curvature",
-     "label": "Curvature",
+     "id": "instability",
+     "label": "Instability",
      "type": "percent",
      "default": 0.25,
      "min": 0,
      "max": 1,
-     "help": "How bulged the old TV glass is."
+     "help": "How unstable the playback and TV are: wobbling lines, drifting color, tracking trouble, tiny jitters. All of them move together, like one tired machine."
     },
     {
-     "id": "corner",
-     "label": "Corner radius",
-     "type": "percent",
-     "default": 0.06,
-     "min": 0,
-     "max": 0.5,
-     "help": "How rounded the screen's corners are."
+     "id": "process",
+     "label": "Process",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Layer signal"
+      },
+      {
+       "value": 1,
+       "label": "Full frame"
+      }
+     ],
+     "animatable": false,
+     "help": "Layer signal treats just this layer (respecting its transparency). Full frame treats the layer's whole box as a TV picture with a screen and bezel. For the whole video, put the effect on an adjustment layer."
     },
     {
-     "id": "zoom",
-     "label": "Overscan",
-     "type": "number",
-     "default": 1,
-     "min": 0.5,
-     "softMax": 1.5,
-     "step": 0.005,
-     "help": "Zooms the picture inside the tube. Above 100% crops the edges like a real TV did."
+     "id": "preview",
+     "label": "Preview quality",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Auto"
+      },
+      {
+       "value": 1,
+       "label": "Low"
+      },
+      {
+       "value": 2,
+       "label": "Medium"
+      },
+      {
+       "value": 3,
+       "label": "High"
+      },
+      {
+       "value": 4,
+       "label": "Full"
+      }
+     ],
+     "animatable": false,
+     "help": "Lower settings preview faster while you work. Auto lowers quality only while playing or dragging. Exports always use full quality."
+    },
+    {
+     "id": "standard",
+     "label": "Video standard",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "NTSC · 480 lines"
+      },
+      {
+       "value": 1,
+       "label": "PAL · 576 lines"
+      },
+      {
+       "value": 2,
+       "label": "Custom"
+      }
+     ],
+     "animatable": false,
+     "help": "NTSC (480 lines, American/Japanese TV) or PAL (576 lines, European TV, a little steadier color). Custom lets you choose the number of lines.",
+     "group": "signal"
     },
     {
      "id": "lines",
-     "label": "Line spacing",
+     "label": "Lines",
      "type": "number",
-     "default": 4,
-     "min": 1,
-     "softMax": 20,
+     "default": 480,
+     "min": 60,
+     "max": 2400,
+     "softMax": 1200,
+     "step": 1,
+     "animatable": false,
+     "help": "How many scanlines fit in the height of the composition. Fewer lines look chunkier, like 240p game consoles.",
+     "group": "signal"
+    },
+    {
+     "id": "lumaBW",
+     "label": "Luma bandwidth",
+     "type": "number",
+     "default": 300,
+     "min": 20,
+     "softMax": 800,
+     "step": 1,
+     "unit": "TVL",
+     "help": "How much detail the brightness signal keeps, sideways. VHS is about 240, broadcast TV about 330, professional video 400 or more.",
+     "group": "signal"
+    },
+    {
+     "id": "chromaBW",
+     "label": "Chroma bandwidth",
+     "type": "number",
+     "default": 50,
+     "min": 4,
+     "softMax": 400,
+     "step": 1,
+     "unit": "TVL",
+     "help": "How much detail the color keeps. Analog color is much blurrier than brightness: VHS is around 30–40, which is why colors smear past edges.",
+     "group": "signal"
+    },
+    {
+     "id": "chromaDelay",
+     "label": "Chroma delay",
+     "type": "number",
+     "default": 1.5,
+     "softMin": -12,
+     "softMax": 12,
+     "step": 0.05,
      "unit": "px",
-     "help": "How far apart the scanlines are. Bigger feels chunkier and older."
+     "help": "Slides the color slightly sideways relative to the picture, like a slightly misaligned color circuit.",
+     "group": "signal"
+    },
+    {
+     "id": "chromaPhase",
+     "label": "Chroma phase",
+     "type": "angle",
+     "default": 0,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "Turns all the colors around the color wheel, like the TV's \"tint\" knob.",
+     "group": "signal"
+    },
+    {
+     "id": "bleed",
+     "label": "Bleed distance",
+     "type": "number",
+     "default": 10,
+     "min": 0,
+     "softMax": 120,
+     "step": 0.1,
+     "unit": "px",
+     "help": "How far colors trail sideways beyond the edges of things.",
+     "group": "signal"
+    },
+    {
+     "id": "bleedDir",
+     "label": "Bleed direction",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Trails right"
+      },
+      {
+       "value": 1,
+       "label": "Trails left"
+      },
+      {
+       "value": 2,
+       "label": "Both ways"
+      }
+     ],
+     "animatable": false,
+     "help": "Which way colors trail. Real tape trails to the right.",
+     "group": "signal"
+    },
+    {
+     "id": "bleedR",
+     "label": "Red bleed",
+     "type": "percent",
+     "default": 0.8,
+     "min": 0,
+     "max": 1,
+     "help": "How much reds smear. Saturated reds are famous for smearing on VHS.",
+     "group": "signal"
+    },
+    {
+     "id": "bleedG",
+     "label": "Green bleed",
+     "type": "percent",
+     "default": 0.35,
+     "min": 0,
+     "max": 1,
+     "help": "How much greens smear.",
+     "group": "signal"
+    },
+    {
+     "id": "bleedB",
+     "label": "Blue bleed",
+     "type": "percent",
+     "default": 0.55,
+     "min": 0,
+     "max": 1,
+     "help": "How much blues smear.",
+     "group": "signal"
+    },
+    {
+     "id": "bleedEdge",
+     "label": "Edge sensitivity",
+     "type": "percent",
+     "default": 0.4,
+     "min": 0,
+     "max": 1,
+     "help": "Concentrates the smear at sharp color edges instead of everywhere.",
+     "group": "signal"
+    },
+    {
+     "id": "bleedSat",
+     "label": "Saturation influence",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "Lets strong, saturated colors smear further than pale ones.",
+     "group": "signal"
+    },
+    {
+     "id": "composite",
+     "label": "Composite",
+     "type": "percent",
+     "default": 0.4,
+     "min": 0,
+     "max": 1,
+     "help": "How much the picture suffers from traveling as one combined \"composite\" signal: rainbow shimmer on fine patterns and crawling dots on colored edges. 0 is like separate component cables.",
+     "group": "signal"
+    },
+    {
+     "id": "comb",
+     "label": "Comb filter",
+     "type": "percent",
+     "default": 0.55,
+     "min": 0,
+     "max": 1,
+     "help": "How good the TV is at separating color from brightness. High is a better TV with fewer rainbows and dots.",
+     "group": "signal"
+    },
+    {
+     "id": "dotCrawl",
+     "label": "Dot crawl",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "Tiny dots that crawl along the edges of colored shapes.",
+     "group": "signal"
+    },
+    {
+     "id": "rainbow",
+     "label": "Rainbow (cross-color)",
+     "type": "percent",
+     "default": 0.55,
+     "min": 0,
+     "max": 1,
+     "help": "False rainbow colors that appear on fine stripes and detailed patterns.",
+     "group": "signal"
+    },
+    {
+     "id": "scJitter",
+     "label": "Subcarrier instability",
+     "type": "percent",
+     "default": 0.2,
+     "min": 0,
+     "max": 1,
+     "help": "Small line-by-line color errors, so colors subtly shimmer (NTSC: hue; PAL: saturation).",
+     "group": "signal"
+    },
+    {
+     "id": "burst",
+     "label": "Colorburst instability",
+     "type": "percent",
+     "default": 0.08,
+     "min": 0,
+     "max": 1,
+     "help": "Occasional moments where the color loses its reference and briefly shifts or fades.",
+     "group": "signal"
+    },
+    {
+     "id": "ringing",
+     "label": "Edge ringing",
+     "type": "percent",
+     "default": 0.3,
+     "min": 0,
+     "max": 2,
+     "help": "Thin light and dark outlines next to hard edges, from the VCR's sharpening circuit.",
+     "group": "signal"
+    },
+    {
+     "id": "ringRadius",
+     "label": "Ringing radius",
+     "type": "number",
+     "default": 2.5,
+     "min": 0,
+     "softMax": 20,
+     "step": 0.05,
+     "unit": "px",
+     "help": "How far those outlines sit from the edge.",
+     "group": "signal"
+    },
+    {
+     "id": "tapeOn",
+     "label": "VHS tape",
+     "type": "bool",
+     "default": 1,
+     "animatable": false,
+     "help": "Turns the VHS tape part on or off. Off is like a live signal straight to the TV.",
+     "group": "tape"
+    },
+    {
+     "id": "generation",
+     "label": "Generation",
+     "type": "number",
+     "default": 1,
+     "min": 0,
+     "max": 10,
+     "softMax": 6,
+     "step": 0.05,
+     "help": "How many times the tape has been copied. 1 is a first recording, 2 a copy, 3 a copy of a copy. Each copy is softer, noisier and smearier.",
+     "group": "tape"
+    },
+    {
+     "id": "speed",
+     "label": "Recording speed",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "SP (best)"
+      },
+      {
+       "value": 1,
+       "label": "LP"
+      },
+      {
+       "value": 2,
+       "label": "EP (longest)"
+      }
+     ],
+     "animatable": false,
+     "help": "SP is the best quality. LP and EP squeeze more onto the tape and look noisier and softer.",
+     "group": "tape"
+    },
+    {
+     "id": "wear",
+     "label": "Tape wear",
+     "type": "percent",
+     "default": 0.2,
+     "min": 0,
+     "max": 1,
+     "help": "Physical wear on the tape: more dropouts and noise.",
+     "group": "tape"
+    },
+    {
+     "id": "tapeNoise",
+     "label": "Tape noise",
+     "type": "percent",
+     "default": 0.35,
+     "min": 0,
+     "max": 2,
+     "help": "How much hiss and grain the tape adds.",
+     "group": "tape"
+    },
+    {
+     "id": "lag",
+     "label": "Chroma lag",
+     "type": "percent",
+     "default": 0.3,
+     "min": 0,
+     "max": 1,
+     "help": "Color trails a moment behind moving things, especially bright reds.",
+     "group": "tape"
+    },
+    {
+     "id": "lagDecay",
+     "label": "Lag falloff",
+     "type": "number",
+     "default": 0.06,
+     "min": 0.005,
+     "softMax": 0.5,
+     "step": 0.005,
+     "unit": "s",
+     "help": "How long the color trail lingers.",
+     "group": "tape"
+    },
+    {
+     "id": "lagMotion",
+     "label": "Motion sensitivity",
+     "type": "percent",
+     "default": 0.7,
+     "min": 0,
+     "max": 1,
+     "help": "Limits color trails to moving areas so still parts stay clean.",
+     "group": "tape"
+    },
+    {
+     "id": "lagSat",
+     "label": "Saturation response",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "Lets saturated colors trail more than pale ones.",
+     "group": "tape"
+    },
+    {
+     "id": "syncOn",
+     "label": "Sync & tracking",
+     "type": "bool",
+     "default": 1,
+     "animatable": false,
+     "help": "Turns timing problems on or off: wobble, tracking bands, head switching, rolling and interlacing.",
+     "group": "sync"
+    },
+    {
+     "id": "tbc",
+     "label": "Time-base error",
+     "type": "number",
+     "default": 1.4,
+     "min": 0,
+     "softMax": 40,
+     "step": 0.05,
+     "unit": "px",
+     "help": "How far lines wander sideways because the tape's timing is not perfect. A little makes straight edges feel alive; a lot makes waves.",
+     "group": "sync"
+    },
+    {
+     "id": "tbcSpeed",
+     "label": "Wander speed",
+     "type": "number",
+     "default": 0.5,
+     "min": 0,
+     "softMax": 5,
+     "step": 0.01,
+     "help": "How fast the wandering changes.",
+     "group": "sync"
+    },
+    {
+     "id": "tbcScale",
+     "label": "Wave height",
+     "type": "number",
+     "default": 40,
+     "min": 1,
+     "softMax": 400,
+     "step": 1,
+     "unit": "lines",
+     "help": "How many lines move together in one wave. Small is a fast ripple, large is a slow bend.",
+     "group": "sync"
+    },
+    {
+     "id": "tbcDrift",
+     "label": "Breathing",
+     "type": "percent",
+     "default": 0.4,
+     "min": 0,
+     "max": 1,
+     "help": "A slow, whole-picture sway on top of the wandering.",
+     "group": "sync"
+    },
+    {
+     "id": "tbcJitter",
+     "label": "Line jitter",
+     "type": "number",
+     "default": 0.35,
+     "min": 0,
+     "softMax": 10,
+     "step": 0.01,
+     "unit": "px",
+     "help": "A tiny line-by-line shiver.",
+     "group": "sync"
+    },
+    {
+     "id": "tbcTurb",
+     "label": "Turbulence",
+     "type": "percent",
+     "default": 0.25,
+     "min": 0,
+     "max": 1,
+     "help": "Patches where the wandering suddenly gets rougher.",
+     "group": "sync"
+    },
+    {
+     "id": "tbcSmooth",
+     "label": "Smoothness",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "How smooth the shiver is from line to line. Low is rough and scratchy.",
+     "group": "sync"
+    },
+    {
+     "id": "lineShift",
+     "label": "Line shifts",
+     "type": "percent",
+     "default": 0.015,
+     "min": 0,
+     "max": 1,
+     "help": "Now and then a group of lines jumps sideways for a moment.",
+     "group": "sync"
+    },
+    {
+     "id": "lineGroup",
+     "label": "Line grouping",
+     "type": "number",
+     "default": 8,
+     "min": 1,
+     "softMax": 80,
+     "step": 1,
+     "unit": "lines",
+     "help": "How many lines jump together.",
+     "group": "sync"
+    },
+    {
+     "id": "tearing",
+     "label": "Tearing",
+     "type": "percent",
+     "default": 0.02,
+     "min": 0,
+     "max": 1,
+     "help": "Rare moments where the picture tears sideways below a line, then settles.",
+     "group": "sync"
+    },
+    {
+     "id": "tracking",
+     "label": "Tracking error",
+     "type": "percent",
+     "default": 0.15,
+     "min": 0,
+     "max": 1,
+     "help": "Noisy, torn horizontal bands from bad tape tracking.",
+     "group": "sync"
+    },
+    {
+     "id": "trackMode",
+     "label": "Tracking behavior",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Auto"
+      },
+      {
+       "value": 1,
+       "label": "Static"
+      },
+      {
+       "value": 2,
+       "label": "Rolling"
+      },
+      {
+       "value": 3,
+       "label": "Intermittent"
+      }
+     ],
+     "animatable": false,
+     "help": "Auto drifts and comes and goes with the instability. Static stays in one place, Rolling moves up the picture, Intermittent pops in and out.",
+     "group": "sync"
+    },
+    {
+     "id": "trackBands",
+     "label": "Bands",
+     "type": "number",
+     "default": 1,
+     "min": 1,
+     "max": 4,
+     "softMax": 4,
+     "step": 1,
+     "animatable": false,
+     "help": "How many tracking bands there can be.",
+     "group": "sync"
+    },
+    {
+     "id": "trackSize",
+     "label": "Band size",
+     "type": "percent",
+     "default": 0.07,
+     "min": 0,
+     "max": 0.5,
+     "help": "How tall each band is.",
+     "group": "sync"
+    },
+    {
+     "id": "trackPos",
+     "label": "Band position",
+     "type": "percent",
+     "default": 0.75,
+     "min": 0,
+     "max": 1,
+     "help": "Where the band sits (for Static and Rolling).",
+     "group": "sync"
+    },
+    {
+     "id": "trackSpeed",
+     "label": "Band drift speed",
+     "type": "number",
+     "default": 0.12,
+     "min": -5,
+     "softMin": -2,
+     "softMax": 2,
+     "step": 0.01,
+     "unit": "/s",
+     "help": "How fast bands move. Negative moves them the other way.",
+     "group": "sync"
+    },
+    {
+     "id": "trackWarp",
+     "label": "Band warp",
+     "type": "number",
+     "default": 22,
+     "min": 0,
+     "softMax": 200,
+     "step": 0.5,
+     "unit": "px",
+     "help": "How far lines inside a band get pulled sideways.",
+     "group": "sync"
+    },
+    {
+     "id": "trackNoise",
+     "label": "Band noise",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "How much static fills the band.",
+     "group": "sync"
+    },
+    {
+     "id": "trackChroma",
+     "label": "Band chroma loss",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "How much color drops out inside the band.",
+     "group": "sync"
+    },
+    {
+     "id": "trackPersist",
+     "label": "Band persistence",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "How long bands stay when they appear.",
+     "group": "sync"
+    },
+    {
+     "id": "trackSeed",
+     "label": "Seed",
+     "type": "number",
+     "default": 193812,
+     "min": 0,
+     "max": 999999,
+     "step": 1,
+     "animatable": false,
+     "help": "A different random starting point. Same look, different arrangement. Try a few numbers until you like it.",
+     "group": "sync"
+    },
+    {
+     "id": "headSwitch",
+     "label": "Head switching",
+     "type": "percent",
+     "default": 0.25,
+     "min": 0,
+     "max": 1,
+     "help": "The ragged, skewed strip at the very bottom of VHS playback where the tape heads switch over.",
+     "group": "sync"
+    },
+    {
+     "id": "hsLines",
+     "label": "Head-switch size",
+     "type": "number",
+     "default": 6,
+     "min": 1,
+     "softMax": 40,
+     "step": 1,
+     "unit": "lines",
+     "help": "How many lines at the bottom are affected.",
+     "group": "sync"
+    },
+    {
+     "id": "hsShear",
+     "label": "Head-switch shear",
+     "type": "number",
+     "default": 14,
+     "min": 0,
+     "softMax": 200,
+     "step": 0.5,
+     "unit": "px",
+     "help": "How far those bottom lines bend sideways.",
+     "group": "sync"
+    },
+    {
+     "id": "hsNoise",
+     "label": "Head-switch noise",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "Static in the bottom strip.",
+     "group": "sync"
+    },
+    {
+     "id": "hsChroma",
+     "label": "Head-switch color error",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "Wrong colors in the bottom strip.",
+     "group": "sync"
+    },
+    {
+     "id": "hsFlicker",
+     "label": "Head-switch flicker",
+     "type": "percent",
+     "default": 0.3,
+     "min": 0,
+     "max": 1,
+     "help": "How much the bottom strip flickers.",
+     "group": "sync"
+    },
+    {
+     "id": "hsOffset",
+     "label": "Head-switch offset",
+     "type": "number",
+     "default": 0,
+     "min": 0,
+     "softMax": 60,
+     "step": 1,
+     "unit": "lines",
+     "help": "Moves the strip up from the bottom edge.",
+     "group": "sync"
+    },
+    {
+     "id": "vroll",
+     "label": "Vertical roll",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "Occasionally the TV loses its grip and the picture rolls vertically for a moment, showing the black bar between frames.",
+     "group": "sync"
+    },
+    {
+     "id": "vhold",
+     "label": "Vertical hold",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "A small, constant vertical bounce, like a loose vertical hold knob.",
+     "group": "sync"
+    },
+    {
+     "id": "interlace",
+     "label": "Interlacing",
+     "type": "percent",
+     "default": 0.35,
+     "min": 0,
+     "max": 1,
+     "help": "Old video draws odd and even lines a moment apart. Moving things get comb-like edges; still things stay clean.",
+     "group": "sync"
+    },
+    {
+     "id": "fieldOrder",
+     "label": "Field order",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Top field first"
+      },
+      {
+       "value": 1,
+       "label": "Bottom field first"
+      }
+     ],
+     "animatable": false,
+     "help": "Which set of lines is drawn first. Swap it if moving edges look wrong.",
+     "group": "sync"
+    },
+    {
+     "id": "deinterlace",
+     "label": "Deinterlacing",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Weave (combing)"
+      },
+      {
+       "value": 1,
+       "label": "Blend"
+      },
+      {
+       "value": 2,
+       "label": "Bob (line double)"
+      }
+     ],
+     "animatable": false,
+     "help": "How the two sets of lines are combined: Weave shows combs, Blend shows soft double images, Bob rebuilds lines and looks jaggy.",
+     "group": "sync"
+    },
+    {
+     "id": "fieldMotion",
+     "label": "Field motion sensitivity",
+     "type": "percent",
+     "default": 0.8,
+     "min": 0,
+     "max": 1,
+     "help": "Keeps interlacing to moving areas only.",
+     "group": "sync"
+    },
+    {
+     "id": "fieldOffset",
+     "label": "Field offset",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "How far apart in time the two sets of lines are.",
+     "group": "sync"
+    },
+    {
+     "id": "fieldFlicker",
+     "label": "Field flicker",
+     "type": "percent",
+     "default": 0.12,
+     "min": 0,
+     "max": 1,
+     "help": "Thin horizontal details twitter slightly, like on a real interlaced TV.",
+     "group": "sync"
+    },
+    {
+     "id": "crtOn",
+     "label": "CRT display",
+     "type": "bool",
+     "default": 1,
+     "animatable": false,
+     "help": "Turns the tube on or off. Off shows the video signal as if captured digitally, without scanlines or phosphors.",
+     "group": "beam"
     },
     {
      "id": "scan",
      "label": "Scanlines",
      "type": "percent",
-     "default": 0.45,
+     "default": 0.55,
      "min": 0,
      "max": 1,
-     "help": "How dark the gaps between scanlines are."
+     "help": "How visible the scanlines are. Each line is a glowing electron beam with dark gaps between.",
+     "group": "beam"
     },
     {
-     "id": "beam",
-     "label": "Beam sharpness",
+     "id": "beamWidth",
+     "label": "Beam width",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0.15,
+     "max": 1.5,
+     "help": "How thick each beam is. Thick beams fill the gaps; thin beams leave dark lines.",
+     "group": "beam"
+    },
+    {
+     "id": "beamMin",
+     "label": "Thinnest beam",
+     "type": "percent",
+     "default": 0.38,
+     "min": 0.05,
+     "max": 1,
+     "help": "Beam thickness in dark parts of the picture.",
+     "group": "beam"
+    },
+    {
+     "id": "beamMax",
+     "label": "Widest beam",
+     "type": "percent",
+     "default": 0.95,
+     "min": 0.1,
+     "max": 2,
+     "help": "Beam thickness in bright parts. Bright lines swell, like on a real tube.",
+     "group": "beam"
+    },
+    {
+     "id": "beamShape",
+     "label": "Beam shape",
+     "type": "number",
+     "default": 2,
+     "min": 1,
+     "max": 8,
+     "softMax": 6,
+     "step": 0.05,
+     "help": "The beam's profile. 2 is a soft round beam; higher is flatter with crisper edges.",
+     "group": "beam"
+    },
+    {
+     "id": "beamResponse",
+     "label": "Brightness response",
+     "type": "percent",
+     "default": 0.7,
+     "min": 0,
+     "max": 2,
+     "help": "How strongly brightness changes the beam thickness.",
+     "group": "beam"
+    },
+    {
+     "id": "scanBloom",
+     "label": "Scanline bloom",
      "type": "percent",
      "default": 0.35,
      "min": 0,
      "max": 1,
-     "help": "How thin and crisp each glowing line is. Low is soft and blurry, high is sharp and arcade-like."
+     "help": "Very bright lines spill onto their neighbors.",
+     "group": "beam"
     },
     {
-     "id": "mask",
-     "label": "Phosphor mask",
+     "id": "scanBloomThresh",
+     "label": "Scanline bloom threshold",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "How bright a line must be before it spills.",
+     "group": "beam"
+    },
+    {
+     "id": "focus",
+     "label": "Focus softness",
      "type": "percent",
      "default": 0.3,
      "min": 0,
      "max": 1,
-     "help": "How visible the tiny red, green and blue phosphor dots are."
+     "help": "Overall softness of the beam's focus. Analog fuzz, not a blur filter: bright parts soften more than dark.",
+     "group": "beam"
+    },
+    {
+     "id": "focusResponse",
+     "label": "Bright blur",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "How much brighter areas lose focus compared with dark ones.",
+     "group": "beam"
+    },
+    {
+     "id": "blackDetail",
+     "label": "Black detail",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "Keeps dark areas crisp while bright ones soften.",
+     "group": "beam"
+    },
+    {
+     "id": "conv",
+     "label": "Misconvergence",
+     "type": "number",
+     "default": 0.6,
+     "min": 0,
+     "softMax": 8,
+     "step": 0.01,
+     "unit": "px",
+     "help": "How far the red, green and blue beams miss each other, giving thin colored fringes. Keep it small.",
+     "group": "beam"
+    },
+    {
+     "id": "convEdge",
+     "label": "Edge misconvergence",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 3,
+     "help": "Makes the fringes grow toward the edges and corners, like a real tube.",
+     "group": "beam"
+    },
+    {
+     "id": "convR",
+     "label": "Red offset",
+     "type": "number",
+     "default": [
+      0.5,
+      0
+     ],
+     "softMin": -6,
+     "softMax": 6,
+     "step": 0.01,
+     "unit": "px",
+     "help": "Fine-tune where the red beam lands (sideways, up/down).",
+     "group": "beam"
+    },
+    {
+     "id": "convG",
+     "label": "Green offset",
+     "type": "number",
+     "default": [
+      0,
+      0
+     ],
+     "softMin": -6,
+     "softMax": 6,
+     "step": 0.01,
+     "unit": "px",
+     "help": "Fine-tune where the green beam lands.",
+     "group": "beam"
+    },
+    {
+     "id": "convB",
+     "label": "Blue offset",
+     "type": "number",
+     "default": [
+      -0.4,
+      0.25
+     ],
+     "softMin": -6,
+     "softMax": 6,
+     "step": 0.01,
+     "unit": "px",
+     "help": "Fine-tune where the blue beam lands.",
+     "group": "beam"
     },
     {
      "id": "maskType",
-     "label": "Mask type",
+     "label": "Phosphor mask",
      "type": "enum",
-     "default": 0,
+     "default": 3,
      "options": [
       {
        "value": 0,
@@ -2488,165 +3338,2162 @@
       },
       {
        "value": 1,
-       "label": "Shadow mask"
-      },
-      {
-       "value": 2,
        "label": "Slot mask"
       },
       {
+       "value": 2,
+       "label": "Shadow mask"
+      },
+      {
        "value": 3,
-       "label": "Monochrome"
+       "label": "Consumer TV"
+      },
+      {
+       "value": 4,
+       "label": "PVM"
+      },
+      {
+       "value": 5,
+       "label": "Trinitron"
+      },
+      {
+       "value": 6,
+       "label": "Fine monitor"
+      },
+      {
+       "value": 7,
+       "label": "Coarse vintage TV"
+      },
+      {
+       "value": 8,
+       "label": "None"
       }
      ],
      "animatable": false,
-     "help": "The pattern of phosphors. Aperture grille is vertical stripes (Trinitron), Shadow mask is dot triangles, Slot mask is little bricks, Monochrome has none."
+     "help": "The pattern of tiny red, green and blue phosphors on the glass: stripes (aperture grille, PVM, Trinitron), little bricks (slot mask, consumer TV) or dots (shadow mask). Zoom in to see it.",
+     "group": "phosphor"
     },
     {
-     "id": "maskSize",
-     "label": "Mask size",
+     "id": "mask",
+     "label": "Mask strength",
+     "type": "percent",
+     "default": 0.45,
+     "min": 0,
+     "max": 1,
+     "help": "How visible the phosphor pattern is.",
+     "group": "phosphor"
+    },
+    {
+     "id": "triad",
+     "label": "Triad size",
      "type": "number",
-     "default": 2,
+     "default": 3.2,
      "min": 0.5,
-     "softMax": 10,
+     "softMax": 24,
+     "step": 0.05,
      "unit": "px",
-     "help": "How big each phosphor dot or stripe is."
+     "help": "The size of one red-green-blue group. Very small patterns fade out automatically to avoid moiré when zoomed out.",
+     "group": "phosphor"
+    },
+    {
+     "id": "maskSoft",
+     "label": "Mask softness",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "How soft the edges of each phosphor are.",
+     "group": "phosphor"
+    },
+    {
+     "id": "subpixel",
+     "label": "Subpixel intensity",
+     "type": "percent",
+     "default": 0.7,
+     "min": 0,
+     "max": 1,
+     "help": "How dark the gaps between the red, green and blue phosphors are.",
+     "group": "phosphor"
+    },
+    {
+     "id": "maskVSpace",
+     "label": "Vertical spacing",
+     "type": "number",
+     "default": 1,
+     "min": 0.3,
+     "softMax": 3,
+     "step": 0.01,
+     "help": "Spacing of the slots or dots up and down.",
+     "group": "phosphor"
+    },
+    {
+     "id": "maskOrder",
+     "label": "RGB arrangement",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "R G B"
+      },
+      {
+       "value": 1,
+       "label": "B G R"
+      },
+      {
+       "value": 2,
+       "label": "G B R"
+      }
+     ],
+     "animatable": false,
+     "help": "The order of the colored phosphors.",
+     "group": "phosphor"
+    },
+    {
+     "id": "maskRotate",
+     "label": "Mask rotation",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Normal"
+      },
+      {
+       "value": 1,
+       "label": "Rotated 90°"
+      }
+     ],
+     "animatable": false,
+     "help": "Turns the phosphor pattern sideways, like a TV mounted on its side.",
+     "group": "phosphor"
+    },
+    {
+     "id": "maskComp",
+     "label": "Brightness compensation",
+     "type": "percent",
+     "default": 0.85,
+     "min": 0,
+     "max": 1,
+     "help": "Brightens the picture to make up for the darkening from the phosphor pattern.",
+     "group": "phosphor"
+    },
+    {
+     "id": "persist",
+     "label": "Persistence",
+     "type": "percent",
+     "default": 0.15,
+     "min": 0,
+     "max": 1,
+     "help": "Bright phosphors keep glowing for an instant, so fast bright things leave a faint trail.",
+     "group": "phosphor"
+    },
+    {
+     "id": "persistTime",
+     "label": "Decay time",
+     "type": "number",
+     "default": 0.05,
+     "min": 0.005,
+     "softMax": 0.6,
+     "step": 0.005,
+     "unit": "s",
+     "help": "How long the afterglow lasts.",
+     "group": "phosphor"
+    },
+    {
+     "id": "persistBright",
+     "label": "Brightness dependency",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "Brighter things glow longer.",
+     "group": "phosphor"
+    },
+    {
+     "id": "persistColor",
+     "label": "Color persistence",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "Lets the colors fade at different speeds (green lingers, blue fades fast).",
+     "group": "phosphor"
+    },
+    {
+     "id": "glowOn",
+     "label": "Glow",
+     "type": "bool",
+     "default": 1,
+     "animatable": false,
+     "help": "Turns all the glow on or off.",
+     "group": "glow"
     },
     {
      "id": "bloom",
-     "label": "Bloom",
+     "label": "Phosphor bloom",
      "type": "percent",
      "default": 0.3,
      "min": 0,
-     "max": 1.5,
-     "help": "Bright parts glow and bleed into the dark, like a real tube."
+     "max": 3,
+     "help": "Bright parts of the tube spread light into their surroundings.",
+     "group": "glow"
     },
     {
-     "id": "convergence",
-     "label": "Convergence",
-     "type": "number",
-     "default": 1,
-     "softMin": -8,
-     "softMax": 8,
-     "unit": "px",
-     "help": "Moves the red and blue beams slightly apart for colored fringes, like an old misaligned TV."
-    },
-    {
-     "id": "vignette",
-     "label": "Vignette",
+     "id": "bloomThresh",
+     "label": "Bloom threshold",
      "type": "percent",
-     "default": 0.4,
+     "default": 0.55,
      "min": 0,
      "max": 1,
-     "help": "Darkens the corners of the tube."
+     "help": "How bright something must be to bloom.",
+     "group": "glow"
     },
     {
-     "id": "boost",
-     "label": "Brightness",
+     "id": "bloomRadius",
+     "label": "Bloom radius",
      "type": "number",
-     "default": 1.2,
+     "default": 7,
      "min": 0.5,
+     "softMax": 60,
+     "step": 0.1,
+     "unit": "px",
+     "help": "How far the bloom spreads.",
+     "group": "glow"
+    },
+    {
+     "id": "bloomSoft",
+     "label": "Bloom softness",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "How gradually things start to bloom.",
+     "group": "glow"
+    },
+    {
+     "id": "halation",
+     "label": "Halation",
+     "type": "percent",
+     "default": 0.15,
+     "min": 0,
+     "max": 3,
+     "help": "A wider, dimmer halo around bright things, from light scattering inside the glass.",
+     "group": "glow"
+    },
+    {
+     "id": "halRadius",
+     "label": "Halation radius",
+     "type": "number",
+     "default": 35,
+     "min": 2,
+     "softMax": 300,
+     "step": 0.5,
+     "unit": "px",
+     "help": "How wide the halo is.",
+     "group": "glow"
+    },
+    {
+     "id": "halThresh",
+     "label": "Halation threshold",
+     "type": "percent",
+     "default": 0.45,
+     "min": 0,
+     "max": 1,
+     "help": "How bright something must be to get a halo.",
+     "group": "glow"
+    },
+    {
+     "id": "halColor",
+     "label": "Halation color",
+     "type": "color",
+     "default": [
+      1,
+      0.82,
+      0.72,
+      1
+     ],
+     "help": "The halo's color. Real tubes glow slightly warm.",
+     "group": "glow"
+    },
+    {
+     "id": "halFalloff",
+     "label": "Halation falloff",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "How far the halo fades out: low is tight, high is long and soft.",
+     "group": "glow"
+    },
+    {
+     "id": "diffusion",
+     "label": "Glass diffusion",
+     "type": "percent",
+     "default": 0.025,
+     "min": 0,
+     "max": 1,
+     "help": "The thick front glass scatters a little light over the whole picture. Keep it very low.",
+     "group": "glow"
+    },
+    {
+     "id": "diffRadius",
+     "label": "Diffusion radius",
+     "type": "number",
+     "default": 90,
+     "min": 4,
+     "softMax": 600,
+     "step": 1,
+     "unit": "px",
+     "help": "How far that scattered light spreads.",
+     "group": "glow"
+    },
+    {
+     "id": "diffEdge",
+     "label": "Diffusion edge response",
+     "type": "percent",
+     "default": 0.3,
+     "min": 0,
+     "max": 1,
+     "help": "Makes the scattering stronger toward the edges of the glass.",
+     "group": "glow"
+    },
+    {
+     "id": "overbright",
+     "label": "Overbright glow",
+     "type": "percent",
+     "default": 0.25,
+     "min": 0,
+     "max": 1,
+     "help": "The very brightest parts glow white-hot instead of clipping flat.",
+     "group": "glow"
+    },
+    {
+     "id": "noiseOn",
+     "label": "Noise",
+     "type": "bool",
+     "default": 1,
+     "animatable": false,
+     "help": "Turns all noise and interference on or off.",
+     "group": "noise"
+    },
+    {
+     "id": "lumaNoise",
+     "label": "Luma noise",
+     "type": "percent",
+     "default": 0.25,
+     "min": 0,
+     "max": 1,
+     "help": "Fine brightness grain, streaky along the lines.",
+     "group": "noise"
+    },
+    {
+     "id": "chromaNoise",
+     "label": "Chroma noise",
+     "type": "percent",
+     "default": 0.22,
+     "min": 0,
+     "max": 1,
+     "help": "Larger, soft blobs of colored noise.",
+     "group": "noise"
+    },
+    {
+     "id": "lineNoise",
+     "label": "Line noise",
+     "type": "percent",
+     "default": 0.12,
+     "min": 0,
+     "max": 1,
+     "help": "Whole lines flickering slightly, and the odd short bright streak.",
+     "group": "noise"
+    },
+    {
+     "id": "grain",
+     "label": "Tape grain",
+     "type": "percent",
+     "default": 0.18,
+     "min": 0,
+     "max": 1,
+     "help": "A faint texture from the tape itself.",
+     "group": "noise"
+    },
+    {
+     "id": "rfNoise",
+     "label": "RF interference",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "Diagonal interference patterns from a poor antenna or cable.",
+     "group": "noise"
+    },
+    {
+     "id": "snow",
+     "label": "Snow",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "The classic black-and-white static of a weak signal.",
+     "group": "noise"
+    },
+    {
+     "id": "humBars",
+     "label": "Hum bars",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "Soft bright and dark bands slowly rolling up the picture, from electrical hum.",
+     "group": "noise"
+    },
+    {
+     "id": "noiseScale",
+     "label": "Noise size",
+     "type": "number",
+     "default": 1,
+     "min": 0.25,
+     "softMax": 4,
+     "step": 0.01,
+     "help": "Makes all the noise bigger or smaller.",
+     "group": "noise"
+    },
+    {
+     "id": "noiseRate",
+     "label": "Noise rate",
+     "type": "number",
+     "default": 30,
+     "min": 1,
+     "softMax": 60,
+     "step": 1,
+     "unit": "fps",
+     "help": "How many times per second the noise changes.",
+     "group": "noise"
+    },
+    {
+     "id": "noisePersist",
+     "label": "Noise persistence",
+     "type": "percent",
+     "default": 0.35,
+     "min": 0,
+     "max": 1,
+     "help": "How smoothly the noise changes from frame to frame. Higher looks less like crawling static.",
+     "group": "noise"
+    },
+    {
+     "id": "noiseContrast",
+     "label": "Noise contrast",
+     "type": "number",
+     "default": 1,
+     "min": 0.2,
+     "softMax": 3,
+     "step": 0.01,
+     "help": "Makes all the noise stronger or weaker.",
+     "group": "noise"
+    },
+    {
+     "id": "noiseDark",
+     "label": "Noisier in darks",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "Puts more noise in dark areas, like real video.",
+     "group": "noise"
+    },
+    {
+     "id": "ghost",
+     "label": "Ghosting",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "Faint copies of the picture offset sideways, from signal reflections in cables and antennas.",
+     "group": "noise"
+    },
+    {
+     "id": "ghostOffset",
+     "label": "Ghost offset",
+     "type": "number",
+     "default": 26,
+     "softMin": -300,
+     "softMax": 300,
+     "step": 0.5,
+     "unit": "px",
+     "help": "How far the ghost sits. Negative puts it on the other side.",
+     "group": "noise"
+    },
+    {
+     "id": "ghostCount",
+     "label": "Echoes",
+     "type": "number",
+     "default": 1,
+     "min": 1,
+     "max": 4,
+     "softMax": 4,
+     "step": 1,
+     "animatable": false,
+     "help": "How many ghost copies there are.",
+     "group": "noise"
+    },
+    {
+     "id": "ghostDecay",
+     "label": "Echo decay",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "How quickly each extra ghost fades.",
+     "group": "noise"
+    },
+    {
+     "id": "ghostMode",
+     "label": "Ghost signal",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Luma + chroma"
+      },
+      {
+       "value": 1,
+       "label": "Luma only"
+      },
+      {
+       "value": 2,
+       "label": "Chroma only"
+      }
+     ],
+     "animatable": false,
+     "help": "Whether the ghost shows brightness, color or both.",
+     "group": "noise"
+    },
+    {
+     "id": "noiseSeed",
+     "label": "Seed",
+     "type": "number",
+     "default": 48211,
+     "min": 0,
+     "max": 999999,
+     "step": 1,
+     "animatable": false,
+     "help": "A different random starting point. Same look, different arrangement. Try a few numbers until you like it.",
+     "group": "noise"
+    },
+    {
+     "id": "colorStyle",
+     "label": "Color style",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Neutral CRT"
+      },
+      {
+       "value": 1,
+       "label": "Warm consumer CRT"
+      },
+      {
+       "value": 2,
+       "label": "Cool PVM"
+      },
+      {
+       "value": 3,
+       "label": "Old television"
+      },
+      {
+       "value": 4,
+       "label": "Cheap VHS"
+      },
+      {
+       "value": 5,
+       "label": "Camcorder"
+      },
+      {
+       "value": 6,
+       "label": "Broadcast monitor"
+      }
+     ],
+     "animatable": false,
+     "help": "A starting color character: neutral, warm family TV, cool professional monitor, faded old TV, cheap tape, punchy camcorder or accurate broadcast monitor.",
+     "group": "color"
+    },
+    {
+     "id": "blackLevel",
+     "label": "Black level",
+     "type": "percent",
+     "default": 0.035,
+     "min": 0,
+     "max": 0.4,
+     "help": "Lifts black slightly so it is never perfectly black, like real video.",
+     "group": "color"
+    },
+    {
+     "id": "whiteLevel",
+     "label": "White level",
+     "type": "percent",
+     "default": 0.96,
+     "min": 0.4,
+     "max": 1.3,
+     "help": "How bright white is.",
+     "group": "color"
+    },
+    {
+     "id": "gamma",
+     "label": "Gamma",
+     "type": "number",
+     "default": 1,
+     "min": 0.4,
+     "max": 4,
      "softMax": 2.5,
      "step": 0.01,
-     "help": "Brightens the picture to make up for the darkening from lines and mask."
+     "help": "Brightens or darkens the middle tones.",
+     "group": "color"
     },
     {
      "id": "saturation",
      "label": "Saturation",
      "type": "number",
-     "default": 1.05,
+     "default": 0.95,
      "min": 0,
      "softMax": 2,
      "step": 0.01,
-     "help": "How colorful the picture is."
+     "help": "How colorful the picture is.",
+     "group": "color"
+    },
+    {
+     "id": "chroma",
+     "label": "Chroma strength",
+     "type": "number",
+     "default": 1,
+     "min": 0,
+     "softMax": 2,
+     "step": 0.01,
+     "help": "Strength of the color signal before it is decoded. Turn it up for bold, bleeding color.",
+     "group": "color"
+    },
+    {
+     "id": "hueDrift",
+     "label": "Hue drift",
+     "type": "percent",
+     "default": 0.2,
+     "min": 0,
+     "max": 1,
+     "help": "Colors slowly drift around the color wheel along with the instability.",
+     "group": "color"
+    },
+    {
+     "id": "whiteBalance",
+     "label": "White balance",
+     "type": "number",
+     "default": 0,
+     "min": -1,
+     "max": 1,
+     "softMax": 1,
+     "step": 0.01,
+     "help": "Cool (blue) to warm (orange) whites.",
+     "group": "color"
     },
     {
      "id": "tint",
-     "label": "Phosphor tint",
+     "label": "Color cast",
      "type": "color",
      "default": [
-      0.4,
       1,
-      0.55,
+      1,
+      1,
       0
      ],
-     "help": "Turns the screen into a single-color monitor (green, amber…). The color's opacity sets how strong."
+     "help": "An overall color cast. Its opacity sets how strong.",
+     "group": "color"
     },
     {
-     "id": "noise",
-     "label": "Static",
-     "type": "percent",
-     "default": 0.04,
-     "min": 0,
+     "id": "highlightWarm",
+     "label": "Highlight warmth",
+     "type": "number",
+     "default": 0.05,
+     "min": -1,
      "max": 1,
-     "help": "Fuzzy static over the picture."
+     "softMax": 1,
+     "step": 0.01,
+     "help": "Warms (or cools, below 0) just the brightest parts.",
+     "group": "color"
     },
     {
-     "id": "flicker",
-     "label": "Flicker",
+     "id": "shadowTint",
+     "label": "Shadow tint",
+     "type": "color",
+     "default": [
+      0.15,
+      0.2,
+      0.35,
+      0.15
+     ],
+     "help": "Adds color to the shadows. Its opacity sets how strong.",
+     "group": "color"
+    },
+    {
+     "id": "gain",
+     "label": "Channel gain",
+     "type": "number",
+     "default": [
+      1,
+      1,
+      1
+     ],
+     "min": 0,
+     "softMax": 2,
+     "step": 0.005,
+     "help": "Separate brightness for red, green and blue.",
+     "group": "color"
+    },
+    {
+     "id": "blackFloor",
+     "label": "Black glow",
      "type": "percent",
      "default": 0.03,
      "min": 0,
      "max": 1,
-     "help": "The whole screen pulses slightly in brightness."
+     "help": "Black glows faintly, like a tube that is never fully dark.",
+     "group": "color"
     },
     {
-     "id": "jitter",
-     "label": "Sync jitter",
-     "type": "number",
-     "default": 0,
+     "id": "shadowDirt",
+     "label": "Shadow contamination",
+     "type": "percent",
+     "default": 0.25,
      "min": 0,
-     "softMax": 10,
-     "unit": "px",
-     "help": "Lines shake sideways, like a weak signal."
+     "max": 1,
+     "help": "Dirty, slightly colored shadows.",
+     "group": "color"
     },
     {
-     "id": "roll",
-     "label": "Roll speed",
-     "type": "number",
-     "default": 0,
-     "softMin": 0,
-     "softMax": 3,
-     "help": "Makes the picture and a bright bar roll down the screen. 0 turns it off."
+     "id": "softClip",
+     "label": "Soft clipping",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "Bright parts roll off gently toward white instead of clipping hard.",
+     "group": "color"
     },
     {
-     "id": "rollBar",
-     "label": "Roll bar",
+     "id": "whiteComp",
+     "label": "White compression",
+     "type": "percent",
+     "default": 0.3,
+     "min": 0,
+     "max": 1,
+     "help": "Squeezes the very top of the brightness range.",
+     "group": "color"
+    },
+    {
+     "id": "clipChroma",
+     "label": "Chroma loss near white",
+     "type": "percent",
+     "default": 0.3,
+     "min": 0,
+     "max": 1,
+     "help": "Colors fade toward white in the brightest areas, like a real signal near its limit.",
+     "group": "color"
+    },
+    {
+     "id": "screen",
+     "label": "Screen shape",
+     "type": "enum",
+     "default": 1,
+     "options": [
+      {
+       "value": 0,
+       "label": "Flat"
+      },
+      {
+       "value": 1,
+       "label": "Slight consumer CRT"
+      },
+      {
+       "value": 2,
+       "label": "Curved television"
+      },
+      {
+       "value": 3,
+       "label": "Strong vintage CRT"
+      },
+      {
+       "value": 4,
+       "label": "Cylindrical (Trinitron)"
+      },
+      {
+       "value": 5,
+       "label": "Custom"
+      }
+     ],
+     "animatable": false,
+     "help": "The shape of the glass: flat, slightly curved, strongly curved, cylindrical like a Trinitron, or Custom.",
+     "group": "geometry"
+    },
+    {
+     "id": "curveH",
+     "label": "Horizontal curvature",
+     "type": "percent",
+     "default": 0.15,
+     "min": 0,
+     "max": 1,
+     "help": "Custom side-to-side curvature.",
+     "group": "geometry"
+    },
+    {
+     "id": "curveV",
+     "label": "Vertical curvature",
      "type": "percent",
      "default": 0.12,
      "min": 0,
      "max": 1,
-     "help": "How visible the soft bright bar is that rolls down the screen."
+     "help": "Custom top-to-bottom curvature.",
+     "group": "geometry"
     },
     {
-     "id": "interlace",
-     "label": "Interlace",
+     "id": "overscan",
+     "label": "Overscan",
+     "type": "percent",
+     "default": 0.06,
+     "min": -0.2,
+     "max": 0.4,
+     "help": "Zooms the picture slightly past the edges of the tube, like real TVs did. Negative shows the borders.",
+     "group": "geometry"
+    },
+    {
+     "id": "corner",
+     "label": "Corner radius",
+     "type": "percent",
+     "default": 0.05,
+     "min": 0,
+     "max": 0.5,
+     "help": "How rounded the tube's corners are (Full frame).",
+     "group": "geometry"
+    },
+    {
+     "id": "edgeStretch",
+     "label": "Edge stretch",
+     "type": "percent",
+     "default": 0,
+     "min": -1,
+     "max": 1,
+     "help": "Stretches (or squeezes) the picture toward the sides.",
+     "group": "geometry"
+    },
+    {
+     "id": "edgeBlur",
+     "label": "Edge blur",
+     "type": "percent",
+     "default": 0.25,
+     "min": 0,
+     "max": 1,
+     "help": "Softer focus toward the edges and corners.",
+     "group": "geometry"
+    },
+    {
+     "id": "edgeBright",
+     "label": "Corner darkening",
+     "type": "percent",
+     "default": 0.3,
+     "min": 0,
+     "max": 1,
+     "help": "Darkens the corners where the beam lands at an angle.",
+     "group": "geometry"
+    },
+    {
+     "id": "edgeDistort",
+     "label": "Edge distortion",
      "type": "percent",
      "default": 0,
      "min": 0,
      "max": 1,
-     "help": "Alternates which lines are drawn each frame, for a shimmering broadcast look."
+     "help": "A slight wavy distortion along the sides.",
+     "group": "geometry"
+    },
+    {
+     "id": "deflect",
+     "label": "Deflection wobble",
+     "type": "number",
+     "default": 0,
+     "min": 0,
+     "softMax": 120,
+     "step": 0.1,
+     "unit": "px",
+     "help": "Bends the whole picture with broad, magnetic-looking waves, like the deflection coils are being disturbed.",
+     "group": "geometry"
+    },
+    {
+     "id": "deflectScale",
+     "label": "Wobble size",
+     "type": "number",
+     "default": 320,
+     "min": 10,
+     "softMax": 2000,
+     "step": 1,
+     "unit": "px",
+     "help": "How big those bends are.",
+     "group": "geometry"
+    },
+    {
+     "id": "deflectSpeed",
+     "label": "Wobble speed",
+     "type": "number",
+     "default": 0.4,
+     "min": 0,
+     "softMax": 4,
+     "step": 0.01,
+     "help": "How fast the bends move.",
+     "group": "geometry"
+    },
+    {
+     "id": "glassOn",
+     "label": "Glass",
+     "type": "bool",
+     "default": 1,
+     "animatable": false,
+     "help": "Turns the glass surface on or off.",
+     "group": "glass"
     },
     {
      "id": "reflection",
-     "label": "Glass glare",
+     "label": "Surface reflection",
+     "type": "percent",
+     "default": 0.05,
+     "min": 0,
+     "max": 1,
+     "help": "A soft reflection of the room on the glass.",
+     "group": "glass"
+    },
+    {
+     "id": "edgeReflect",
+     "label": "Edge reflection",
      "type": "percent",
      "default": 0.12,
      "min": 0,
      "max": 1,
-     "help": "A soft glare on the glass, like light from a window."
+     "help": "The glass catches more light at its edges.",
+     "group": "glass"
+    },
+    {
+     "id": "ambient",
+     "label": "Ambient light",
+     "type": "percent",
+     "default": 0.015,
+     "min": 0,
+     "max": 0.3,
+     "help": "Room light falling on the glass, which lifts the blacks.",
+     "group": "glass"
+    },
+    {
+     "id": "glassTint",
+     "label": "Glass tint",
+     "type": "color",
+     "default": [
+      0.82,
+      0.95,
+      0.9,
+      0.08
+     ],
+     "help": "The faint color of the glass. Its opacity sets how strong.",
+     "group": "glass"
+    },
+    {
+     "id": "roughness",
+     "label": "Reflection roughness",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "How blurry the reflection is.",
+     "group": "glass"
+    },
+    {
+     "id": "bezelShadow",
+     "label": "Bezel shadow",
+     "type": "percent",
+     "default": 0.35,
+     "min": 0,
+     "max": 1,
+     "help": "A shadow just inside the frame where the plastic bezel meets the glass.",
+     "group": "glass"
     },
     {
      "id": "bezel",
-     "label": "Bezel",
+     "label": "Bezel color",
      "type": "color",
      "default": [
-      0.02,
-      0.02,
-      0.02,
+      0.025,
+      0.024,
+      0.022,
       1
      ],
-     "help": "The color around the curved screen (the TV's plastic frame)."
+     "help": "The color of the TV's frame around the tube (Full frame).",
+     "group": "glass"
+    },
+    {
+     "id": "damageOn",
+     "label": "Damage",
+     "type": "bool",
+     "default": 1,
+     "animatable": false,
+     "help": "Turns tape damage on or off.",
+     "group": "damage"
+    },
+    {
+     "id": "dropouts",
+     "label": "Dropouts",
+     "type": "percent",
+     "default": 0.15,
+     "min": 0,
+     "max": 1,
+     "help": "Short horizontal streaks where flakes of the tape lost signal. They last a frame or two.",
+     "group": "damage"
+    },
+    {
+     "id": "dropWidth",
+     "label": "Dropout height",
+     "type": "number",
+     "default": 1,
+     "min": 1,
+     "max": 12,
+     "softMax": 6,
+     "step": 0.1,
+     "unit": "lines",
+     "help": "How many lines tall a dropout is.",
+     "group": "damage"
+    },
+    {
+     "id": "dropLength",
+     "label": "Dropout length",
+     "type": "number",
+     "default": 70,
+     "min": 2,
+     "softMax": 600,
+     "step": 1,
+     "unit": "px",
+     "help": "How long the streaks are.",
+     "group": "damage"
+    },
+    {
+     "id": "dropLoss",
+     "label": "Signal loss",
+     "type": "percent",
+     "default": 0.75,
+     "min": 0,
+     "max": 1,
+     "help": "How much of the picture is lost inside a streak.",
+     "group": "damage"
+    },
+    {
+     "id": "dropChroma",
+     "label": "Dropout chroma loss",
+     "type": "percent",
+     "default": 0.85,
+     "min": 0,
+     "max": 1,
+     "help": "How much color is lost inside a streak.",
+     "group": "damage"
+    },
+    {
+     "id": "dropLife",
+     "label": "Dropout duration",
+     "type": "number",
+     "default": 2,
+     "min": 1,
+     "softMax": 12,
+     "step": 0.1,
+     "unit": "frames",
+     "help": "How many frames each dropout lasts.",
+     "group": "damage"
+    },
+    {
+     "id": "dropCluster",
+     "label": "Clustering",
+     "type": "percent",
+     "default": 0.4,
+     "min": 0,
+     "max": 1,
+     "help": "Makes dropouts bunch together in the same area, like one damaged patch of tape.",
+     "group": "damage"
+    },
+    {
+     "id": "dropSpread",
+     "label": "Vertical distribution",
+     "type": "percent",
+     "default": 1,
+     "min": 0,
+     "max": 1,
+     "help": "How spread out dropouts are from top to bottom.",
+     "group": "damage"
+    },
+    {
+     "id": "dropSeverity",
+     "label": "Severity",
+     "type": "percent",
+     "default": 0.35,
+     "min": 0,
+     "max": 1,
+     "help": "The chance of occasional bigger, longer damage.",
+     "group": "damage"
+    },
+    {
+     "id": "doc",
+     "label": "Dropout compensation",
+     "type": "bool",
+     "default": 1,
+     "animatable": false,
+     "help": "Like a real VCR, fills each dropout with the line above so it is less obvious. Off shows bright or dark streaks.",
+     "group": "damage"
+    },
+    {
+     "id": "crease",
+     "label": "Tape crease",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "Rare moments where a creased part of the tape passes: wavy, torn, stretched bands and collapsing color.",
+     "group": "damage"
+    },
+    {
+     "id": "creaseSeverity",
+     "label": "Crease severity",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "How bad a crease looks.",
+     "group": "damage"
+    },
+    {
+     "id": "creaseDuration",
+     "label": "Crease duration",
+     "type": "number",
+     "default": 0.35,
+     "min": 0.05,
+     "softMax": 2,
+     "step": 0.01,
+     "unit": "s",
+     "help": "How long a crease lasts.",
+     "group": "damage"
+    },
+    {
+     "id": "creaseWidth",
+     "label": "Crease width",
+     "type": "percent",
+     "default": 0.18,
+     "min": 0,
+     "max": 1,
+     "help": "How tall the damaged band is.",
+     "group": "damage"
+    },
+    {
+     "id": "creaseRecovery",
+     "label": "Recovery speed",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "How quickly the picture recovers afterwards.",
+     "group": "damage"
+    },
+    {
+     "id": "damageSeed",
+     "label": "Seed",
+     "type": "number",
+     "default": 7730,
+     "min": 0,
+     "max": 999999,
+     "step": 1,
+     "animatable": false,
+     "help": "A different random starting point. Same look, different arrangement. Try a few numbers until you like it.",
+     "group": "damage"
+    },
+    {
+     "id": "fbOn",
+     "label": "Video feedback",
+     "type": "bool",
+     "default": 0,
+     "animatable": false,
+     "help": "Feeds the previous frame back into the picture, like pointing a camera at its own monitor: echoes, tunnels and trails.",
+     "group": "feedback"
+    },
+    {
+     "id": "fbAmount",
+     "label": "Feedback amount",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1.5,
+     "help": "How strong the feedback is.",
+     "group": "feedback"
+    },
+    {
+     "id": "fbDecay",
+     "label": "Feedback decay",
+     "type": "percent",
+     "default": 0.85,
+     "min": 0,
+     "max": 1,
+     "help": "How long the echoes last.",
+     "group": "feedback"
+    },
+    {
+     "id": "fbScale",
+     "label": "Feedback scale",
+     "type": "number",
+     "default": 1.03,
+     "min": 0.5,
+     "softMax": 2,
+     "step": 0.001,
+     "help": "Each echo is a little bigger (above 1) or smaller, making tunnels.",
+     "group": "feedback"
+    },
+    {
+     "id": "fbRotate",
+     "label": "Feedback rotation",
+     "type": "angle",
+     "default": 1.5,
+     "softMin": -20,
+     "softMax": 20,
+     "unit": "°",
+     "help": "Each echo turns a little, making spirals.",
+     "group": "feedback"
+    },
+    {
+     "id": "fbOffset",
+     "label": "Feedback offset",
+     "type": "number",
+     "default": [
+      0,
+      0
+     ],
+     "softMin": -100,
+     "softMax": 100,
+     "step": 0.1,
+     "unit": "px",
+     "help": "Each echo shifts sideways or up/down.",
+     "group": "feedback"
+    },
+    {
+     "id": "fbBlur",
+     "label": "Feedback blur",
+     "type": "number",
+     "default": 1.5,
+     "min": 0,
+     "softMax": 20,
+     "step": 0.05,
+     "unit": "px",
+     "help": "Each echo gets a little softer.",
+     "group": "feedback"
+    },
+    {
+     "id": "fbHue",
+     "label": "Feedback hue shift",
+     "type": "angle",
+     "default": 12,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "Each echo shifts color, making rainbows.",
+     "group": "feedback"
+    },
+    {
+     "id": "fbSat",
+     "label": "Feedback saturation",
+     "type": "number",
+     "default": 1.1,
+     "min": 0,
+     "softMax": 2,
+     "step": 0.01,
+     "help": "How colorful the echoes are.",
+     "group": "feedback"
+    },
+    {
+     "id": "fbThresh",
+     "label": "Feedback luma threshold",
+     "type": "percent",
+     "default": 0.05,
+     "min": 0,
+     "max": 1,
+     "help": "Only bright parts feed back above this level.",
+     "group": "feedback"
+    },
+    {
+     "id": "fbBlend",
+     "label": "Feedback blend",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Add"
+      },
+      {
+       "value": 1,
+       "label": "Screen"
+      },
+      {
+       "value": 2,
+       "label": "Lighten"
+      },
+      {
+       "value": 3,
+       "label": "Mix"
+      }
+     ],
+     "animatable": false,
+     "help": "How echoes combine with the picture: Add and Screen glow, Lighten keeps the brightest, Mix blends.",
+     "group": "feedback"
+    },
+    {
+     "id": "exposure",
+     "label": "Exposure",
+     "type": "number",
+     "default": 0,
+     "min": -6,
+     "max": 6,
+     "softMax": 3,
+     "step": 0.01,
+     "unit": "stops",
+     "help": "Brightens or darkens everything, in camera stops.",
+     "group": "output"
+    },
+    {
+     "id": "flicker",
+     "label": "Brightness flicker",
+     "type": "percent",
+     "default": 0.15,
+     "min": 0,
+     "max": 1,
+     "help": "The whole picture pulses slightly in brightness.",
+     "group": "output"
+    },
+    {
+     "id": "microX",
+     "label": "Micro-jitter X",
+     "type": "number",
+     "default": 0.25,
+     "min": 0,
+     "softMax": 6,
+     "step": 0.01,
+     "unit": "px",
+     "help": "A tiny sideways shake you feel more than see.",
+     "group": "output"
+    },
+    {
+     "id": "microY",
+     "label": "Micro-jitter Y",
+     "type": "number",
+     "default": 0.12,
+     "min": 0,
+     "softMax": 6,
+     "step": 0.01,
+     "unit": "px",
+     "help": "A tiny up-and-down shake.",
+     "group": "output"
+    },
+    {
+     "id": "microRate",
+     "label": "Jitter rate",
+     "type": "number",
+     "default": 15,
+     "min": 1,
+     "softMax": 60,
+     "step": 0.5,
+     "unit": "/s",
+     "help": "How fast the tiny shake changes.",
+     "group": "output"
+    },
+    {
+     "id": "microSmooth",
+     "label": "Jitter smoothness",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "Smooth drifting (high) or quick little jumps (low).",
+     "group": "output"
+    },
+    {
+     "id": "driftSpeed",
+     "label": "Drift speed",
+     "type": "number",
+     "default": 1,
+     "min": 0,
+     "softMax": 5,
+     "step": 0.01,
+     "help": "How fast the shared analog drift moves. Every unstable part follows it together.",
+     "group": "output"
+    },
+    {
+     "id": "driftSeed",
+     "label": "Seed",
+     "type": "number",
+     "default": 2604,
+     "min": 0,
+     "max": 999999,
+     "step": 1,
+     "animatable": false,
+     "help": "A different random starting point. Same look, different arrangement. Try a few numbers until you like it.",
+     "group": "output"
+    }
+   ],
+   "groups": [
+    {
+     "id": "signal",
+     "label": "Signal"
+    },
+    {
+     "id": "tape",
+     "label": "VHS tape",
+     "toggle": "tapeOn"
+    },
+    {
+     "id": "sync",
+     "label": "Sync, tracking & fields",
+     "toggle": "syncOn",
+     "seed": "trackSeed"
+    },
+    {
+     "id": "beam",
+     "label": "CRT beam",
+     "toggle": "crtOn"
+    },
+    {
+     "id": "phosphor",
+     "label": "Phosphor"
+    },
+    {
+     "id": "glow",
+     "label": "Glow & diffusion",
+     "toggle": "glowOn"
+    },
+    {
+     "id": "noise",
+     "label": "Noise & interference",
+     "toggle": "noiseOn",
+     "seed": "noiseSeed"
+    },
+    {
+     "id": "color",
+     "label": "Color"
+    },
+    {
+     "id": "geometry",
+     "label": "Geometry"
+    },
+    {
+     "id": "glass",
+     "label": "Glass & bezel",
+     "toggle": "glassOn"
+    },
+    {
+     "id": "damage",
+     "label": "Damage",
+     "toggle": "damageOn",
+     "seed": "damageSeed"
+    },
+    {
+     "id": "feedback",
+     "label": "Video feedback",
+     "toggle": "fbOn"
+    },
+    {
+     "id": "output",
+     "label": "Output & drift",
+     "seed": "driftSeed"
+    }
+   ],
+   "presets": [
+    {
+     "id": "default",
+     "name": "Home VHS · good CRT",
+     "category": "Start",
+     "description": "Ordinary consumer VHS played on a decent late-80s/90s TV. Subtle.",
+     "params": {}
+    },
+    {
+     "id": "subtle",
+     "name": "Just a hint",
+     "category": "Start",
+     "description": "Barely there: makes clean vector graphics feel like they are on a real monitor.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "fuzz": 0.25,
+      "signal": 0.85,
+      "glow": 0.4,
+      "instability": 0.12,
+      "scan": 0.4,
+      "mask": 0.3,
+      "interlace": 0
+     }
+    },
+    {
+     "id": "broadcast",
+     "name": "Broadcast Monitor",
+     "category": "Clean CRT",
+     "description": "A studio monitor fed a clean signal: crisp, neutral, stable.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "signal": 0.95,
+      "fuzz": 0.18,
+      "glow": 0.35,
+      "instability": 0.08,
+      "lumaBW": 450,
+      "chromaBW": 160,
+      "bleed": 3,
+      "ringing": 0.1,
+      "maskType": 4,
+      "mask": 0.4,
+      "scan": 0.5,
+      "beamWidth": 0.55,
+      "conv": 0.2,
+      "colorStyle": 6,
+      "lumaNoise": 0.05,
+      "chromaNoise": 0.03,
+      "lineNoise": 0,
+      "grain": 0,
+      "interlace": 0.2,
+      "screen": 1
+     }
+    },
+    {
+     "id": "consumer",
+     "name": "Consumer CRT",
+     "category": "Clean CRT",
+     "description": "A family TV on a composite cable: warm, a little soft, glowing.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "signal": 0.65,
+      "composite": 0.45,
+      "fuzz": 0.35,
+      "glow": 0.5,
+      "maskType": 3,
+      "mask": 0.5,
+      "screen": 2,
+      "colorStyle": 1,
+      "instability": 0.15
+     }
+    },
+    {
+     "id": "pvm",
+     "name": "PVM",
+     "category": "Clean CRT",
+     "description": "A professional video monitor: sharp scanlines, fine grille, cool whites.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "signal": 0.92,
+      "composite": 0.1,
+      "maskType": 4,
+      "mask": 0.55,
+      "triad": 2.6,
+      "scan": 0.75,
+      "beamMin": 0.3,
+      "beamMax": 0.85,
+      "beamShape": 2.4,
+      "fuzz": 0.15,
+      "glow": 0.35,
+      "screen": 1,
+      "colorStyle": 2,
+      "conv": 0.25,
+      "instability": 0.08,
+      "interlace": 0
+     }
+    },
+    {
+     "id": "aperture",
+     "name": "Aperture Grille",
+     "category": "Clean CRT",
+     "description": "Vertical phosphor stripes on a flat-ish cylindrical tube.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "maskType": 0,
+      "mask": 0.55,
+      "screen": 4,
+      "signal": 0.85,
+      "scan": 0.55,
+      "glow": 0.45,
+      "instability": 0.1
+     }
+    },
+    {
+     "id": "shadowmask",
+     "name": "Shadow Mask",
+     "category": "Clean CRT",
+     "description": "Round phosphor dots in triads on a curved tube.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "maskType": 2,
+      "mask": 0.55,
+      "triad": 3.5,
+      "screen": 2,
+      "signal": 0.7,
+      "fuzz": 0.35,
+      "glow": 0.5,
+      "instability": 0.12
+     }
+    },
+    {
+     "id": "bedroom",
+     "name": "Small Bedroom TV",
+     "category": "Clean CRT",
+     "description": "A little portable on an RF lead: coarse mask, round corners, fuzzy and warm.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "signal": 0.45,
+      "composite": 0.6,
+      "maskType": 7,
+      "mask": 0.5,
+      "triad": 4.5,
+      "screen": 3,
+      "fuzz": 0.5,
+      "glow": 0.55,
+      "instability": 0.3,
+      "colorStyle": 3,
+      "corner": 0.1,
+      "conv": 1.2,
+      "edgeBlur": 0.5,
+      "reflection": 0.12,
+      "ghost": 0.12,
+      "process": 1
+     }
+    },
+    {
+     "id": "fresh-sp",
+     "name": "Fresh SP Tape",
+     "category": "VHS",
+     "description": "A brand-new tape at the best speed: soft color, very little else.",
+     "params": {
+      "generation": 1,
+      "tapeAge": 0.1,
+      "wear": 0.05,
+      "dropouts": 0.05,
+      "tracking": 0.05,
+      "headSwitch": 0.2,
+      "instability": 0.18
+     }
+    },
+    {
+     "id": "home-vhs",
+     "name": "Normal Home VHS",
+     "category": "VHS",
+     "description": "A tape that has been watched a few times.",
+     "params": {
+      "generation": 1,
+      "tapeAge": 0.3
+     }
+    },
+    {
+     "id": "home-movie",
+     "name": "Home Movie",
+     "category": "VHS",
+     "description": "Camcorder footage: punchy color, wobbly timing, smeary chroma.",
+     "params": {
+      "generation": 1,
+      "tapeAge": 0.35,
+      "colorStyle": 5,
+      "instability": 0.35,
+      "tbc": 2,
+      "lag": 0.45,
+      "bleed": 14,
+      "interlace": 0.5,
+      "microX": 0.4,
+      "microY": 0.25
+     }
+    },
+    {
+     "id": "rental",
+     "name": "Rental Tape",
+     "category": "VHS",
+     "description": "Worn from a hundred plays: tracking hiccups, dropouts, tired color.",
+     "params": {
+      "generation": 2,
+      "tapeAge": 0.55,
+      "wear": 0.45,
+      "dropouts": 0.3,
+      "tracking": 0.25,
+      "trackMode": 3,
+      "headSwitch": 0.4,
+      "saturation": 0.85,
+      "colorStyle": 4
+     }
+    },
+    {
+     "id": "dubbed",
+     "name": "Dubbed Tape",
+     "category": "VHS",
+     "description": "A copy of a tape: softer, ringing edges, smeared color.",
+     "params": {
+      "generation": 2.5,
+      "tapeAge": 0.45,
+      "ringing": 0.45,
+      "ghost": 0.05,
+      "bleed": 16,
+      "saturation": 0.82
+     }
+    },
+    {
+     "id": "third-gen",
+     "name": "Third-Generation Copy",
+     "category": "VHS",
+     "description": "A copy of a copy of a copy.",
+     "params": {
+      "generation": 3.2,
+      "tapeAge": 0.5,
+      "bleed": 20,
+      "lumaBW": 260,
+      "ringing": 0.55,
+      "saturation": 0.75,
+      "lumaNoise": 0.32
+     }
+    },
+    {
+     "id": "worn",
+     "name": "Worn Tape",
+     "category": "VHS",
+     "description": "Stretched and scratched: frequent dropouts, the odd crease.",
+     "params": {
+      "generation": 1.5,
+      "tapeAge": 0.8,
+      "wear": 0.8,
+      "dropouts": 0.5,
+      "dropSeverity": 0.6,
+      "tracking": 0.35,
+      "crease": 0.08,
+      "lineNoise": 0.25
+     }
+    },
+    {
+     "id": "bad-tracking",
+     "name": "Bad Tracking",
+     "category": "VHS",
+     "description": "The tracking knob needs adjusting: noisy bands crawl through the picture.",
+     "params": {
+      "tapeAge": 0.5,
+      "tracking": 0.9,
+      "trackMode": 0,
+      "trackBands": 2,
+      "trackSize": 0.12,
+      "trackWarp": 50,
+      "trackNoise": 0.9,
+      "instability": 0.55,
+      "headSwitch": 0.6
+     }
+    },
+    {
+     "id": "damaged",
+     "name": "Damaged Tape",
+     "category": "VHS",
+     "description": "Creased and chewed: tears, collapses, heavy dropouts.",
+     "params": {
+      "tapeAge": 0.85,
+      "generation": 2,
+      "dropouts": 0.9,
+      "dropSeverity": 0.8,
+      "crease": 0.5,
+      "creaseSeverity": 0.8,
+      "tracking": 0.5,
+      "tearing": 0.15,
+      "lineShift": 0.2,
+      "instability": 0.6,
+      "saturation": 0.75
+     }
+    },
+    {
+     "id": "unwatchable",
+     "name": "Nearly Unwatchable",
+     "category": "VHS",
+     "description": "Everything that can go wrong with a tape, at once.",
+     "params": {
+      "tapeAge": 1,
+      "generation": 4,
+      "dropouts": 1.5,
+      "crease": 0.8,
+      "tracking": 1.2,
+      "trackBands": 3,
+      "instability": 0.9,
+      "signal": 0.3,
+      "snow": 0.2,
+      "vroll": 0.4,
+      "saturation": 0.55,
+      "tearing": 0.3,
+      "burst": 0.6
+     }
+    },
+    {
+     "id": "component",
+     "name": "Clean Component",
+     "category": "Signal",
+     "description": "Separate color channels: the cleanest analog path.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "signal": 1,
+      "composite": 0,
+      "lumaBW": 550,
+      "chromaBW": 250,
+      "bleed": 2,
+      "ringing": 0.05,
+      "instability": 0.1
+     }
+    },
+    {
+     "id": "svideo",
+     "name": "S-Video",
+     "category": "Signal",
+     "description": "Luma and chroma on separate wires: no rainbow, softer color.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "signal": 0.9,
+      "composite": 0,
+      "chromaBW": 90,
+      "lumaBW": 420,
+      "bleed": 5,
+      "instability": 0.12
+     }
+    },
+    {
+     "id": "clean-composite",
+     "name": "Clean Composite",
+     "category": "Signal",
+     "description": "One wire, a good TV: faint dot crawl on colored edges.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "signal": 0.75,
+      "composite": 0.6,
+      "comb": 0.75,
+      "chromaBW": 80
+     }
+    },
+    {
+     "id": "consumer-composite",
+     "name": "Consumer Composite",
+     "category": "Signal",
+     "description": "A cheap decoder: rainbows on fine detail, crawling dots on color edges.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "signal": 0.6,
+      "composite": 0.7,
+      "comb": 0.35,
+      "dotCrawl": 0.7,
+      "rainbow": 0.7
+     }
+    },
+    {
+     "id": "rf",
+     "name": "Cheap RF TV",
+     "category": "Signal",
+     "description": "Through the antenna socket: ghosts, interference, weak color.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "signal": 0.4,
+      "composite": 0.85,
+      "comb": 0.1,
+      "ghost": 0.15,
+      "ghostOffset": 18,
+      "rfNoise": 0.15,
+      "lumaNoise": 0.4,
+      "screen": 2,
+      "colorStyle": 3
+     }
+    },
+    {
+     "id": "damaged-rf",
+     "name": "Damaged RF",
+     "category": "Signal",
+     "description": "A failing antenna: snow, hum bars, rolling color.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "signal": 0.2,
+      "composite": 1,
+      "rfNoise": 0.5,
+      "snow": 0.35,
+      "ghost": 0.35,
+      "ghostCount": 2,
+      "burst": 0.5,
+      "instability": 0.5,
+      "humBars": 0.3,
+      "vhold": 0.4
+     }
+    },
+    {
+     "id": "poor-reception",
+     "name": "Poor Reception",
+     "category": "Signal",
+     "description": "Barely a signal: the picture fights through the snow.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "signal": 0.1,
+      "snow": 0.6,
+      "rfNoise": 0.3,
+      "ghost": 0.4,
+      "saturation": 0.6,
+      "instability": 0.45,
+      "scJitter": 0.6
+     }
+    },
+    {
+     "id": "unstable-sync",
+     "name": "Unstable Sync",
+     "category": "Signal",
+     "description": "The TV keeps losing lock: wandering lines, tears and rolls.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "instability": 0.9,
+      "tbc": 4,
+      "tbcTurb": 0.6,
+      "lineShift": 0.25,
+      "tearing": 0.35,
+      "vroll": 0.5,
+      "vhold": 0.6,
+      "tbcJitter": 1.2
+     }
+    },
+    {
+     "id": "video-synth",
+     "name": "Video Synth",
+     "category": "Artistic",
+     "description": "Saturated, glowing color with smooth analog warping, like a video synthesizer.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "signal": 0.6,
+      "composite": 0.9,
+      "rainbow": 1,
+      "dotCrawl": 0.3,
+      "saturation": 1.6,
+      "chroma": 1.5,
+      "glow": 0.7,
+      "bloom": 0.8,
+      "tbc": 6,
+      "tbcScale": 120,
+      "tbcSpeed": 0.8,
+      "instability": 0.45,
+      "bleed": 30,
+      "bleedSat": 1,
+      "fuzz": 0.4,
+      "hueDrift": 0.6
+     }
+    },
+    {
+     "id": "wobbulator",
+     "name": "Wobbulator",
+     "category": "Artistic",
+     "description": "The deflection coils are being driven by sound: broad magnetic bends.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "tbc": 30,
+      "tbcScale": 160,
+      "tbcSpeed": 0.35,
+      "tbcTurb": 0,
+      "tbcSmooth": 1,
+      "tbcDrift": 0.8,
+      "instability": 0.6,
+      "deflect": 40,
+      "deflectScale": 380,
+      "deflectSpeed": 0.5,
+      "edgeStretch": 0.5,
+      "screen": 3,
+      "bloom": 0.6,
+      "glow": 0.6,
+      "fuzz": 0.4
+     }
+    },
+    {
+     "id": "circuit-bent",
+     "name": "Circuit Bent",
+     "category": "Artistic",
+     "description": "Rewired electronics: folding sync, torn lines, colors swapping places.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "lineShift": 0.6,
+      "lineGroup": 4,
+      "tearing": 0.5,
+      "tbcJitter": 3,
+      "composite": 1,
+      "comb": 0,
+      "rainbow": 1,
+      "burst": 0.8,
+      "scJitter": 1,
+      "saturation": 1.4,
+      "instability": 0.8,
+      "ghost": 0.4,
+      "ghostOffset": -40,
+      "signal": 0.3,
+      "maskType": 0,
+      "mask": 0.6
+     }
+    },
+    {
+     "id": "feedback",
+     "name": "Analog Feedback",
+     "category": "Artistic",
+     "description": "A camera pointed at its own monitor: echoing, spiralling trails.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "fbOn": 1,
+      "fbBlend": 1,
+      "fbAmount": 0.8,
+      "fbDecay": 0.82,
+      "fbScale": 1.07,
+      "fbRotate": 3,
+      "fbBlur": 0.6,
+      "fbHue": 16,
+      "fbThresh": 0.22,
+      "glow": 0.55,
+      "signal": 0.7
+     }
+    },
+    {
+     "id": "dream",
+     "name": "Broadcast Dream",
+     "category": "Artistic",
+     "description": "A clean signal on a beautiful tube: soft phosphor glow, barely moving.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "signal": 0.9,
+      "glow": 0.85,
+      "bloom": 0.9,
+      "halation": 0.6,
+      "halRadius": 70,
+      "diffusion": 0.15,
+      "instability": 0.12,
+      "scan": 0.5,
+      "maskType": 4,
+      "fuzz": 0.35
+     }
+    },
+    {
+     "id": "neon",
+     "name": "Neon CRT",
+     "category": "Artistic",
+     "description": "Hot beams and saturated phosphors over deep scanline gaps.",
+     "params": {
+      "tapeOn": 0,
+      "damageOn": 0,
+      "glow": 1,
+      "bloom": 1.4,
+      "bloomThresh": 0.4,
+      "halation": 0.5,
+      "scan": 0.85,
+      "beamMin": 0.25,
+      "beamMax": 1.2,
+      "scanBloom": 0.7,
+      "saturation": 1.35,
+      "mask": 0.6,
+      "maskType": 0,
+      "blackLevel": 0,
+      "blackFloor": 0,
+      "signal": 0.85
+     }
+    },
+    {
+     "id": "installation",
+     "name": "Damaged Installation",
+     "category": "Artistic",
+     "description": "An old gallery TV on a worn playback deck that keeps losing sync.",
+     "params": {
+      "maskType": 7,
+      "screen": 3,
+      "signal": 0.35,
+      "instability": 0.7,
+      "vroll": 0.35,
+      "vhold": 0.4,
+      "humBars": 0.35,
+      "tapeAge": 0.75,
+      "generation": 2.5,
+      "burst": 0.4,
+      "colorStyle": 3,
+      "edgeBright": 0.6,
+      "reflection": 0.2,
+      "conv": 2,
+      "saturation": 0.7,
+      "process": 1
+     }
+    },
+    {
+     "id": "memory",
+     "name": "Videotape Memory",
+     "category": "Artistic",
+     "description": "Soft, fuzzy, slightly faded tape with long color bleed and a gentle glow — no glitches.",
+     "params": {
+      "fuzz": 0.55,
+      "tapeAge": 0.45,
+      "signal": 0.6,
+      "glow": 0.6,
+      "instability": 0.2,
+      "saturation": 0.82,
+      "bleed": 22,
+      "bleedR": 1,
+      "chromaBW": 35,
+      "lag": 0.5,
+      "tracking": 0.04,
+      "dropouts": 0.08,
+      "halation": 0.35,
+      "highlightWarm": 0.25,
+      "colorStyle": 1
+     }
+    },
+    {
+     "id": "title-card",
+     "name": "1990s Title Card",
+     "category": "Artistic",
+     "description": "A fresh tape of a bold title: rich chroma, light noise, glowing CRT.",
+     "params": {
+      "generation": 1,
+      "tapeAge": 0.15,
+      "signal": 0.75,
+      "chroma": 1.2,
+      "saturation": 1.1,
+      "lumaNoise": 0.12,
+      "tbc": 0.8,
+      "glow": 0.6,
+      "bloom": 0.6,
+      "tracking": 0.02,
+      "headSwitch": 0.15,
+      "dropouts": 0.03
+     }
+    },
+    {
+     "id": "late-night",
+     "name": "Late-Night Cable",
+     "category": "Artistic",
+     "description": "A cheap cable channel recorded at 3 a.m.: noisy blacks, weak color, ghosts.",
+     "params": {
+      "generation": 1.5,
+      "signal": 0.4,
+      "saturation": 0.7,
+      "ghost": 0.25,
+      "noiseDark": 1,
+      "blackFloor": 0.15,
+      "shadowDirt": 0.6,
+      "lumaNoise": 0.5,
+      "trackMode": 3,
+      "tracking": 0.3
+     }
     }
    ]
   },
@@ -7025,25 +9872,22 @@
      "blend": "screen"
     },
     {
-     "type": "crt",
+     "type": "analog",
      "params": {
-      "curvature": 0,
-      "corner": 0,
-      "lines": 5,
+      "tapeOn": 0,
+      "damageOn": 0,
+      "standard": 2,
+      "lines": 380,
       "scan": 0.85,
-      "mask": 0,
-      "bloom": 0.6,
-      "vignette": 0,
-      "bezel": [
-       0,
-       0,
-       0,
-       0
-      ],
-      "noise": 0.06,
-      "reflection": 0,
-      "rollBar": 0.35,
-      "roll": 0.4
+      "maskType": 8,
+      "screen": 0,
+      "glassOn": 0,
+      "interlace": 0,
+      "glow": 0.6,
+      "signal": 0.85,
+      "humBars": 0.35,
+      "lumaNoise": 0.15,
+      "instability": 0.35
      }
     },
     {
@@ -7732,31 +10576,11 @@
    "id": "vhs-memories",
    "name": "VHS Memories",
    "group": "Retro & screens",
-   "description": "Warm, worn home-video tape with tracking wobble and grain.",
+   "description": "Soft, fuzzy, slightly faded tape with long color bleed and a gentle glow.",
    "effects": [
     {
-     "type": "color-adjust",
-     "params": {
-      "temperature": 0.25,
-      "saturation": -0.1,
-      "blacks": 0.15
-     }
-    },
-    {
-     "type": "vhs",
-     "params": {}
-    },
-    {
-     "type": "film-grain",
-     "params": {
-      "amount": 0.18
-     }
-    },
-    {
-     "type": "vignette",
-     "params": {
-      "amount": 0.4
-     }
+     "type": "analog",
+     "preset": "memory"
     }
    ]
   },
@@ -7776,14 +10600,18 @@
      }
     },
     {
-     "type": "crt",
+     "type": "analog",
+     "preset": "consumer",
      "params": {
       "maskType": 1,
-      "bloom": 0.7,
-      "lines": 4,
-      "scan": 0.55,
-      "curvature": 0.35,
-      "roll": 0.2
+      "screen": 3,
+      "glow": 0.7,
+      "scan": 0.7,
+      "standard": 2,
+      "lines": 240,
+      "interlace": 0,
+      "process": 1,
+      "corner": 0.08
      }
     }
    ]
@@ -7804,17 +10632,21 @@
      }
     },
     {
-     "type": "crt",
+     "type": "analog",
      "params": {
-      "curvature": 0,
-      "corner": 0.02,
-      "maskType": 3,
-      "mask": 0,
-      "scan": 0.25,
-      "lines": 5,
-      "bloom": 0.2,
-      "vignette": 0.2,
-      "reflection": 0
+      "tapeOn": 0,
+      "noiseOn": 0,
+      "syncOn": 0,
+      "damageOn": 0,
+      "screen": 0,
+      "maskType": 8,
+      "scan": 0.3,
+      "standard": 2,
+      "lines": 300,
+      "glow": 0.3,
+      "signal": 1,
+      "fuzz": 0.15,
+      "glassOn": 0
      }
     }
    ]
@@ -8710,11 +11542,11 @@
  ],
  "templates": {
   "project": {
-   "schema": 1,
-   "id": "3eCp0txHFM0P",
+   "schema": 2,
+   "id": "doPojeDQrRQl",
    "name": "Example",
-   "createdAt": 1792676051028,
-   "modifiedAt": 1792676051028,
+   "createdAt": 1792694442285,
+   "modifiedAt": 1792694442285,
    "settings": {
     "colorSpace": "srgb",
     "previewQuality": "auto",
@@ -8722,8 +11554,8 @@
     "showSafeZones": false
    },
    "compositions": {
-    "kwGoiLdhQHkF": {
-     "id": "kwGoiLdhQHkF",
+    "Ch60AA9J6Kl9": {
+     "id": "Ch60AA9J6Kl9",
      "name": "Main",
      "width": 1080,
      "height": 1920,
@@ -8741,11 +11573,11 @@
      "loop": true
     }
    },
-   "mainCompId": "kwGoiLdhQHkF"
+   "mainCompId": "Ch60AA9J6Kl9"
   },
   "layers": {
    "text": {
-    "id": "kuOBt1In7P50",
+    "id": "2byu60gGpbQC",
     "name": "Hello",
     "kind": "text",
     "label": 0,
@@ -8837,7 +11669,7 @@
     }
    },
    "shape": {
-    "id": "XDXFeLfjEsaR",
+    "id": "TbjzXHZV5J6X",
     "name": "Rectangle",
     "kind": "shape",
     "label": 3,
@@ -8933,7 +11765,7 @@
     }
    },
    "solid": {
-    "id": "Xe7GLAaXlrL2",
+    "id": "MKtYiUz8ipHS",
     "name": "Solid",
     "kind": "solid",
     "label": 7,
@@ -8993,7 +11825,7 @@
     }
    },
    "adjustment": {
-    "id": "8MInrIdGyXkl",
+    "id": "3CWQWDASMvwv",
     "name": "Adjustment",
     "kind": "adjustment",
     "label": 4,
@@ -9041,7 +11873,7 @@
     "effects": []
    },
    "merge": {
-    "id": "QKaoQBhfEhI3",
+    "id": "On7ONv2OpdUy",
     "name": "Metaballs",
     "kind": "merge",
     "label": 4,
@@ -9144,7 +11976,7 @@
     }
    },
    "transition": {
-    "id": "DL7X7tFqxPdM",
+    "id": "Y16iKDQgVP4V",
     "name": "Optical Flare",
     "kind": "transition",
     "label": 4,
@@ -9258,7 +12090,7 @@
    }
   },
   "effect": {
-   "id": "oe5Nd3Fr",
+   "id": "6M5z6Kia",
    "type": "glow",
    "enabled": true,
    "mix": {
@@ -9340,7 +12172,7 @@
    }
   },
   "mask": {
-   "id": "9GbOacE3",
+   "id": "1qQjnpPj",
    "name": "Mask",
    "kind": "ellipse",
    "enabled": true,

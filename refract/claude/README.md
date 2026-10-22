@@ -139,14 +139,37 @@ Copy the templates in `catalog.templates.layers`:
   Text matte + noise/gradient fill below it = textured type. Inverted alpha + a "boss" layer =
   text that sits behind something.
 
-## 6. Looks (multi-effect presets)
+## 6. CRT / VHS (`analog`) and other effects with presets
+
+Some effects carry their own `presets` and `groups` in the catalog. The big one is `analog`
+("CRT / VHS"): a full analog video chain (signal bandwidth, composite artifacts, VHS tape,
+time-base wobble, tracking, head switching, interlacing, CRT beam and phosphor mask, bloom,
+halation, glass, feedback). Work with it like this:
+
+- Start from a preset: copy every value from `catalog.effects[id=analog].presets[n].params` into
+  the effect's params (anything not listed stays at its default) and set the instance's optional
+  `"preset": "<preset name>"` so the app shows which one it came from.
+- Then adjust the six macros first — `intensity`, `fuzz` (analog fuzz), `tapeAge`, `signal`
+  (signal quality), `glow` (CRT glow), `instability` — they scale many underlying parameters at once.
+  Animate `intensity` 0 → 1 for a clean-to-tape transition.
+- Sections can be switched off as a whole: `tapeOn`, `syncOn`, `crtOn`, `glowOn`, `noiseOn`,
+  `damageOn`, `glassOn`, `fbOn` (video feedback, off by default).
+- Randomness is seeded (`trackSeed`, `noiseSeed`, `damageSeed`, `driftSeed`), so renders repeat.
+- To treat the whole video, put it on an `adjustment` layer at the top. On a normal layer with
+  `process: 0` it degrades just that layer and respects its transparency; `process: 1` turns the
+  layer's box into a TV picture with a tube and bezel.
+- Keep defaults subtle: the default is ordinary home VHS on a good TV. Push `tapeAge`,
+  `instability` or `signal` only when the brief asks for damage.
+
+## 7. Looks (multi-effect presets)
 
 `catalog.looks` lists ~40 named looks (e.g. `boss-gold`, `chromatic-glass`, `modulation-dither`,
-`vhs-memories`, `arcade`, `neon`). Each is a list of effects with params (and sometimes keys
+`vhs-memories`, `arcade`, `neon`). Each is a list of effects with params (an entry may name an
+effect `preset` to start from — apply that first, then its params; and sometimes keys
 given as `[seconds after the layer starts, value]` — add the layer's `inPoint` when converting
 them to keyframes). To use one, append those effects to a layer as normal effect instances.
 
-## 7. Checklist before you hand it back
+## 8. Checklist before you hand it back
 
 - Run `validate.mjs` (with `--fix` once, then without) — it must say OK.
 - Layers sit inside `0…duration`; the comp `duration` covers everything.
