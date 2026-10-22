@@ -1,5 +1,5 @@
 // Offline app shell for the self-hosted (PWA) build.
-const CACHE = 'refract-v1';
+const CACHE = 'refract-v2';
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(['./', './index.html', './manifest.webmanifest'])).then(() => self.skipWaiting()));
 });
@@ -12,6 +12,8 @@ self.addEventListener('fetch', (e) => {
   const url = new URL(req.url);
   const isFont = url.hostname.endsWith('fonts.googleapis.com') || url.hostname.endsWith('fonts.gstatic.com');
   if (url.origin !== location.origin && !isFont) return;
+  // Claude's inbox and guide must always come from the network.
+  if (url.pathname.includes('/inbox/') || url.pathname.includes('/claude/') || req.cache === 'no-store') return;
   e.respondWith(
     caches.match(req).then((hit) => {
       const net = fetch(req).then((res) => {

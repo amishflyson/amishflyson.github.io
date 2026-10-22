@@ -1,0 +1,9455 @@
+{
+ "about": "Generated from the Refract Motion source. Everything a .refract.json project file can contain. See README.md for how to use it.",
+ "generatedAt": "2026-10-22T13:34:11.028Z",
+ "schema": 1,
+ "fileFormat": {
+  "format": "refract-project",
+  "version": 2
+ },
+ "categories": [
+  {
+   "id": "material",
+   "label": "Material",
+   "blurb": "Glass, chrome, gloss, iridescence"
+  },
+  {
+   "id": "light",
+   "label": "Light",
+   "blurb": "Glow, bloom, rays, shadows"
+  },
+  {
+   "id": "blur",
+   "label": "Blur",
+   "blurb": "Gaussian, motion, radial, zoom"
+  },
+  {
+   "id": "distort",
+   "label": "Distort",
+   "blurb": "Waves, twirl, bulge, noise, heat"
+  },
+  {
+   "id": "stylize",
+   "label": "Stylize",
+   "blurb": "Sketch, halftone, low-poly, edges, grain"
+  },
+  {
+   "id": "retro",
+   "label": "Retro",
+   "blurb": "VHS, CRT, dither, ASCII, pixels, glitch"
+  },
+  {
+   "id": "color",
+   "label": "Color",
+   "blurb": "Adjust, duotone, posterize, threshold"
+  },
+  {
+   "id": "geometry",
+   "label": "Geometry",
+   "blurb": "Rounded corners, stroke, kaleidoscope"
+  },
+  {
+   "id": "generate",
+   "label": "Generate",
+   "blurb": "Fractal noise, gradients, grids, stars"
+  }
+ ],
+ "fieldModes": {
+  "mode": "Limits where the effect shows. Radial is a circle or oval, Ring is a donut, Linear is a soft wipe from one side.",
+  "invert": "Flips the area: the effect shows everywhere except inside the shape.",
+  "center": "The middle of the area. Drag the dot on the canvas.",
+  "radius": "How big the area is (for Linear: how long the wipe is).",
+  "feather": "How soft the edge of the area is. 0 is a hard edge.",
+  "ring": "How thick the donut is.",
+  "angle": "Turns the area (or the wipe direction).",
+  "aspect": "Stretches the circle into an oval. 1 is a perfect circle.",
+  "falloff": "The shape of the fade at the edge: Smooth, Linear (even), Sharp (holds then drops) or Soft (very gentle)."
+ },
+ "blendModes": [
+  "normal",
+  "multiply",
+  "screen",
+  "overlay",
+  "softLight",
+  "hardLight",
+  "colorDodge",
+  "colorBurn",
+  "difference",
+  "exclusion",
+  "add",
+  "lighten",
+  "darken",
+  "hue",
+  "saturation",
+  "color",
+  "luminosity"
+ ],
+ "ease": {
+  "presets": [
+   "sine.in",
+   "sine.out",
+   "sine.inOut",
+   "quad.in",
+   "quad.out",
+   "quad.inOut",
+   "cubic.in",
+   "cubic.out",
+   "cubic.inOut",
+   "quart.in",
+   "quart.out",
+   "quart.inOut",
+   "quint.in",
+   "quint.out",
+   "quint.inOut",
+   "expo.in",
+   "expo.out",
+   "expo.inOut",
+   "circ.in",
+   "circ.out",
+   "circ.inOut",
+   "back.in",
+   "back.out",
+   "back.inOut",
+   "elastic.in",
+   "elastic.out",
+   "elastic.inOut",
+   "bounce.in",
+   "bounce.out",
+   "bounce.inOut"
+  ],
+  "shapes": [
+   {
+    "type": "linear"
+   },
+   {
+    "type": "hold"
+   },
+   {
+    "type": "preset",
+    "name": "cubic.inOut"
+   },
+   {
+    "type": "bezier",
+    "x1": 0.25,
+    "y1": 0.1,
+    "x2": 0.25,
+    "y2": 1
+   },
+   {
+    "type": "spring",
+    "stiffness": 170,
+    "damping": 14,
+    "mass": 1
+   }
+  ]
+ },
+ "modifiers": [
+  {
+   "type": "wiggle",
+   "name": "Wiggle",
+   "description": "Smooth random motion around the value.",
+   "params": [
+    {
+     "id": "freq",
+     "label": "Frequency",
+     "min": 0.1,
+     "max": 30,
+     "step": 0.1,
+     "default": 2,
+     "unit": "Hz"
+    },
+    {
+     "id": "amp",
+     "label": "Amount",
+     "min": 0,
+     "max": 500,
+     "step": 0.5,
+     "default": 20
+    },
+    {
+     "id": "octaves",
+     "label": "Detail",
+     "min": 1,
+     "max": 6,
+     "step": 1,
+     "default": 2
+    },
+    {
+     "id": "stepped",
+     "label": "Style",
+     "min": 0,
+     "max": 1,
+     "step": 1,
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Smooth"
+      },
+      {
+       "value": 1,
+       "label": "Random steps"
+      }
+     ]
+    },
+    {
+     "id": "seed",
+     "label": "Seed",
+     "min": 0,
+     "max": 999,
+     "step": 1,
+     "default": 1
+    },
+    {
+     "id": "linked",
+     "label": "Axes",
+     "min": 0,
+     "max": 1,
+     "step": 1,
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Independent"
+      },
+      {
+       "value": 1,
+       "label": "Linked"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "oscillate",
+   "name": "Oscillate",
+   "description": "Repeating wave added to the value, with optional decay.",
+   "params": [
+    {
+     "id": "wave",
+     "label": "Wave",
+     "min": 0,
+     "max": 3,
+     "step": 1,
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Sine"
+      },
+      {
+       "value": 1,
+       "label": "Triangle"
+      },
+      {
+       "value": 2,
+       "label": "Square"
+      },
+      {
+       "value": 3,
+       "label": "Saw"
+      }
+     ]
+    },
+    {
+     "id": "freq",
+     "label": "Frequency",
+     "min": 0.05,
+     "max": 20,
+     "step": 0.05,
+     "default": 1,
+     "unit": "Hz"
+    },
+    {
+     "id": "amp",
+     "label": "Amount",
+     "min": 0,
+     "max": 500,
+     "step": 0.5,
+     "default": 20
+    },
+    {
+     "id": "phase",
+     "label": "Phase",
+     "min": 0,
+     "max": 360,
+     "step": 1,
+     "default": 0,
+     "unit": "°"
+    },
+    {
+     "id": "decay",
+     "label": "Decay",
+     "min": 0,
+     "max": 10,
+     "step": 0.05,
+     "default": 0,
+     "unit": "/s"
+    },
+    {
+     "id": "axis",
+     "label": "Axis",
+     "min": 0,
+     "max": 2,
+     "step": 1,
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "All"
+      },
+      {
+       "value": 1,
+       "label": "X only"
+      },
+      {
+       "value": 2,
+       "label": "Y only"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "loop",
+   "name": "Loop",
+   "description": "Repeat the keyframed animation after its last keyframe.",
+   "params": [
+    {
+     "id": "mode",
+     "label": "Mode",
+     "min": 0,
+     "max": 2,
+     "step": 1,
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Cycle"
+      },
+      {
+       "value": 1,
+       "label": "Ping-pong"
+      },
+      {
+       "value": 2,
+       "label": "Continue"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "effects": [
+  {
+   "id": "glass",
+   "name": "Liquid Glass",
+   "category": "material",
+   "description": "Turns the layer into refractive glass that bends, frosts and tints what is behind it.",
+   "about": "Turns the layer into a piece of clear glass that bends, blurs and tints whatever is behind it. Put it on a shape or text above a photo or video.",
+   "needsBackdrop": true,
+   "params": [
+    {
+     "id": "thickness",
+     "label": "Thickness",
+     "type": "number",
+     "default": 36,
+     "min": 1,
+     "softMax": 200,
+     "unit": "px",
+     "help": "How thick and rounded the glass edge is. Thicker glass has a wider curved rim."
+    },
+    {
+     "id": "refraction",
+     "label": "Refraction",
+     "type": "number",
+     "default": 40,
+     "softMin": -200,
+     "softMax": 200,
+     "unit": "px",
+     "help": "How much the glass bends what is behind it. Higher is a stronger lens. Negative bends the other way."
+    },
+    {
+     "id": "dispersion",
+     "label": "Dispersion",
+     "type": "percent",
+     "default": 0.25,
+     "min": 0,
+     "max": 1,
+     "help": "Rainbow color edges where the glass bends light, like a prism."
+    },
+    {
+     "id": "frost",
+     "label": "Frost",
+     "type": "number",
+     "default": 6,
+     "min": 0,
+     "softMax": 80,
+     "unit": "px",
+     "help": "Blurs what you see through the glass, like frosted glass."
+    },
+    {
+     "id": "edgeSoft",
+     "label": "Edge softness",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "Smooths the curved rim so the bent background looks clean instead of streaky. Lower it for a sharper, more literal lens."
+    },
+    {
+     "id": "tint",
+     "label": "Tint",
+     "type": "color",
+     "default": [
+      0.85,
+      0.92,
+      1,
+      0.12
+     ],
+     "help": "Colors the glass. The color's opacity sets how strong the tint is."
+    },
+    {
+     "id": "brightness",
+     "label": "Brightness",
+     "type": "number",
+     "default": 1.06,
+     "min": 0,
+     "softMax": 2,
+     "step": 0.01,
+     "help": "Makes what you see through the glass lighter or darker."
+    },
+    {
+     "id": "edge",
+     "label": "Edge light",
+     "type": "percent",
+     "default": 0.55,
+     "min": 0,
+     "max": 1,
+     "help": "A thin bright line of light along the glass edge."
+    },
+    {
+     "id": "specular",
+     "label": "Specular",
+     "type": "percent",
+     "default": 0.45,
+     "min": 0,
+     "max": 1.5,
+     "help": "The bright shiny reflection where light hits the glass."
+    },
+    {
+     "id": "gloss",
+     "label": "Shininess",
+     "type": "number",
+     "default": 60,
+     "min": 2,
+     "softMax": 400,
+     "help": "How small and sharp the shiny reflection is. Higher is a tighter, glossier spot."
+    },
+    {
+     "id": "fresnel",
+     "label": "Fresnel",
+     "type": "percent",
+     "default": 0.35,
+     "min": 0,
+     "max": 1,
+     "help": "Makes the edges brighter and more reflective than the middle, like real glass."
+    },
+    {
+     "id": "inner",
+     "label": "Inner caustic",
+     "type": "percent",
+     "default": 0.25,
+     "min": 0,
+     "max": 1,
+     "help": "A soft glow of light focused inside the glass, on the side away from the light."
+    },
+    {
+     "id": "light",
+     "label": "Light angle",
+     "type": "angle",
+     "default": -120,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "Which direction the light comes from. Moves the reflections and edge light around."
+    },
+    {
+     "id": "showLayer",
+     "label": "Show layer",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "Mixes the layer's own color back in. 0 is pure clear glass; 100% shows the original layer."
+    }
+   ]
+  },
+  {
+   "id": "chrome",
+   "name": "Chrome",
+   "category": "material",
+   "description": "Polished metal with a reflected horizon. Classic chrome type in one tap.",
+   "about": "Turns the layer into shiny polished metal, like classic chrome lettering.",
+   "params": [
+    {
+     "id": "bevel",
+     "label": "Bevel",
+     "type": "number",
+     "default": 18,
+     "min": 1,
+     "softMax": 120,
+     "unit": "px",
+     "help": "How wide the rounded metal edge is."
+    },
+    {
+     "id": "depth",
+     "label": "Depth",
+     "type": "number",
+     "default": 1.4,
+     "min": 0,
+     "softMax": 4,
+     "step": 0.01,
+     "help": "How deep and curved the metal looks. Higher means stronger reflections on the edges."
+    },
+    {
+     "id": "horizon",
+     "label": "Horizon",
+     "type": "percent",
+     "default": 0.52,
+     "min": 0,
+     "max": 1,
+     "help": "Where the reflected horizon line (sky meets ground) sits on the metal."
+    },
+    {
+     "id": "sharpness",
+     "label": "Sharpness",
+     "type": "percent",
+     "default": 0.8,
+     "min": 0,
+     "max": 1,
+     "help": "How crisp the horizon line in the reflection is."
+    },
+    {
+     "id": "bands",
+     "label": "Ripples",
+     "type": "number",
+     "default": 0,
+     "min": 0,
+     "softMax": 12,
+     "step": 0.1,
+     "help": "Adds extra stripes to the reflection for a liquid-metal look. 0 is plain."
+    },
+    {
+     "id": "tint",
+     "label": "Tint",
+     "type": "color",
+     "default": [
+      0.82,
+      0.88,
+      1,
+      0.35
+     ],
+     "help": "Colors the metal: gold, rose, blue steel. The color's opacity sets the strength."
+    },
+    {
+     "id": "rotate",
+     "label": "Reflection turn",
+     "type": "angle",
+     "default": 0,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "Turns the reflection around, as if rotating the metal under the lights."
+    },
+    {
+     "id": "shine",
+     "label": "Specular",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1.5,
+     "help": "The bright highlight spot on the metal."
+    }
+   ]
+  },
+  {
+   "id": "holographic",
+   "name": "Holographic",
+   "category": "material",
+   "description": "Iridescent foil: rainbow sheen that shifts with angle and time.",
+   "about": "A shiny rainbow foil, like a holographic sticker, that shimmers as it moves.",
+   "params": [
+    {
+     "id": "intensity",
+     "label": "Intensity",
+     "type": "percent",
+     "default": 0.85,
+     "min": 0,
+     "max": 1.5,
+     "help": "How strong the rainbow foil is."
+    },
+    {
+     "id": "scale",
+     "label": "Band scale",
+     "type": "number",
+     "default": 1.6,
+     "min": 0.1,
+     "softMax": 8,
+     "step": 0.01,
+     "help": "How wide the rainbow bands are. Bigger numbers mean more, thinner bands."
+    },
+    {
+     "id": "speed",
+     "label": "Shimmer",
+     "type": "number",
+     "default": 0.2,
+     "softMin": -2,
+     "softMax": 2,
+     "unit": "/s",
+     "help": "How fast the rainbow slides across. 0 keeps it still."
+    },
+    {
+     "id": "angle",
+     "label": "Angle",
+     "type": "angle",
+     "default": 35,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "Which way the rainbow bands run."
+    },
+    {
+     "id": "bevel",
+     "label": "Bevel",
+     "type": "number",
+     "default": 14,
+     "min": 1,
+     "softMax": 100,
+     "unit": "px",
+     "help": "How much the rounded edges bend the rainbow, giving a raised, embossed look."
+    },
+    {
+     "id": "pastel",
+     "label": "Pearlescence",
+     "type": "percent",
+     "default": 0.35,
+     "min": 0,
+     "max": 1,
+     "help": "Softens the rainbow into pearly pastel colors."
+    },
+    {
+     "id": "keep",
+     "label": "Keep colors",
+     "type": "percent",
+     "default": 0.3,
+     "min": 0,
+     "max": 1,
+     "help": "How much of the layer's original colors show through the foil."
+    }
+   ]
+  },
+  {
+   "id": "gloss",
+   "name": "Gloss Sweep",
+   "category": "material",
+   "description": "A specular highlight that glides across the surface and wraps its edges.",
+   "about": "A shiny streak of light that glides across the layer, like light catching a phone screen or a shiny button.",
+   "params": [
+    {
+     "id": "position",
+     "label": "Position",
+     "type": "number",
+     "default": 0.5,
+     "softMin": -0.5,
+     "softMax": 1.5,
+     "step": 0.001,
+     "help": "Where the shine is across the layer. Animate it, or use Auto sweep instead."
+    },
+    {
+     "id": "speed",
+     "label": "Auto sweep",
+     "type": "number",
+     "default": 0.5,
+     "softMin": 0,
+     "softMax": 3,
+     "unit": "/s",
+     "help": "Makes the shine sweep across by itself, over and over. 0 turns this off so you can place it with Position."
+    },
+    {
+     "id": "angle",
+     "label": "Angle",
+     "type": "angle",
+     "default": 25,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "The slant of the shine."
+    },
+    {
+     "id": "width",
+     "label": "Width",
+     "type": "percent",
+     "default": 0.12,
+     "min": 0.005,
+     "max": 1,
+     "help": "How wide the streak of light is."
+    },
+    {
+     "id": "softness",
+     "label": "Softness",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "How soft the streak's edges are."
+    },
+    {
+     "id": "intensity",
+     "label": "Intensity",
+     "type": "number",
+     "default": 0.9,
+     "min": 0,
+     "softMax": 3,
+     "step": 0.01,
+     "help": "How bright the shine is."
+    },
+    {
+     "id": "color",
+     "label": "Color",
+     "type": "color",
+     "default": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "help": "The color of the shine."
+    },
+    {
+     "id": "bevel",
+     "label": "Edge wrap",
+     "type": "number",
+     "default": 10,
+     "min": 1,
+     "softMax": 80,
+     "unit": "px",
+     "help": "How much the shine wraps around the rounded edges."
+    }
+   ]
+  },
+  {
+   "id": "glow",
+   "name": "Glow",
+   "category": "light",
+   "description": "Multi-pass bloom from bright areas, or an outer glow from the layer shape.",
+   "about": "Makes things shine with a soft halo of light around them.",
+   "params": [
+    {
+     "id": "source",
+     "label": "Source",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Bright areas"
+      },
+      {
+       "value": 1,
+       "label": "Whole shape"
+      }
+     ],
+     "animatable": false,
+     "help": "Bright areas makes only the brightest parts glow (like lights at night). Whole shape makes the entire layer glow around its outline."
+    },
+    {
+     "id": "threshold",
+     "label": "Threshold",
+     "type": "percent",
+     "default": 0.55,
+     "min": 0,
+     "max": 1,
+     "help": "How bright something must be to glow. Lower it to make more of the image glow."
+    },
+    {
+     "id": "radius",
+     "label": "Radius",
+     "type": "number",
+     "default": 40,
+     "min": 0,
+     "softMax": 300,
+     "unit": "px",
+     "help": "How far the glow spreads."
+    },
+    {
+     "id": "intensity",
+     "label": "Intensity",
+     "type": "number",
+     "default": 1.4,
+     "min": 0,
+     "softMax": 6,
+     "step": 0.01,
+     "help": "How strong and bright the glow is."
+    },
+    {
+     "id": "color",
+     "label": "Tint",
+     "type": "color",
+     "default": [
+      1,
+      1,
+      1,
+      0
+     ],
+     "help": "Tints the glow. Turn the color's opacity up to use it; at 0% the glow keeps the original colors."
+    },
+    {
+     "id": "saturation",
+     "label": "Saturation",
+     "type": "percent",
+     "default": 1,
+     "min": 0,
+     "max": 2,
+     "help": "How colorful the glow is. 0 is a white glow, higher is more vivid."
+    }
+   ]
+  },
+  {
+   "id": "drop-shadow",
+   "name": "Drop Shadow",
+   "category": "light",
+   "description": "Soft shadow cast behind the layer. Stack several for layered depth.",
+   "about": "Adds a soft shadow behind the layer so it floats above what is underneath.",
+   "params": [
+    {
+     "id": "color",
+     "label": "Color",
+     "type": "color",
+     "default": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "help": "The shadow's color. Black is classic; a dark, colored shadow can look richer."
+    },
+    {
+     "id": "opacity",
+     "label": "Opacity",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "How dark the shadow is."
+    },
+    {
+     "id": "angle",
+     "label": "Direction",
+     "type": "angle",
+     "default": 60,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "Which way the shadow falls."
+    },
+    {
+     "id": "distance",
+     "label": "Distance",
+     "type": "number",
+     "default": 18,
+     "min": 0,
+     "softMax": 300,
+     "unit": "px",
+     "help": "How far the shadow is from the layer. Further looks like it is floating higher."
+    },
+    {
+     "id": "softness",
+     "label": "Softness",
+     "type": "number",
+     "default": 24,
+     "min": 0,
+     "softMax": 200,
+     "unit": "px",
+     "help": "How blurry the shadow is. Soft shadows look natural, sharp ones look graphic."
+    },
+    {
+     "id": "world",
+     "label": "Light",
+     "type": "enum",
+     "default": 1,
+     "options": [
+      {
+       "value": 1,
+       "label": "Fixed in scene"
+      },
+      {
+       "value": 0,
+       "label": "Turns with layer"
+      }
+     ],
+     "animatable": false,
+     "help": "Fixed in scene keeps the shadow falling the same way even if you rotate the layer. Turns with layer spins the shadow along with it."
+    }
+   ]
+  },
+  {
+   "id": "light-rays",
+   "name": "Light Rays",
+   "category": "light",
+   "description": "Volumetric god rays streaming from bright areas away from a light point.",
+   "about": "Beams of light (god rays) shining out from the bright parts of the layer, away from a light point.",
+   "params": [
+    {
+     "id": "center",
+     "label": "Light",
+     "type": "point",
+     "default": [
+      0.5,
+      0.2
+     ],
+     "help": "Where the light comes from. Rays shoot away from this point. Drag the dot on the canvas."
+    },
+    {
+     "id": "length",
+     "label": "Length",
+     "type": "percent",
+     "default": 0.45,
+     "min": 0,
+     "max": 1,
+     "help": "How long the rays are."
+    },
+    {
+     "id": "intensity",
+     "label": "Exposure",
+     "type": "number",
+     "default": 1.6,
+     "min": 0,
+     "softMax": 6,
+     "step": 0.01,
+     "help": "How bright the rays are."
+    },
+    {
+     "id": "decay",
+     "label": "Decay",
+     "type": "percent",
+     "default": 0.97,
+     "min": 0.8,
+     "max": 1,
+     "help": "How quickly rays fade as they travel. Higher keeps them bright for longer."
+    },
+    {
+     "id": "threshold",
+     "label": "Threshold",
+     "type": "percent",
+     "default": 0.3,
+     "min": 0,
+     "max": 1,
+     "help": "Only parts brighter than this cast rays. Raise it to get rays only from the brightest spots."
+    },
+    {
+     "id": "color",
+     "label": "Color",
+     "type": "color",
+     "default": [
+      1,
+      0.92,
+      0.75,
+      1
+     ],
+     "help": "The color of the light."
+    },
+    {
+     "id": "flicker",
+     "label": "Flicker",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "Makes the rays shimmer and flicker like real light through dust."
+    }
+   ]
+  },
+  {
+   "id": "edge-glow",
+   "name": "Neon Edge",
+   "category": "light",
+   "description": "Glowing light hugging the edges of the shape: neon tubes, rim light.",
+   "about": "Turns the outline of the layer into a glowing neon tube.",
+   "params": [
+    {
+     "id": "color",
+     "label": "Color",
+     "type": "color",
+     "default": [
+      0.35,
+      0.85,
+      1,
+      1
+     ],
+     "help": "The neon color."
+    },
+    {
+     "id": "width",
+     "label": "Tube width",
+     "type": "number",
+     "default": 6,
+     "min": 0,
+     "softMax": 60,
+     "unit": "px",
+     "help": "How thick the bright tube is."
+    },
+    {
+     "id": "spread",
+     "label": "Glow spread",
+     "type": "number",
+     "default": 40,
+     "min": 0,
+     "softMax": 300,
+     "unit": "px",
+     "help": "How far the soft glow spreads around the tube."
+    },
+    {
+     "id": "intensity",
+     "label": "Intensity",
+     "type": "number",
+     "default": 1.6,
+     "min": 0,
+     "softMax": 6,
+     "step": 0.01,
+     "help": "How bright the neon is."
+    },
+    {
+     "id": "position",
+     "label": "Position",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Center"
+      },
+      {
+       "value": 1,
+       "label": "Inside"
+      },
+      {
+       "value": 2,
+       "label": "Outside"
+      }
+     ],
+     "animatable": false,
+     "help": "Whether the tube sits on the edge (Center), just inside it, or just outside it."
+    },
+    {
+     "id": "fill",
+     "label": "Keep fill",
+     "type": "percent",
+     "default": 0.15,
+     "min": 0,
+     "max": 1,
+     "help": "How much of the original layer still shows inside the neon. 0 shows only the neon."
+    }
+   ]
+  },
+  {
+   "id": "light-leak",
+   "name": "Light Leak",
+   "category": "light",
+   "description": "Drifting film light leaks screened over the image.",
+   "about": "Drifting warm blotches of light, like old film cameras that let light in.",
+   "params": [
+    {
+     "id": "intensity",
+     "label": "Intensity",
+     "type": "percent",
+     "default": 0.7,
+     "min": 0,
+     "max": 1.5,
+     "help": "How strong the light leaks are."
+    },
+    {
+     "id": "scale",
+     "label": "Scale",
+     "type": "number",
+     "default": 700,
+     "min": 20,
+     "softMax": 3000,
+     "unit": "px",
+     "help": "How big the blotches of light are."
+    },
+    {
+     "id": "speed",
+     "label": "Drift",
+     "type": "number",
+     "default": 0.15,
+     "softMin": 0,
+     "softMax": 1.5,
+     "help": "How fast the light drifts around."
+    },
+    {
+     "id": "hue",
+     "label": "Hue",
+     "type": "angle",
+     "default": 20,
+     "softMin": 0,
+     "softMax": 360,
+     "unit": "°",
+     "help": "The main color of the light. Around 20° is warm orange; 200° is cool blue."
+    },
+    {
+     "id": "seed",
+     "label": "Seed",
+     "type": "number",
+     "default": 3,
+     "min": 0,
+     "max": 999,
+     "step": 1,
+     "animatable": false,
+     "help": "A different random starting point. Same look, different arrangement. Try a few numbers until you like it."
+    }
+   ]
+  },
+  {
+   "id": "gaussian-blur",
+   "name": "Gaussian Blur",
+   "category": "blur",
+   "description": "Soft, even blur with independent horizontal and vertical amounts.",
+   "about": "Makes the layer soft and out of focus, evenly in every direction.",
+   "params": [
+    {
+     "id": "radius",
+     "label": "Radius",
+     "type": "number",
+     "default": 16,
+     "min": 0,
+     "softMax": 200,
+     "step": 0.1,
+     "unit": "px",
+     "help": "How blurry. 0 is sharp; bigger numbers are softer and dreamier."
+    },
+    {
+     "id": "horizontal",
+     "label": "Horizontal",
+     "type": "percent",
+     "default": 1,
+     "min": 0,
+     "max": 1,
+     "help": "How much of the blur goes sideways. Turn it down to blur only up-and-down."
+    },
+    {
+     "id": "vertical",
+     "label": "Vertical",
+     "type": "percent",
+     "default": 1,
+     "min": 0,
+     "max": 1,
+     "help": "How much of the blur goes up-and-down. Turn it down to blur only sideways."
+    },
+    {
+     "id": "edges",
+     "label": "Edges",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Fade out"
+      },
+      {
+       "value": 1,
+       "label": "Repeat"
+      }
+     ],
+     "animatable": false,
+     "help": "What happens at the layer's border. Fade out lets the edges go soft and see-through. Repeat keeps the edges solid, which is better for full-screen photos and video."
+    }
+   ]
+  },
+  {
+   "id": "directional-blur",
+   "name": "Motion Blur",
+   "category": "blur",
+   "description": "Streaks along a direction, like fast movement.",
+   "about": "Smears the layer in one direction, like something moving very fast.",
+   "params": [
+    {
+     "id": "length",
+     "label": "Length",
+     "type": "number",
+     "default": 40,
+     "min": 0,
+     "softMax": 400,
+     "unit": "px",
+     "help": "How long the streaks are."
+    },
+    {
+     "id": "angle",
+     "label": "Angle",
+     "type": "angle",
+     "default": 0,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "Which way the streaks point. 0° is sideways, 90° is up-and-down."
+    },
+    {
+     "id": "center",
+     "label": "Centered",
+     "type": "enum",
+     "default": 1,
+     "options": [
+      {
+       "value": 1,
+       "label": "Both ways"
+      },
+      {
+       "value": 0,
+       "label": "Trailing"
+      }
+     ],
+     "animatable": false,
+     "help": "Both ways smears forward and backward evenly. Trailing only leaves a tail behind, like a speed trail."
+    }
+   ]
+  },
+  {
+   "id": "radial-blur",
+   "name": "Spin Blur",
+   "category": "blur",
+   "description": "Rotational blur around a center point.",
+   "about": "Blurs in circles around a point, like a spinning wheel.",
+   "params": [
+    {
+     "id": "amount",
+     "label": "Angle",
+     "type": "angle",
+     "default": 12,
+     "min": 0,
+     "softMax": 90,
+     "unit": "°",
+     "help": "How far the spin smears. Small numbers are a gentle swirl; big numbers are a fast spin."
+    },
+    {
+     "id": "center",
+     "label": "Center",
+     "type": "point",
+     "default": [
+      0.5,
+      0.5
+     ],
+     "help": "The point everything spins around. Drag the dot on the canvas to move it."
+    }
+   ]
+  },
+  {
+   "id": "zoom-blur",
+   "name": "Zoom Blur",
+   "category": "blur",
+   "description": "Streaks rushing toward or away from a point.",
+   "about": "Streaks rush out from a point, like zooming the camera very fast.",
+   "params": [
+    {
+     "id": "strength",
+     "label": "Strength",
+     "type": "percent",
+     "default": 0.25,
+     "min": 0,
+     "max": 1,
+     "help": "How long the zoom streaks are."
+    },
+    {
+     "id": "center",
+     "label": "Center",
+     "type": "point",
+     "default": [
+      0.5,
+      0.5
+     ],
+     "help": "Where the zoom comes from. Drag the dot on the canvas to move it."
+    }
+   ]
+  },
+  {
+   "id": "bokeh-blur",
+   "name": "Lens Blur",
+   "category": "blur",
+   "description": "Camera-style defocus with glowing bokeh highlights.",
+   "about": "A camera-style out-of-focus look where small lights turn into soft glowing circles.",
+   "params": [
+    {
+     "id": "radius",
+     "label": "Radius",
+     "type": "number",
+     "default": 18,
+     "min": 0,
+     "softMax": 120,
+     "unit": "px",
+     "help": "How out of focus. Bigger means bigger, softer light circles."
+    },
+    {
+     "id": "highlights",
+     "label": "Highlights",
+     "type": "number",
+     "default": 3,
+     "min": 0,
+     "softMax": 10,
+     "help": "How much bright spots bloom into glowing circles. 0 is a plain blur."
+    },
+    {
+     "id": "threshold",
+     "label": "Threshold",
+     "type": "percent",
+     "default": 0.7,
+     "min": 0,
+     "max": 1,
+     "help": "How bright a spot must be to become a glowing circle. Lower it to make more spots glow."
+    }
+   ]
+  },
+  {
+   "id": "tilt-shift",
+   "name": "Tilt-Shift",
+   "category": "blur",
+   "description": "Sharp band with blur falling off on either side, for miniature looks.",
+   "about": "Keeps a sharp stripe and blurs above and below it, so real scenes look like tiny toy models.",
+   "params": [
+    {
+     "id": "radius",
+     "label": "Blur",
+     "type": "number",
+     "default": 20,
+     "min": 0,
+     "softMax": 120,
+     "unit": "px",
+     "help": "How blurry the out-of-focus areas get."
+    },
+    {
+     "id": "center",
+     "label": "Focus",
+     "type": "point",
+     "default": [
+      0.5,
+      0.5
+     ],
+     "help": "Where the sharp stripe sits. Drag the dot on the canvas."
+    },
+    {
+     "id": "angle",
+     "label": "Angle",
+     "type": "angle",
+     "default": 0,
+     "softMin": -90,
+     "softMax": 90,
+     "unit": "°",
+     "help": "Tilts the sharp stripe. 0° is a level, horizontal stripe."
+    },
+    {
+     "id": "band",
+     "label": "Band",
+     "type": "percent",
+     "default": 0.15,
+     "min": 0,
+     "max": 1,
+     "help": "How tall the perfectly sharp stripe is."
+    },
+    {
+     "id": "falloff",
+     "label": "Falloff",
+     "type": "percent",
+     "default": 0.3,
+     "min": 0.01,
+     "max": 1,
+     "help": "How gradually it goes from sharp to blurry. Low is a quick change, high is very gradual."
+    }
+   ]
+  },
+  {
+   "id": "wave-warp",
+   "name": "Wave Warp",
+   "category": "distort",
+   "description": "Rolling waves that travel across the layer.",
+   "about": "Bends the layer into rolling waves, like a flag or water.",
+   "params": [
+    {
+     "id": "amplitude",
+     "label": "Height",
+     "type": "number",
+     "default": 18,
+     "min": 0,
+     "softMax": 200,
+     "unit": "px",
+     "help": "How tall the waves are, so how far things get pushed."
+    },
+    {
+     "id": "wavelength",
+     "label": "Wavelength",
+     "type": "number",
+     "default": 160,
+     "min": 2,
+     "softMax": 1000,
+     "unit": "px",
+     "help": "Distance between wave tops. Small is a tight wiggle, big is long gentle waves."
+    },
+    {
+     "id": "angle",
+     "label": "Direction",
+     "type": "angle",
+     "default": 0,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "Which way the waves travel."
+    },
+    {
+     "id": "speed",
+     "label": "Speed",
+     "type": "number",
+     "default": 0.5,
+     "softMin": -4,
+     "softMax": 4,
+     "unit": "/s",
+     "help": "How fast the waves move. 0 freezes them; negative goes the other way."
+    },
+    {
+     "id": "phase",
+     "label": "Phase",
+     "type": "angle",
+     "default": 0,
+     "softMin": 0,
+     "softMax": 360,
+     "unit": "°",
+     "help": "Slides the waves along without moving them over time. Animate it for full control."
+    },
+    {
+     "id": "shape",
+     "label": "Shape",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Sine"
+      },
+      {
+       "value": 1,
+       "label": "Triangle"
+      },
+      {
+       "value": 2,
+       "label": "Square"
+      }
+     ],
+     "animatable": false,
+     "help": "Sine is smooth and round, Triangle is zig-zag, Square is blocky steps."
+    }
+   ]
+  },
+  {
+   "id": "twirl",
+   "name": "Twirl",
+   "category": "distort",
+   "description": "Spins pixels around a point, strongest at the center.",
+   "about": "Spins the middle of the layer like a whirlpool, with the edges staying put.",
+   "params": [
+    {
+     "id": "angle",
+     "label": "Angle",
+     "type": "angle",
+     "default": 180,
+     "softMin": -720,
+     "softMax": 720,
+     "unit": "°",
+     "help": "How much it twists. Positive spins one way, negative the other."
+    },
+    {
+     "id": "radius",
+     "label": "Radius",
+     "type": "number",
+     "default": 300,
+     "min": 1,
+     "softMax": 2000,
+     "unit": "px",
+     "help": "How big the twisting area is."
+    },
+    {
+     "id": "center",
+     "label": "Center",
+     "type": "point",
+     "default": [
+      0.5,
+      0.5
+     ],
+     "help": "The middle of the whirlpool. Drag the dot on the canvas."
+    }
+   ]
+  },
+  {
+   "id": "bulge",
+   "name": "Bulge / Pinch",
+   "category": "distort",
+   "description": "Magnify outward like a lens, or pinch inward with negative strength.",
+   "about": "Puffs part of the layer outward like a magnifying glass, or pinches it inward.",
+   "params": [
+    {
+     "id": "strength",
+     "label": "Strength",
+     "type": "number",
+     "default": 0.6,
+     "min": -1,
+     "max": 2,
+     "step": 0.01,
+     "help": "Positive bulges outward (bigger), negative pinches inward (smaller)."
+    },
+    {
+     "id": "radius",
+     "label": "Radius",
+     "type": "number",
+     "default": 320,
+     "min": 1,
+     "softMax": 2000,
+     "unit": "px",
+     "help": "How big the bulging area is."
+    },
+    {
+     "id": "center",
+     "label": "Center",
+     "type": "point",
+     "default": [
+      0.5,
+      0.5
+     ],
+     "help": "The middle of the bulge. Drag the dot on the canvas."
+    }
+   ]
+  },
+  {
+   "id": "noise-displace",
+   "name": "Turbulent Displace",
+   "category": "distort",
+   "description": "Organic, noise-driven warping, with optional per-channel split.",
+   "about": "Wobbles the layer in a natural, wavy, wobbly way, like looking through moving water or melting.",
+   "params": [
+    {
+     "id": "amount",
+     "label": "Amount",
+     "type": "number",
+     "default": 30,
+     "min": 0,
+     "softMax": 300,
+     "unit": "px",
+     "help": "How far pixels get pushed around."
+    },
+    {
+     "id": "size",
+     "label": "Size",
+     "type": "number",
+     "default": 220,
+     "min": 4,
+     "softMax": 2000,
+     "unit": "px",
+     "help": "How big the wobbles are. Small is jittery, big is slow and wavy."
+    },
+    {
+     "id": "detail",
+     "label": "Detail",
+     "type": "number",
+     "default": 3,
+     "min": 1,
+     "max": 6,
+     "step": 1,
+     "help": "Adds smaller wobbles on top of the big ones. Higher is more complex."
+    },
+    {
+     "id": "evolve",
+     "label": "Evolution",
+     "type": "number",
+     "default": 0.3,
+     "softMin": 0,
+     "softMax": 4,
+     "unit": "/s",
+     "help": "How fast the wobble changes over time. 0 freezes it."
+    },
+    {
+     "id": "split",
+     "label": "RGB split",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "Pushes red, green and blue by different amounts for a colorful glitchy edge."
+    },
+    {
+     "id": "seed",
+     "label": "Seed",
+     "type": "number",
+     "default": 1,
+     "min": 0,
+     "max": 999,
+     "step": 1,
+     "animatable": false,
+     "help": "A different random starting point. Same look, different arrangement. Try a few numbers until you like it."
+    }
+   ]
+  },
+  {
+   "id": "heat-haze",
+   "name": "Heat Haze",
+   "category": "distort",
+   "description": "Shimmering air rising off hot ground.",
+   "about": "Shimmering, rising air, like heat above a hot road or a fire.",
+   "params": [
+    {
+     "id": "intensity",
+     "label": "Intensity",
+     "type": "number",
+     "default": 8,
+     "min": 0,
+     "softMax": 60,
+     "unit": "px",
+     "help": "How strongly the image shimmers."
+    },
+    {
+     "id": "scale",
+     "label": "Scale",
+     "type": "number",
+     "default": 60,
+     "min": 4,
+     "softMax": 600,
+     "unit": "px",
+     "help": "How big the shimmer ripples are."
+    },
+    {
+     "id": "rise",
+     "label": "Rise speed",
+     "type": "number",
+     "default": 1,
+     "softMin": 0,
+     "softMax": 6,
+     "help": "How fast the heat drifts upward."
+    },
+    {
+     "id": "turbulence",
+     "label": "Turbulence",
+     "type": "number",
+     "default": 3,
+     "min": 1,
+     "max": 6,
+     "step": 1,
+     "help": "How busy and chaotic the shimmer is."
+    },
+    {
+     "id": "stretch",
+     "label": "Vertical stretch",
+     "type": "number",
+     "default": 2.5,
+     "min": 1,
+     "softMax": 8,
+     "help": "Stretches ripples tall, like heat rising. 1 is round ripples."
+    },
+    {
+     "id": "blur",
+     "label": "Shimmer blur",
+     "type": "percent",
+     "default": 0.3,
+     "min": 0,
+     "max": 1,
+     "help": "Adds a little softness where the air shimmers most."
+    }
+   ]
+  },
+  {
+   "id": "ripple",
+   "name": "Ripple",
+   "category": "distort",
+   "description": "Circular ripples spreading out from a point, like a drop in water.",
+   "about": "Rings spreading out from a point, like dropping a stone into water.",
+   "params": [
+    {
+     "id": "amplitude",
+     "label": "Height",
+     "type": "number",
+     "default": 12,
+     "min": 0,
+     "softMax": 100,
+     "unit": "px",
+     "help": "How tall the ripples are, so how much the image bends."
+    },
+    {
+     "id": "wavelength",
+     "label": "Wavelength",
+     "type": "number",
+     "default": 80,
+     "min": 2,
+     "softMax": 600,
+     "unit": "px",
+     "help": "Distance between rings."
+    },
+    {
+     "id": "speed",
+     "label": "Speed",
+     "type": "number",
+     "default": 1,
+     "softMin": -4,
+     "softMax": 4,
+     "unit": "/s",
+     "help": "How fast the rings move outward. Negative moves them inward."
+    },
+    {
+     "id": "radius",
+     "label": "Reach",
+     "type": "number",
+     "default": 700,
+     "min": 10,
+     "softMax": 3000,
+     "unit": "px",
+     "help": "How far from the center the ripples reach before fading away."
+    },
+    {
+     "id": "center",
+     "label": "Center",
+     "type": "point",
+     "default": [
+      0.5,
+      0.5
+     ],
+     "help": "Where the stone hits the water. Drag the dot on the canvas."
+    }
+   ]
+  },
+  {
+   "id": "lens-distortion",
+   "name": "Lens Distortion",
+   "category": "distort",
+   "description": "Barrel or pincushion distortion with optional color fringing.",
+   "about": "Bends the image like a camera lens: bulging fisheye or pinched-in corners.",
+   "params": [
+    {
+     "id": "amount",
+     "label": "Amount",
+     "type": "number",
+     "default": 0.3,
+     "min": -1,
+     "max": 1,
+     "step": 0.01,
+     "help": "Positive bulges the middle out (fisheye). Negative pulls the corners out (pincushion)."
+    },
+    {
+     "id": "zoom",
+     "label": "Zoom",
+     "type": "number",
+     "default": 1,
+     "min": 0.25,
+     "softMax": 3,
+     "step": 0.01,
+     "help": "Zooms in to hide the bent edges, or out to see more."
+    },
+    {
+     "id": "fringe",
+     "label": "Fringing",
+     "type": "percent",
+     "default": 0.1,
+     "min": 0,
+     "max": 1,
+     "help": "Adds rainbow color edges near the borders, like a cheap lens."
+    }
+   ]
+  },
+  {
+   "id": "halftone",
+   "name": "Halftone",
+   "category": "stylize",
+   "description": "Print-style screens: dots, lines, crosses or full CMYK.",
+   "about": "Turns the image into printed dots or lines, like comic books and newspapers.",
+   "params": [
+    {
+     "id": "pattern",
+     "label": "Pattern",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Dots"
+      },
+      {
+       "value": 1,
+       "label": "Lines"
+      },
+      {
+       "value": 2,
+       "label": "Cross"
+      },
+      {
+       "value": 3,
+       "label": "CMYK"
+      }
+     ],
+     "animatable": false,
+     "help": "Dots, Lines or Cross pattern in one ink. CMYK uses four colored dot screens, like real magazine printing."
+    },
+    {
+     "id": "cell",
+     "label": "Cell size",
+     "type": "number",
+     "default": 12,
+     "min": 2,
+     "softMax": 80,
+     "unit": "px",
+     "help": "How big each dot or line is."
+    },
+    {
+     "id": "angle",
+     "label": "Angle",
+     "type": "angle",
+     "default": 45,
+     "softMin": -90,
+     "softMax": 90,
+     "unit": "°",
+     "help": "Rotates the dot grid."
+    },
+    {
+     "id": "softness",
+     "label": "Softness",
+     "type": "percent",
+     "default": 0.25,
+     "min": 0,
+     "max": 1,
+     "help": "Soft dots blend more smoothly; hard dots look crisper and more graphic."
+    },
+    {
+     "id": "contrast",
+     "label": "Contrast",
+     "type": "number",
+     "default": 1,
+     "min": 0.1,
+     "softMax": 3,
+     "step": 0.01,
+     "help": "Makes dots bigger in darks and smaller in lights more strongly."
+    },
+    {
+     "id": "colors",
+     "label": "Colors",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Ink on paper"
+      },
+      {
+       "value": 1,
+       "label": "Keep image colors"
+      }
+     ],
+     "animatable": false,
+     "help": "Ink on paper uses the two colors below. Keep image colors uses the original colors for the dots."
+    },
+    {
+     "id": "ink",
+     "label": "Ink",
+     "type": "color",
+     "default": [
+      0.08,
+      0.07,
+      0.07,
+      1
+     ],
+     "help": "The color of the dots."
+    },
+    {
+     "id": "paper",
+     "label": "Paper",
+     "type": "color",
+     "default": [
+      0.96,
+      0.93,
+      0.86,
+      1
+     ],
+     "help": "The background color behind the dots."
+    }
+   ]
+  },
+  {
+   "id": "film-grain",
+   "name": "Film Grain",
+   "category": "stylize",
+   "description": "Animated photographic grain that sits in the midtones.",
+   "about": "Adds the fine, flickering grain of real film for a cinematic, less digital look.",
+   "params": [
+    {
+     "id": "amount",
+     "label": "Amount",
+     "type": "percent",
+     "default": 0.18,
+     "min": 0,
+     "max": 1,
+     "help": "How visible the grain is."
+    },
+    {
+     "id": "size",
+     "label": "Size",
+     "type": "number",
+     "default": 1.5,
+     "min": 0.5,
+     "softMax": 8,
+     "unit": "px",
+     "help": "How big each grain speck is."
+    },
+    {
+     "id": "color",
+     "label": "Color",
+     "type": "percent",
+     "default": 0.15,
+     "min": 0,
+     "max": 1,
+     "help": "How colorful the grain is. 0 is gray grain, higher adds colored specks."
+    },
+    {
+     "id": "fps",
+     "label": "Rate",
+     "type": "number",
+     "default": 24,
+     "min": 0,
+     "softMax": 60,
+     "unit": "fps",
+     "help": "How many times a second the grain changes. 24 feels like film; 0 freezes it."
+    },
+    {
+     "id": "response",
+     "label": "Midtone bias",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "Puts more grain in the middle tones and less in pure black and white, like real film."
+    }
+   ]
+  },
+  {
+   "id": "glitch",
+   "name": "Digital Glitch",
+   "category": "retro",
+   "description": "Slice displacement, channel offsets and blocky corruption.",
+   "about": "Digital glitches: slices jumping sideways, colors splitting apart and blocky corruption.",
+   "params": [
+    {
+     "id": "amount",
+     "label": "Amount",
+     "type": "percent",
+     "default": 0.4,
+     "min": 0,
+     "max": 1,
+     "help": "How often and how much it glitches. 0 is clean."
+    },
+    {
+     "id": "shift",
+     "label": "Slice shift",
+     "type": "number",
+     "default": 60,
+     "min": 0,
+     "softMax": 400,
+     "unit": "px",
+     "help": "How far the glitched slices jump sideways."
+    },
+    {
+     "id": "rgb",
+     "label": "RGB offset",
+     "type": "number",
+     "default": 10,
+     "min": 0,
+     "softMax": 80,
+     "unit": "px",
+     "help": "How far red, green and blue split apart."
+    },
+    {
+     "id": "slices",
+     "label": "Slice height",
+     "type": "number",
+     "default": 24,
+     "min": 2,
+     "softMax": 200,
+     "unit": "px",
+     "help": "How tall each glitched strip is."
+    },
+    {
+     "id": "rate",
+     "label": "Rate",
+     "type": "number",
+     "default": 12,
+     "min": 0,
+     "softMax": 60,
+     "unit": "fps",
+     "help": "How many times a second the glitch changes."
+    },
+    {
+     "id": "blocks",
+     "label": "Block noise",
+     "type": "percent",
+     "default": 0.3,
+     "min": 0,
+     "max": 1,
+     "help": "Adds blocky, broken-video squares."
+    },
+    {
+     "id": "seed",
+     "label": "Seed",
+     "type": "number",
+     "default": 7,
+     "min": 0,
+     "max": 999,
+     "step": 1,
+     "animatable": false,
+     "help": "A different random starting point. Same look, different arrangement. Try a few numbers until you like it."
+    }
+   ]
+  },
+  {
+   "id": "pixelate",
+   "name": "Pixelate",
+   "category": "retro",
+   "description": "Mosaic blocks: square, hexagon or LED dots.",
+   "about": "Turns the layer into big blocks, like a mosaic or an old video game.",
+   "params": [
+    {
+     "id": "size",
+     "label": "Cell size",
+     "type": "number",
+     "default": 18,
+     "min": 1,
+     "softMax": 160,
+     "unit": "px",
+     "help": "How big each block is."
+    },
+    {
+     "id": "shape",
+     "label": "Shape",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Square"
+      },
+      {
+       "value": 1,
+       "label": "Hexagon"
+      },
+      {
+       "value": 2,
+       "label": "LED dots"
+      }
+     ],
+     "animatable": false,
+     "help": "Square blocks, Hexagon tiles, or round LED dots like a stadium screen."
+    },
+    {
+     "id": "gap",
+     "label": "Gap",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 0.8,
+     "help": "Adds space between the blocks."
+    }
+   ]
+  },
+  {
+   "id": "vignette",
+   "name": "Vignette",
+   "category": "stylize",
+   "description": "Darkens (or tints) toward the edges of the frame.",
+   "about": "Darkens (or colors) the edges of the frame to draw the eye to the middle.",
+   "params": [
+    {
+     "id": "amount",
+     "label": "Amount",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "How dark the edges get."
+    },
+    {
+     "id": "radius",
+     "label": "Radius",
+     "type": "percent",
+     "default": 0.75,
+     "min": 0,
+     "max": 1.5,
+     "help": "How big the untouched middle area is."
+    },
+    {
+     "id": "softness",
+     "label": "Softness",
+     "type": "percent",
+     "default": 0.55,
+     "min": 0.01,
+     "max": 1,
+     "help": "How gradually the darkening fades in."
+    },
+    {
+     "id": "roundness",
+     "label": "Roundness",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "How round the vignette is. Low follows the frame's rectangle; high is a circle."
+    },
+    {
+     "id": "color",
+     "label": "Color",
+     "type": "color",
+     "default": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "help": "The color the edges fade to. Try white for a dreamy look."
+    }
+   ]
+  },
+  {
+   "id": "posterize",
+   "name": "Posterize & Dither",
+   "category": "retro",
+   "description": "Reduce to a few tone levels, with ordered or noise dithering.",
+   "about": "Reduces the image to just a few shades, like a screen print or a retro game, with optional dither dots.",
+   "params": [
+    {
+     "id": "levels",
+     "label": "Levels",
+     "type": "number",
+     "default": 4,
+     "min": 2,
+     "max": 32,
+     "step": 1,
+     "help": "How many shades per color are kept. Fewer is bolder and more cartoon-like."
+    },
+    {
+     "id": "dither",
+     "label": "Dither",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "Mixes neighboring shades with tiny dots so the steps look smoother."
+    },
+    {
+     "id": "mode",
+     "label": "Dither type",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Ordered (Bayer)"
+      },
+      {
+       "value": 1,
+       "label": "Noise"
+      }
+     ],
+     "animatable": false,
+     "help": "Ordered makes a neat checkerboard-like pattern (retro computer look). Noise uses random specks."
+    },
+    {
+     "id": "scale",
+     "label": "Dither size",
+     "type": "number",
+     "default": 1,
+     "min": 1,
+     "softMax": 8,
+     "unit": "px",
+     "help": "How big the dither dots are."
+    }
+   ]
+  },
+  {
+   "id": "edges",
+   "name": "Edges & Emboss",
+   "category": "stylize",
+   "description": "Sobel edge detection, ink outlines, or a raised emboss.",
+   "about": "Finds the outlines in the image: glowing lines, a pen drawing, or a raised stamped look.",
+   "params": [
+    {
+     "id": "mode",
+     "label": "Style",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Glowing edges"
+      },
+      {
+       "value": 1,
+       "label": "Ink drawing"
+      },
+      {
+       "value": 2,
+       "label": "Emboss"
+      }
+     ],
+     "animatable": false,
+     "help": "Glowing edges makes bright lines on black. Ink drawing makes dark lines on white, like a sketch. Emboss makes it look pressed into metal or paper."
+    },
+    {
+     "id": "strength",
+     "label": "Strength",
+     "type": "number",
+     "default": 2,
+     "min": 0,
+     "softMax": 8,
+     "step": 0.01,
+     "help": "How strong the lines are."
+    },
+    {
+     "id": "width",
+     "label": "Width",
+     "type": "number",
+     "default": 1.5,
+     "min": 0.5,
+     "softMax": 8,
+     "unit": "px",
+     "help": "How thick the lines are."
+    },
+    {
+     "id": "color",
+     "label": "Color",
+     "type": "color",
+     "default": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "help": "The color of the lines."
+    },
+    {
+     "id": "angle",
+     "label": "Emboss light",
+     "type": "angle",
+     "default": -45,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "For Emboss: which direction the light comes from."
+    }
+   ]
+  },
+  {
+   "id": "vhs",
+   "name": "VHS Tape",
+   "category": "retro",
+   "description": "Wobbly tracking waves, color bleed, tape noise, rolling tracking bands and head-switch tearing.",
+   "about": "Makes footage look like it was played from a worn VHS tape: wobbly lines, smeared colors, rolling noise bands and a torn bottom edge.",
+   "params": [
+    {
+     "id": "waves",
+     "label": "Wave height",
+     "type": "number",
+     "default": 6,
+     "min": 0,
+     "softMax": 60,
+     "unit": "px",
+     "help": "How far the picture sways sideways in slow waves."
+    },
+    {
+     "id": "waveSize",
+     "label": "Wave length",
+     "type": "number",
+     "default": 260,
+     "min": 8,
+     "softMax": 1500,
+     "unit": "px",
+     "help": "How tall each wave is. Small is a fast wiggle, big is a slow lean."
+    },
+    {
+     "id": "waveSpeed",
+     "label": "Wave speed",
+     "type": "number",
+     "default": 0.5,
+     "softMin": -3,
+     "softMax": 3,
+     "unit": "/s",
+     "help": "How fast the waves travel."
+    },
+    {
+     "id": "jitter",
+     "label": "Line jitter",
+     "type": "number",
+     "default": 1.5,
+     "min": 0,
+     "softMax": 20,
+     "unit": "px",
+     "help": "Each line shakes a little sideways, like a shaky tape."
+    },
+    {
+     "id": "tracking",
+     "label": "Tracking band",
+     "type": "percent",
+     "default": 0.4,
+     "min": 0,
+     "max": 1,
+     "help": "A band of static that rolls up the picture, like bad tracking."
+    },
+    {
+     "id": "trackingSpeed",
+     "label": "Band speed",
+     "type": "number",
+     "default": 0.22,
+     "softMin": -2,
+     "softMax": 2,
+     "unit": "/s",
+     "help": "How fast that static band rolls. Negative goes the other way."
+    },
+    {
+     "id": "bandHeight",
+     "label": "Band height",
+     "type": "number",
+     "default": 70,
+     "min": 4,
+     "softMax": 400,
+     "unit": "px",
+     "help": "How tall the static band is."
+    },
+    {
+     "id": "bleed",
+     "label": "Color bleed",
+     "type": "number",
+     "default": 7,
+     "min": 0,
+     "softMax": 40,
+     "unit": "px",
+     "help": "How far colors smear sideways past the edges of things."
+    },
+    {
+     "id": "chromaShift",
+     "label": "Color shift",
+     "type": "number",
+     "default": 3,
+     "softMin": -20,
+     "softMax": 20,
+     "unit": "px",
+     "help": "Slides the colors sideways away from the picture, like a misaligned tape."
+    },
+    {
+     "id": "softness",
+     "label": "Softness",
+     "type": "number",
+     "default": 1.2,
+     "min": 0,
+     "softMax": 8,
+     "unit": "px",
+     "help": "Blurs the picture slightly sideways. VHS was never sharp."
+    },
+    {
+     "id": "noise",
+     "label": "Tape noise",
+     "type": "percent",
+     "default": 0.25,
+     "min": 0,
+     "max": 1,
+     "help": "Grainy tape static all over."
+    },
+    {
+     "id": "dropouts",
+     "label": "Dropouts",
+     "type": "percent",
+     "default": 0.3,
+     "min": 0,
+     "max": 1,
+     "help": "Short white streaks where the tape lost its signal."
+    },
+    {
+     "id": "headSwitch",
+     "label": "Bottom tear",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "The ragged, torn strip at the very bottom of the frame."
+    },
+    {
+     "id": "scanlines",
+     "label": "Scanlines",
+     "type": "percent",
+     "default": 0.15,
+     "min": 0,
+     "max": 1,
+     "help": "Faint horizontal lines across the picture."
+    },
+    {
+     "id": "saturation",
+     "label": "Saturation",
+     "type": "number",
+     "default": 0.85,
+     "min": 0,
+     "softMax": 2,
+     "step": 0.01,
+     "help": "How colorful it is. VHS colors were a bit washed out."
+    },
+    {
+     "id": "rate",
+     "label": "Noise rate",
+     "type": "number",
+     "default": 30,
+     "min": 0,
+     "softMax": 60,
+     "unit": "fps",
+     "help": "How many times per second the noise changes. 30 feels like real video."
+    }
+   ]
+  },
+  {
+   "id": "crt",
+   "name": "CRT Screen",
+   "category": "retro",
+   "description": "A tube TV or monitor: curved glass, beam scanlines, phosphor masks, bloom, convergence, flicker and roll.",
+   "about": "Makes the layer look like an old tube TV or arcade monitor: curved glass, glowing scanlines, colored phosphor dots, bloom and flicker.",
+   "params": [
+    {
+     "id": "curvature",
+     "label": "Curvature",
+     "type": "percent",
+     "default": 0.25,
+     "min": 0,
+     "max": 1,
+     "help": "How bulged the old TV glass is."
+    },
+    {
+     "id": "corner",
+     "label": "Corner radius",
+     "type": "percent",
+     "default": 0.06,
+     "min": 0,
+     "max": 0.5,
+     "help": "How rounded the screen's corners are."
+    },
+    {
+     "id": "zoom",
+     "label": "Overscan",
+     "type": "number",
+     "default": 1,
+     "min": 0.5,
+     "softMax": 1.5,
+     "step": 0.005,
+     "help": "Zooms the picture inside the tube. Above 100% crops the edges like a real TV did."
+    },
+    {
+     "id": "lines",
+     "label": "Line spacing",
+     "type": "number",
+     "default": 4,
+     "min": 1,
+     "softMax": 20,
+     "unit": "px",
+     "help": "How far apart the scanlines are. Bigger feels chunkier and older."
+    },
+    {
+     "id": "scan",
+     "label": "Scanlines",
+     "type": "percent",
+     "default": 0.45,
+     "min": 0,
+     "max": 1,
+     "help": "How dark the gaps between scanlines are."
+    },
+    {
+     "id": "beam",
+     "label": "Beam sharpness",
+     "type": "percent",
+     "default": 0.35,
+     "min": 0,
+     "max": 1,
+     "help": "How thin and crisp each glowing line is. Low is soft and blurry, high is sharp and arcade-like."
+    },
+    {
+     "id": "mask",
+     "label": "Phosphor mask",
+     "type": "percent",
+     "default": 0.3,
+     "min": 0,
+     "max": 1,
+     "help": "How visible the tiny red, green and blue phosphor dots are."
+    },
+    {
+     "id": "maskType",
+     "label": "Mask type",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Aperture grille"
+      },
+      {
+       "value": 1,
+       "label": "Shadow mask"
+      },
+      {
+       "value": 2,
+       "label": "Slot mask"
+      },
+      {
+       "value": 3,
+       "label": "Monochrome"
+      }
+     ],
+     "animatable": false,
+     "help": "The pattern of phosphors. Aperture grille is vertical stripes (Trinitron), Shadow mask is dot triangles, Slot mask is little bricks, Monochrome has none."
+    },
+    {
+     "id": "maskSize",
+     "label": "Mask size",
+     "type": "number",
+     "default": 2,
+     "min": 0.5,
+     "softMax": 10,
+     "unit": "px",
+     "help": "How big each phosphor dot or stripe is."
+    },
+    {
+     "id": "bloom",
+     "label": "Bloom",
+     "type": "percent",
+     "default": 0.3,
+     "min": 0,
+     "max": 1.5,
+     "help": "Bright parts glow and bleed into the dark, like a real tube."
+    },
+    {
+     "id": "convergence",
+     "label": "Convergence",
+     "type": "number",
+     "default": 1,
+     "softMin": -8,
+     "softMax": 8,
+     "unit": "px",
+     "help": "Moves the red and blue beams slightly apart for colored fringes, like an old misaligned TV."
+    },
+    {
+     "id": "vignette",
+     "label": "Vignette",
+     "type": "percent",
+     "default": 0.4,
+     "min": 0,
+     "max": 1,
+     "help": "Darkens the corners of the tube."
+    },
+    {
+     "id": "boost",
+     "label": "Brightness",
+     "type": "number",
+     "default": 1.2,
+     "min": 0.5,
+     "softMax": 2.5,
+     "step": 0.01,
+     "help": "Brightens the picture to make up for the darkening from lines and mask."
+    },
+    {
+     "id": "saturation",
+     "label": "Saturation",
+     "type": "number",
+     "default": 1.05,
+     "min": 0,
+     "softMax": 2,
+     "step": 0.01,
+     "help": "How colorful the picture is."
+    },
+    {
+     "id": "tint",
+     "label": "Phosphor tint",
+     "type": "color",
+     "default": [
+      0.4,
+      1,
+      0.55,
+      0
+     ],
+     "help": "Turns the screen into a single-color monitor (green, amber…). The color's opacity sets how strong."
+    },
+    {
+     "id": "noise",
+     "label": "Static",
+     "type": "percent",
+     "default": 0.04,
+     "min": 0,
+     "max": 1,
+     "help": "Fuzzy static over the picture."
+    },
+    {
+     "id": "flicker",
+     "label": "Flicker",
+     "type": "percent",
+     "default": 0.03,
+     "min": 0,
+     "max": 1,
+     "help": "The whole screen pulses slightly in brightness."
+    },
+    {
+     "id": "jitter",
+     "label": "Sync jitter",
+     "type": "number",
+     "default": 0,
+     "min": 0,
+     "softMax": 10,
+     "unit": "px",
+     "help": "Lines shake sideways, like a weak signal."
+    },
+    {
+     "id": "roll",
+     "label": "Roll speed",
+     "type": "number",
+     "default": 0,
+     "softMin": 0,
+     "softMax": 3,
+     "help": "Makes the picture and a bright bar roll down the screen. 0 turns it off."
+    },
+    {
+     "id": "rollBar",
+     "label": "Roll bar",
+     "type": "percent",
+     "default": 0.12,
+     "min": 0,
+     "max": 1,
+     "help": "How visible the soft bright bar is that rolls down the screen."
+    },
+    {
+     "id": "interlace",
+     "label": "Interlace",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "Alternates which lines are drawn each frame, for a shimmering broadcast look."
+    },
+    {
+     "id": "reflection",
+     "label": "Glass glare",
+     "type": "percent",
+     "default": 0.12,
+     "min": 0,
+     "max": 1,
+     "help": "A soft glare on the glass, like light from a window."
+    },
+    {
+     "id": "bezel",
+     "label": "Bezel",
+     "type": "color",
+     "default": [
+      0.02,
+      0.02,
+      0.02,
+      1
+     ],
+     "help": "The color around the curved screen (the TV's plastic frame)."
+    }
+   ]
+  },
+  {
+   "id": "dither",
+   "name": "Dither Pro",
+   "category": "retro",
+   "description": "Reduce the image to a palette with a threshold pattern: Bayer, blue noise, halftone, lines, waves. 1-bit to Game Boy to PICO-8.",
+   "about": "Reduces the picture to a few colors and fakes the in-between shades with a pattern of dots or lines, like old computers, Game Boys and print.",
+   "params": [
+    {
+     "id": "pattern",
+     "label": "Pattern",
+     "type": "enum",
+     "default": 2,
+     "options": [
+      {
+       "value": 0,
+       "label": "Bayer 2×2"
+      },
+      {
+       "value": 1,
+       "label": "Bayer 4×4"
+      },
+      {
+       "value": 2,
+       "label": "Bayer 8×8"
+      },
+      {
+       "value": 3,
+       "label": "Blue noise"
+      },
+      {
+       "value": 4,
+       "label": "White noise"
+      },
+      {
+       "value": 5,
+       "label": "Halftone dots"
+      },
+      {
+       "value": 6,
+       "label": "Lines"
+      },
+      {
+       "value": 7,
+       "label": "Diagonal lines"
+      },
+      {
+       "value": 8,
+       "label": "Cross-hatch"
+      },
+      {
+       "value": 9,
+       "label": "Waves"
+      },
+      {
+       "value": 10,
+       "label": "Diamonds"
+      }
+     ],
+     "animatable": false,
+     "help": "The dot pattern used to fake in-between shades. Bayer is the classic retro checker, Blue noise looks natural, Halftone/Lines/Waves make print-style patterns."
+    },
+    {
+     "id": "palette",
+     "label": "Palette",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Two colors"
+      },
+      {
+       "value": 1,
+       "label": "Ramp (A→B)"
+      },
+      {
+       "value": 2,
+       "label": "Color levels"
+      },
+      {
+       "value": 3,
+       "label": "Game Boy"
+      },
+      {
+       "value": 4,
+       "label": "CGA"
+      },
+      {
+       "value": 5,
+       "label": "PICO-8"
+      },
+      {
+       "value": 6,
+       "label": "Sepia"
+      },
+      {
+       "value": 7,
+       "label": "Four colors"
+      },
+      {
+       "value": 8,
+       "label": "Keep hues"
+      }
+     ],
+     "animatable": false,
+     "help": "Which colors are allowed. Two colors uses Dark and Light. Ramp shades between them. Color levels keeps color. Game Boy, CGA, PICO-8 and Sepia are classic palettes. Four colors uses all four color slots."
+    },
+    {
+     "id": "pixel",
+     "label": "Pixel size",
+     "type": "number",
+     "default": 2,
+     "min": 1,
+     "softMax": 24,
+     "unit": "px",
+     "help": "How big each pixel is. Bigger is chunkier and more retro."
+    },
+    {
+     "id": "cell",
+     "label": "Pattern size",
+     "type": "number",
+     "default": 6,
+     "min": 2,
+     "softMax": 60,
+     "unit": "px",
+     "help": "How big the halftone, line and wave patterns are."
+    },
+    {
+     "id": "levels",
+     "label": "Levels",
+     "type": "number",
+     "default": 2,
+     "min": 2,
+     "max": 16,
+     "step": 1,
+     "help": "How many shades each color can have (for Ramp and Color levels). 2 is the most extreme."
+    },
+    {
+     "id": "spread",
+     "label": "Dither strength",
+     "type": "percent",
+     "default": 1,
+     "min": 0,
+     "max": 2,
+     "help": "How strongly the pattern mixes neighboring shades. 0 gives flat poster bands."
+    },
+    {
+     "id": "contrast",
+     "label": "Contrast",
+     "type": "number",
+     "default": 1.1,
+     "min": 0,
+     "softMax": 3,
+     "step": 0.01,
+     "help": "Punchier or flatter before dithering."
+    },
+    {
+     "id": "brightness",
+     "label": "Brightness",
+     "type": "number",
+     "default": 0,
+     "min": -1,
+     "max": 1,
+     "step": 0.005,
+     "help": "Lighter or darker before dithering."
+    },
+    {
+     "id": "gamma",
+     "label": "Gamma",
+     "type": "number",
+     "default": 1,
+     "min": 0.2,
+     "max": 3,
+     "step": 0.01,
+     "help": "Shifts the middle tones lighter or darker before dithering."
+    },
+    {
+     "id": "angle",
+     "label": "Pattern angle",
+     "type": "angle",
+     "default": 0,
+     "softMin": -90,
+     "softMax": 90,
+     "unit": "°",
+     "help": "Rotates line, halftone and wave patterns."
+    },
+    {
+     "id": "animate",
+     "label": "Shimmer",
+     "type": "number",
+     "default": 0,
+     "min": 0,
+     "softMax": 30,
+     "unit": "fps",
+     "help": "Makes the pattern shimmer by changing it this many times per second. 0 keeps it still."
+    },
+    {
+     "id": "colorA",
+     "label": "Dark",
+     "type": "color",
+     "default": [
+      0.06,
+      0.06,
+      0.08,
+      1
+     ],
+     "help": "The dark color (and first palette color)."
+    },
+    {
+     "id": "colorB",
+     "label": "Light",
+     "type": "color",
+     "default": [
+      0.94,
+      0.92,
+      0.86,
+      1
+     ],
+     "help": "The light color (and second palette color)."
+    },
+    {
+     "id": "colorC",
+     "label": "Color 3",
+     "type": "color",
+     "default": [
+      0.85,
+      0.3,
+      0.35,
+      1
+     ],
+     "help": "Third color, used by the Four colors palette."
+    },
+    {
+     "id": "colorD",
+     "label": "Color 4",
+     "type": "color",
+     "default": [
+      0.25,
+      0.5,
+      0.9,
+      1
+     ],
+     "help": "Fourth color, used by the Four colors palette."
+    },
+    {
+     "id": "clear",
+     "label": "Dark is clear",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "Makes the darkest color see-through, so only the light dots remain on top of whatever is below."
+    }
+   ]
+  },
+  {
+   "id": "line-mod",
+   "name": "Scan Modulation",
+   "category": "retro",
+   "description": "Redraws the image as horizontal scan lines that thicken in bright areas and wave and jitter with noise, like an oscilloscope or a modulated signal.",
+   "about": "Redraws the picture as horizontal scan lines that thicken where it is bright and wave and squiggle with noise, like a signal on an oscilloscope.",
+   "params": [
+    {
+     "id": "spacing",
+     "label": "Line spacing",
+     "type": "number",
+     "default": 7,
+     "min": 2,
+     "softMax": 40,
+     "unit": "px",
+     "help": "Distance between lines."
+    },
+    {
+     "id": "thickness",
+     "label": "Max thickness",
+     "type": "percent",
+     "default": 0.95,
+     "min": 0.05,
+     "max": 1.5,
+     "help": "How thick lines get in the brightest parts. Near 100% they merge into solid areas."
+    },
+    {
+     "id": "minThick",
+     "label": "Min thickness",
+     "type": "percent",
+     "default": 0.08,
+     "min": 0,
+     "max": 1,
+     "help": "How thick lines stay in the darkest parts. 0 makes dark areas empty."
+    },
+    {
+     "id": "shift",
+     "label": "Brightness lift",
+     "type": "number",
+     "default": 5,
+     "softMin": -40,
+     "softMax": 40,
+     "unit": "px",
+     "help": "Bright parts push the line up (or down if negative), so shapes look raised like a 3D landscape."
+    },
+    {
+     "id": "wobble",
+     "label": "Wave",
+     "type": "number",
+     "default": 4,
+     "min": 0,
+     "softMax": 60,
+     "unit": "px",
+     "help": "Slow wavy bending of the lines."
+    },
+    {
+     "id": "wobbleSize",
+     "label": "Wave size",
+     "type": "number",
+     "default": 160,
+     "min": 4,
+     "softMax": 1200,
+     "unit": "px",
+     "help": "How long those slow waves are."
+    },
+    {
+     "id": "jitter",
+     "label": "Modulation",
+     "type": "number",
+     "default": 1.6,
+     "min": 0,
+     "softMax": 12,
+     "unit": "px",
+     "help": "Fast squiggly modulation along each line."
+    },
+    {
+     "id": "detail",
+     "label": "Modulation size",
+     "type": "number",
+     "default": 5,
+     "min": 1,
+     "softMax": 40,
+     "unit": "px",
+     "help": "How tight those squiggles are."
+    },
+    {
+     "id": "speed",
+     "label": "Speed",
+     "type": "number",
+     "default": 0.4,
+     "softMin": 0,
+     "softMax": 4,
+     "unit": "/s",
+     "help": "How fast the waves and squiggles move."
+    },
+    {
+     "id": "contrast",
+     "label": "Contrast",
+     "type": "number",
+     "default": 1.3,
+     "min": 0,
+     "softMax": 4,
+     "step": 0.01,
+     "help": "How strongly brightness changes the lines."
+    },
+    {
+     "id": "angle",
+     "label": "Angle",
+     "type": "angle",
+     "default": 0,
+     "softMin": -90,
+     "softMax": 90,
+     "unit": "°",
+     "help": "Tilts the lines."
+    },
+    {
+     "id": "lineColor",
+     "label": "Line color",
+     "type": "color",
+     "default": [
+      0.72,
+      0.95,
+      0.68,
+      1
+     ],
+     "help": "Color of the lines."
+    },
+    {
+     "id": "bg",
+     "label": "Background",
+     "type": "color",
+     "default": [
+      0.02,
+      0.05,
+      0.025,
+      1
+     ],
+     "help": "Color between the lines."
+    },
+    {
+     "id": "keepColor",
+     "label": "Image colors",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "Colors each line with the picture's own colors instead of the line color."
+    }
+   ]
+  },
+  {
+   "id": "ascii",
+   "name": "ASCII Art",
+   "category": "retro",
+   "description": "Rebuilds the image from text characters, from classic ASCII to blocks, binary or falling Matrix code.",
+   "about": "Rebuilds the picture out of text characters, like ASCII art, block graphics or falling Matrix code.",
+   "params": [
+    {
+     "id": "cell",
+     "label": "Character size",
+     "type": "number",
+     "default": 12,
+     "min": 3,
+     "softMax": 64,
+     "unit": "px",
+     "help": "How big each character is."
+    },
+    {
+     "id": "charset",
+     "label": "Characters",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Classic"
+      },
+      {
+       "value": 1,
+       "label": "Detailed"
+      },
+      {
+       "value": 2,
+       "label": "Blocks"
+      },
+      {
+       "value": 3,
+       "label": "Binary"
+      },
+      {
+       "value": 4,
+       "label": "Matrix"
+      },
+      {
+       "value": 5,
+       "label": "Dots"
+      },
+      {
+       "value": 6,
+       "label": "Slashes"
+      }
+     ],
+     "animatable": false,
+     "help": "Which characters to draw with. Classic and Detailed use letters and symbols, Blocks uses shaded squares, Binary uses 0 and 1, Matrix uses Japanese katakana."
+    },
+    {
+     "id": "colorMode",
+     "label": "Color",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Image"
+      },
+      {
+       "value": 1,
+       "label": "Single"
+      },
+      {
+       "value": 2,
+       "label": "Matrix"
+      }
+     ],
+     "animatable": false,
+     "help": "Image colors each character from the picture. Single uses the text color. Matrix makes glowing green code."
+    },
+    {
+     "id": "fg",
+     "label": "Text color",
+     "type": "color",
+     "default": [
+      0.92,
+      0.95,
+      0.9,
+      1
+     ],
+     "help": "The character color (for Single)."
+    },
+    {
+     "id": "bg",
+     "label": "Background",
+     "type": "color",
+     "default": [
+      0.02,
+      0.02,
+      0.03,
+      1
+     ],
+     "help": "The background behind the characters. Set its opacity to 0 for none."
+    },
+    {
+     "id": "contrast",
+     "label": "Contrast",
+     "type": "number",
+     "default": 1.2,
+     "min": 0,
+     "softMax": 4,
+     "step": 0.01,
+     "help": "How strongly bright and dark areas pick different characters."
+    },
+    {
+     "id": "brightness",
+     "label": "Brightness",
+     "type": "number",
+     "default": 0,
+     "min": -1,
+     "max": 1,
+     "step": 0.005,
+     "help": "Shifts everything toward denser or lighter characters."
+    },
+    {
+     "id": "invert",
+     "label": "Invert",
+     "type": "bool",
+     "default": 0,
+     "animatable": false,
+     "help": "Swaps light and dark: dense characters where it was bright."
+    },
+    {
+     "id": "rain",
+     "label": "Rain speed",
+     "type": "number",
+     "default": 0,
+     "min": 0,
+     "softMax": 4,
+     "help": "Makes Matrix-style streams of characters fall down the screen. 0 turns it off."
+    },
+    {
+     "id": "glow",
+     "label": "Glow",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1.5,
+     "help": "Makes the characters glow softly."
+    }
+   ]
+  },
+  {
+   "id": "dither-fade",
+   "name": "Dither Reveal",
+   "category": "retro",
+   "description": "Reveals or hides the layer through a dithered gradient, pixel by pixel. Animate Progress for game-title style reveals.",
+   "about": "Makes the layer appear (or disappear) through a dithered, pixel-by-pixel gradient, like the title reveals in retro and dark-fantasy games. Keyframe Progress from 0% to 100%.",
+   "params": [
+    {
+     "id": "progress",
+     "label": "Progress",
+     "type": "percent",
+     "default": 1,
+     "min": 0,
+     "max": 1,
+     "help": "How much of the layer is revealed. 0% is hidden, 100% fully shown. Animate this."
+    },
+    {
+     "id": "direction",
+     "label": "Direction",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Left → right"
+      },
+      {
+       "value": 1,
+       "label": "Right → left"
+      },
+      {
+       "value": 2,
+       "label": "Top → bottom"
+      },
+      {
+       "value": 3,
+       "label": "Bottom → top"
+      },
+      {
+       "value": 4,
+       "label": "Center out"
+      },
+      {
+       "value": 5,
+       "label": "Edges in"
+      },
+      {
+       "value": 6,
+       "label": "Everywhere"
+      }
+     ],
+     "animatable": false,
+     "help": "Which way the reveal travels across the layer."
+    },
+    {
+     "id": "width",
+     "label": "Gradient width",
+     "type": "percent",
+     "default": 0.35,
+     "min": 0.01,
+     "max": 1,
+     "help": "How wide the dithered transition zone is. Wide is a long soft fade, narrow is a sharp wipe."
+    },
+    {
+     "id": "pixel",
+     "label": "Pixel size",
+     "type": "number",
+     "default": 3,
+     "min": 1,
+     "softMax": 30,
+     "unit": "px",
+     "help": "How big the dither pixels are."
+    },
+    {
+     "id": "pattern",
+     "label": "Pattern",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Bayer"
+      },
+      {
+       "value": 1,
+       "label": "Noise"
+      },
+      {
+       "value": 2,
+       "label": "Dots"
+      }
+     ],
+     "animatable": false,
+     "help": "Bayer is an orderly retro checker, Noise is random, Dots grows round dots."
+    },
+    {
+     "id": "edge",
+     "label": "Edge glow",
+     "type": "percent",
+     "default": 0.4,
+     "min": 0,
+     "max": 2,
+     "help": "A glowing line where pixels are switching on."
+    },
+    {
+     "id": "edgeColor",
+     "label": "Edge color",
+     "type": "color",
+     "default": [
+      1,
+      0.85,
+      0.5,
+      1
+     ],
+     "help": "The color of that glow."
+    }
+   ]
+  },
+  {
+   "id": "sketch",
+   "name": "Sketch & Hatching",
+   "category": "stylize",
+   "description": "Pen or pencil drawing: layered hatching that gets denser in the shadows, outlines, wobble and paper.",
+   "about": "Turns the picture into a pen or pencil drawing: lines that crisscross more in the shadows, plus outlines, on paper.",
+   "params": [
+    {
+     "id": "spacing",
+     "label": "Line spacing",
+     "type": "number",
+     "default": 6,
+     "min": 2,
+     "softMax": 30,
+     "unit": "px",
+     "help": "Distance between hatching lines."
+    },
+    {
+     "id": "width",
+     "label": "Line width",
+     "type": "number",
+     "default": 1.1,
+     "min": 0.3,
+     "softMax": 6,
+     "unit": "px",
+     "help": "How thick each pen line is."
+    },
+    {
+     "id": "angle",
+     "label": "Angle",
+     "type": "angle",
+     "default": 45,
+     "softMin": -90,
+     "softMax": 90,
+     "unit": "°",
+     "help": "The direction of the first set of lines."
+    },
+    {
+     "id": "layers",
+     "label": "Hatch layers",
+     "type": "number",
+     "default": 3,
+     "min": 1,
+     "max": 4,
+     "step": 1,
+     "help": "How many crisscrossing sets of lines build up in the darkest parts."
+    },
+    {
+     "id": "contrast",
+     "label": "Contrast",
+     "type": "number",
+     "default": 1.2,
+     "min": 0,
+     "softMax": 3,
+     "step": 0.01,
+     "help": "How strongly dark areas get more lines."
+    },
+    {
+     "id": "wobble",
+     "label": "Hand wobble",
+     "type": "number",
+     "default": 1.5,
+     "min": 0,
+     "softMax": 12,
+     "unit": "px",
+     "help": "Makes lines a little wavy, like a real hand."
+    },
+    {
+     "id": "scribble",
+     "label": "Scribble",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "Turns straight hatching into loose, loopy scribbles."
+    },
+    {
+     "id": "outline",
+     "label": "Outlines",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 2,
+     "help": "Draws outlines around shapes and edges."
+    },
+    {
+     "id": "boil",
+     "label": "Line boil",
+     "type": "number",
+     "default": 0,
+     "min": 0,
+     "softMax": 24,
+     "unit": "fps",
+     "help": "Redraws the wobble this many times per second, so lines shimmer like hand-drawn animation. 0 keeps them still."
+    },
+    {
+     "id": "ink",
+     "label": "Ink",
+     "type": "color",
+     "default": [
+      0.12,
+      0.16,
+      0.42,
+      1
+     ],
+     "help": "The pen color."
+    },
+    {
+     "id": "paper",
+     "label": "Paper",
+     "type": "color",
+     "default": [
+      0.97,
+      0.96,
+      0.92,
+      1
+     ],
+     "help": "The paper color."
+    },
+    {
+     "id": "inkFromImage",
+     "label": "Colored pencil",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "Colors the lines with the picture's own colors, like colored pencils."
+    },
+    {
+     "id": "ruled",
+     "label": "Paper lines",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Plain"
+      },
+      {
+       "value": 1,
+       "label": "Notebook"
+      },
+      {
+       "value": 2,
+       "label": "Graph"
+      }
+     ],
+     "animatable": false,
+     "help": "Adds notebook lines (with a red margin) or graph paper."
+    }
+   ]
+  },
+  {
+   "id": "lowpoly",
+   "name": "Low Poly",
+   "category": "stylize",
+   "description": "Breaks the image into flat triangles (faceted gem / low-poly art), a wireframe mesh, or both.",
+   "about": "Breaks the picture into flat triangles like low-poly 3D art or a cut gem, or shows just the triangle mesh as a wireframe.",
+   "params": [
+    {
+     "id": "size",
+     "label": "Triangle size",
+     "type": "number",
+     "default": 42,
+     "min": 6,
+     "softMax": 300,
+     "unit": "px",
+     "help": "How big each triangle is."
+    },
+    {
+     "id": "jitter",
+     "label": "Irregularity",
+     "type": "percent",
+     "default": 0.75,
+     "min": 0,
+     "max": 1,
+     "help": "How uneven the triangles are. 0 is a perfect grid."
+    },
+    {
+     "id": "mode",
+     "label": "Style",
+     "type": "enum",
+     "default": 2,
+     "options": [
+      {
+       "value": 0,
+       "label": "Facets"
+      },
+      {
+       "value": 1,
+       "label": "Wireframe"
+      },
+      {
+       "value": 2,
+       "label": "Facets + edges"
+      }
+     ],
+     "animatable": false,
+     "help": "Facets fills each triangle with one color. Wireframe draws only the edges. Both shows both."
+    },
+    {
+     "id": "edge",
+     "label": "Edge width",
+     "type": "number",
+     "default": 1.2,
+     "min": 0,
+     "softMax": 10,
+     "unit": "px",
+     "help": "How thick the triangle edges are."
+    },
+    {
+     "id": "edgeColor",
+     "label": "Edge color",
+     "type": "color",
+     "default": [
+      0.05,
+      0.05,
+      0.06,
+      1
+     ],
+     "help": "The color of the edges."
+    },
+    {
+     "id": "shading",
+     "label": "Facet shading",
+     "type": "percent",
+     "default": 0.18,
+     "min": 0,
+     "max": 1,
+     "help": "Gives each triangle a slightly different brightness so it looks faceted."
+    },
+    {
+     "id": "colorMode",
+     "label": "Facet color",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Image"
+      },
+      {
+       "value": 1,
+       "label": "Rainbow"
+      },
+      {
+       "value": 2,
+       "label": "Edge color only"
+      }
+     ],
+     "animatable": false,
+     "help": "Image takes colors from the picture. Rainbow gives each triangle a bright color. Edge color only leaves just the lines."
+    },
+    {
+     "id": "saturation",
+     "label": "Saturation",
+     "type": "number",
+     "default": 1.1,
+     "min": 0,
+     "softMax": 3,
+     "step": 0.01,
+     "help": "How colorful the triangles are."
+    },
+    {
+     "id": "drift",
+     "label": "Drift",
+     "type": "number",
+     "default": 0,
+     "min": 0,
+     "softMax": 2,
+     "unit": "/s",
+     "help": "Makes the triangle corners slowly float around. 0 keeps them still."
+    },
+    {
+     "id": "seed",
+     "label": "Seed",
+     "type": "number",
+     "default": 1,
+     "min": 0,
+     "max": 999,
+     "step": 1,
+     "animatable": false,
+     "help": "A different random starting point. Same look, different arrangement. Try a few numbers until you like it."
+    }
+   ]
+  },
+  {
+   "id": "rgb-split",
+   "name": "Chromatic Split",
+   "category": "stylize",
+   "description": "Separates red, green and blue (or a full rainbow) along a direction or out from a center, like a cheap lens or an anaglyph.",
+   "about": "Pulls the red, green and blue parts of the picture apart, like a cheap lens, 3D glasses or a glitch.",
+   "params": [
+    {
+     "id": "amount",
+     "label": "Amount",
+     "type": "number",
+     "default": 8,
+     "softMin": -60,
+     "softMax": 60,
+     "unit": "px",
+     "help": "How far the colors separate."
+    },
+    {
+     "id": "mode",
+     "label": "Direction",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Straight"
+      },
+      {
+       "value": 1,
+       "label": "From center"
+      }
+     ],
+     "animatable": false,
+     "help": "Straight splits along one direction. From center splits outward, more toward the edges, like a lens."
+    },
+    {
+     "id": "angle",
+     "label": "Angle",
+     "type": "angle",
+     "default": 0,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "The direction of the split (Straight mode)."
+    },
+    {
+     "id": "center",
+     "label": "Center",
+     "type": "point",
+     "default": [
+      0.5,
+      0.5
+     ],
+     "help": "The middle point for From center mode. Drag the dot on the canvas."
+    },
+    {
+     "id": "falloff",
+     "label": "Edge falloff",
+     "type": "number",
+     "default": 1.5,
+     "min": 0,
+     "softMax": 4,
+     "step": 0.01,
+     "help": "How much stronger the split gets toward the edges (From center mode)."
+    },
+    {
+     "id": "spectral",
+     "label": "Rainbow",
+     "type": "bool",
+     "default": 0,
+     "animatable": false,
+     "help": "Smears a full rainbow instead of three separate colors."
+    }
+   ]
+  },
+  {
+   "id": "light-shade",
+   "name": "Light & Shade",
+   "category": "material",
+   "description": "Lights the layer like a 3D object: soft or toon (cel) shading, highlights, shadows, rim light and specular, from the shape or from the image brightness.",
+   "about": "Lights the layer as if it were a 3D object: rounded highlights and shadows, cartoon (toon) shading, shine and rim light.",
+   "params": [
+    {
+     "id": "source",
+     "label": "Surface from",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Shape edges"
+      },
+      {
+       "value": 1,
+       "label": "Brightness"
+      }
+     ],
+     "animatable": false,
+     "help": "Shape edges makes the layer look puffy and rounded from its outline. Brightness also uses light and dark parts of the picture as bumps."
+    },
+    {
+     "id": "bevel",
+     "label": "Roundness",
+     "type": "number",
+     "default": 40,
+     "min": 1,
+     "softMax": 300,
+     "unit": "px",
+     "help": "How far in from the edge the rounding goes."
+    },
+    {
+     "id": "bump",
+     "label": "Bumpiness",
+     "type": "number",
+     "default": 4,
+     "min": 0,
+     "softMax": 20,
+     "step": 0.01,
+     "help": "How much the picture's brightness raises the surface (Brightness mode)."
+    },
+    {
+     "id": "light",
+     "label": "Light angle",
+     "type": "angle",
+     "default": -110,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "Which direction the light comes from."
+    },
+    {
+     "id": "elevation",
+     "label": "Light height",
+     "type": "angle",
+     "default": 40,
+     "min": 0,
+     "max": 90,
+     "unit": "°",
+     "help": "How high the light is. Low light makes long, dramatic shading."
+    },
+    {
+     "id": "steps",
+     "label": "Toon steps",
+     "type": "number",
+     "default": 0,
+     "min": 0,
+     "max": 6,
+     "step": 1,
+     "help": "Cartoon shading: 0 is smooth, 1 to 6 makes flat bands of light and shadow."
+    },
+    {
+     "id": "highlight",
+     "label": "Highlight",
+     "type": "color",
+     "default": [
+      1,
+      0.98,
+      0.92,
+      0.6
+     ],
+     "help": "Color added on the lit side. Its opacity sets how strong."
+    },
+    {
+     "id": "shadow",
+     "label": "Shadow",
+     "type": "color",
+     "default": [
+      0.05,
+      0.04,
+      0.12,
+      0.65
+     ],
+     "help": "Color added on the dark side. Its opacity sets how strong."
+    },
+    {
+     "id": "specular",
+     "label": "Specular",
+     "type": "percent",
+     "default": 0.35,
+     "min": 0,
+     "max": 1.5,
+     "help": "The bright shiny spot where the light reflects."
+    },
+    {
+     "id": "shininess",
+     "label": "Shininess",
+     "type": "number",
+     "default": 40,
+     "min": 2,
+     "softMax": 300,
+     "help": "How small and sharp that shiny spot is."
+    },
+    {
+     "id": "rim",
+     "label": "Rim light",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1.5,
+     "help": "A glowing edge light around the outline, like light from behind."
+    },
+    {
+     "id": "rimColor",
+     "label": "Rim color",
+     "type": "color",
+     "default": [
+      0.6,
+      0.85,
+      1,
+      1
+     ],
+     "help": "The color of the rim light."
+    }
+   ]
+  },
+  {
+   "id": "palette-map",
+   "name": "Palette Map",
+   "category": "color",
+   "description": "Repaints brightness with up to six colors, as smooth gradients or hard poster/toon bands. Can cycle for animated color.",
+   "about": "Repaints the picture using up to six colors from dark to light, either as smooth gradients or as flat poster or cartoon bands.",
+   "params": [
+    {
+     "id": "count",
+     "label": "Colors",
+     "type": "number",
+     "default": 4,
+     "min": 2,
+     "max": 6,
+     "step": 1,
+     "help": "How many of the colors below are used."
+    },
+    {
+     "id": "bands",
+     "label": "Hard bands",
+     "type": "percent",
+     "default": 1,
+     "min": 0,
+     "max": 1,
+     "help": "Hard bands gives flat poster areas. Lower it to blend smoothly between colors."
+    },
+    {
+     "id": "c1",
+     "label": "Color 1 (darks)",
+     "type": "color",
+     "default": [
+      0.06,
+      0.12,
+      0.25,
+      1
+     ],
+     "help": "Color for the darkest parts."
+    },
+    {
+     "id": "c2",
+     "label": "Color 2",
+     "type": "color",
+     "default": [
+      0.8,
+      0.13,
+      0.16,
+      1
+     ],
+     "help": "The next color up from the darks."
+    },
+    {
+     "id": "c3",
+     "label": "Color 3",
+     "type": "color",
+     "default": [
+      0.44,
+      0.62,
+      0.68,
+      1
+     ],
+     "help": "The middle color."
+    },
+    {
+     "id": "c4",
+     "label": "Color 4",
+     "type": "color",
+     "default": [
+      0.99,
+      0.9,
+      0.66,
+      1
+     ],
+     "help": "Color for the lighter parts."
+    },
+    {
+     "id": "c5",
+     "label": "Color 5",
+     "type": "color",
+     "default": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "help": "Fifth color (when Colors is 5 or more)."
+    },
+    {
+     "id": "c6",
+     "label": "Color 6 (lights)",
+     "type": "color",
+     "default": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "help": "Color for the very brightest parts (when Colors is 6)."
+    },
+    {
+     "id": "contrast",
+     "label": "Contrast",
+     "type": "number",
+     "default": 1.1,
+     "min": 0,
+     "softMax": 3,
+     "step": 0.01,
+     "help": "Spreads the picture across more of the colors (higher) or fewer (lower)."
+    },
+    {
+     "id": "offset",
+     "label": "Shift",
+     "type": "number",
+     "default": 0,
+     "min": -1,
+     "max": 1,
+     "step": 0.005,
+     "help": "Slides which color goes where."
+    },
+    {
+     "id": "cycle",
+     "label": "Cycle speed",
+     "type": "number",
+     "default": 0,
+     "softMin": -2,
+     "softMax": 2,
+     "unit": "/s",
+     "help": "Makes the colors flow through the picture over time. 0 keeps them still."
+    }
+   ]
+  },
+  {
+   "id": "fire",
+   "name": "Fire",
+   "category": "light",
+   "description": "Animated flames licking up from the layer's edges, with embers and charring.",
+   "about": "Sets the layer on fire: animated flames rise from its top edges, with floating embers and scorched color.",
+   "params": [
+    {
+     "id": "height",
+     "label": "Flame height",
+     "type": "number",
+     "default": 110,
+     "min": 4,
+     "softMax": 600,
+     "unit": "px",
+     "help": "How tall the flames reach."
+    },
+    {
+     "id": "intensity",
+     "label": "Intensity",
+     "type": "number",
+     "default": 1.3,
+     "min": 0,
+     "softMax": 4,
+     "step": 0.01,
+     "help": "How bright and thick the fire is."
+    },
+    {
+     "id": "speed",
+     "label": "Speed",
+     "type": "number",
+     "default": 1.2,
+     "softMin": 0,
+     "softMax": 4,
+     "help": "How fast the flames flicker upward."
+    },
+    {
+     "id": "scale",
+     "label": "Flame size",
+     "type": "number",
+     "default": 60,
+     "min": 4,
+     "softMax": 400,
+     "unit": "px",
+     "help": "How big the flame tongues are."
+    },
+    {
+     "id": "detail",
+     "label": "Turbulence",
+     "type": "number",
+     "default": 4,
+     "min": 1,
+     "max": 6,
+     "step": 1,
+     "help": "How ragged and turbulent the flames are."
+    },
+    {
+     "id": "wrap",
+     "label": "Wrap sides",
+     "type": "percent",
+     "default": 0.35,
+     "min": 0,
+     "max": 1,
+     "help": "How much the flames also climb up the sides, not just the top."
+    },
+    {
+     "id": "inner",
+     "label": "Core color",
+     "type": "color",
+     "default": [
+      1,
+      0.95,
+      0.65,
+      1
+     ],
+     "help": "The hottest color, at the base of the flames."
+    },
+    {
+     "id": "mid",
+     "label": "Flame color",
+     "type": "color",
+     "default": [
+      1,
+      0.48,
+      0.08,
+      1
+     ],
+     "help": "The main flame color."
+    },
+    {
+     "id": "outer",
+     "label": "Smoke color",
+     "type": "color",
+     "default": [
+      0.55,
+      0.05,
+      0.02,
+      1
+     ],
+     "help": "The color at the flame tips, where it turns to smoke."
+    },
+    {
+     "id": "burn",
+     "label": "Char layer",
+     "type": "percent",
+     "default": 0.25,
+     "min": 0,
+     "max": 1,
+     "help": "Darkens the layer itself, like it is being scorched."
+    },
+    {
+     "id": "embers",
+     "label": "Embers",
+     "type": "percent",
+     "default": 0.3,
+     "min": 0,
+     "max": 1,
+     "help": "Sparks floating up from the fire."
+    }
+   ]
+  },
+  {
+   "id": "hollow",
+   "name": "Hollow",
+   "category": "geometry",
+   "description": "Cuts out the inside of any layer, leaving a band of the chosen thickness along its edge. Works on shapes, text and images.",
+   "about": "Hollows out the layer so only a band along its edge remains, like a ring or outlined letters. Works on any shape, text or image.",
+   "params": [
+    {
+     "id": "thickness",
+     "label": "Thickness",
+     "type": "number",
+     "default": 14,
+     "min": 0.5,
+     "softMax": 200,
+     "step": 0.5,
+     "unit": "px",
+     "help": "How thick the remaining band is."
+    },
+    {
+     "id": "position",
+     "label": "Band sits",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Inside"
+      },
+      {
+       "value": 1,
+       "label": "Centered"
+      },
+      {
+       "value": 2,
+       "label": "Outside"
+      }
+     ],
+     "animatable": false,
+     "help": "Inside keeps the band within the original shape. Centered straddles the edge. Outside puts it around the shape."
+    },
+    {
+     "id": "softness",
+     "label": "Softness",
+     "type": "number",
+     "default": 0.8,
+     "min": 0,
+     "softMax": 40,
+     "unit": "px",
+     "help": "How soft the band's edges are."
+    },
+    {
+     "id": "fill",
+     "label": "Keep inside",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "How much of the original inside to keep. 0 is fully hollow."
+    }
+   ]
+  },
+  {
+   "id": "grid",
+   "name": "Grid & Lines",
+   "category": "generate",
+   "description": "Graph paper, blueprint grids, dot grids, stripes, hexagons and isometric lines. Scrolls if you want.",
+   "about": "Draws a grid or pattern: graph paper, blueprint lines, dots, stripes, isometric or hexagons. Can scroll for animated backgrounds.",
+   "params": [
+    {
+     "id": "style",
+     "label": "Style",
+     "type": "enum",
+     "default": 3,
+     "options": [
+      {
+       "value": 0,
+       "label": "Squares"
+      },
+      {
+       "value": 1,
+       "label": "Dots"
+      },
+      {
+       "value": 2,
+       "label": "Stripes"
+      },
+      {
+       "value": 3,
+       "label": "Blueprint"
+      },
+      {
+       "value": 4,
+       "label": "Isometric"
+      },
+      {
+       "value": 5,
+       "label": "Hexagons"
+      }
+     ],
+     "animatable": false,
+     "help": "The kind of pattern. Blueprint adds thicker lines every few squares."
+    },
+    {
+     "id": "spacing",
+     "label": "Spacing",
+     "type": "number",
+     "default": 40,
+     "min": 3,
+     "softMax": 400,
+     "unit": "px",
+     "help": "Distance between lines."
+    },
+    {
+     "id": "width",
+     "label": "Line width",
+     "type": "number",
+     "default": 1.4,
+     "min": 0.2,
+     "softMax": 20,
+     "unit": "px",
+     "help": "How thick the lines are."
+    },
+    {
+     "id": "major",
+     "label": "Major every",
+     "type": "number",
+     "default": 5,
+     "min": 1,
+     "max": 20,
+     "step": 1,
+     "help": "For Blueprint: how many small squares between thick lines."
+    },
+    {
+     "id": "color",
+     "label": "Line color",
+     "type": "color",
+     "default": [
+      0.86,
+      0.93,
+      1,
+      0.65
+     ],
+     "help": "Line color. Its opacity sets how strong the lines are."
+    },
+    {
+     "id": "bg",
+     "label": "Background",
+     "type": "color",
+     "default": [
+      0.07,
+      0.24,
+      0.55,
+      1
+     ],
+     "help": "Background color. Set opacity to 0 to draw only lines."
+    },
+    {
+     "id": "angle",
+     "label": "Angle",
+     "type": "angle",
+     "default": 0,
+     "softMin": -90,
+     "softMax": 90,
+     "unit": "°",
+     "help": "Rotates the pattern."
+    },
+    {
+     "id": "scroll",
+     "label": "Scroll",
+     "type": "point",
+     "default": [
+      0,
+      0
+     ],
+     "help": "Moves the pattern. Animate it to slide the grid."
+    },
+    {
+     "id": "speed",
+     "label": "Scroll speed",
+     "type": "number",
+     "default": 0,
+     "softMin": -200,
+     "softMax": 200,
+     "unit": "px/s",
+     "help": "Scrolls the pattern sideways by itself."
+    },
+    {
+     "id": "mode",
+     "label": "Blend",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Replace"
+      },
+      {
+       "value": 1,
+       "label": "Over layer"
+      },
+      {
+       "value": 2,
+       "label": "Multiply"
+      },
+      {
+       "value": 3,
+       "label": "Screen"
+      },
+      {
+       "value": 4,
+       "label": "Overlay"
+      }
+     ],
+     "animatable": false,
+     "help": "How the pattern is combined with your layer. Replace shows only the pattern (inside the layer's shape). Over layer puts it on top. Multiply darkens, Screen lightens, Overlay adds contrast."
+    }
+   ]
+  },
+  {
+   "id": "starfield",
+   "name": "Starfield",
+   "category": "generate",
+   "description": "Twinkling stars in parallax layers over an optional nebula. Drift, or fly through them.",
+   "about": "A night sky of twinkling stars with optional colorful nebula clouds. Drift past them or fly through them.",
+   "params": [
+    {
+     "id": "density",
+     "label": "Density",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "How many stars."
+    },
+    {
+     "id": "size",
+     "label": "Star size",
+     "type": "number",
+     "default": 2.2,
+     "min": 0.3,
+     "softMax": 12,
+     "unit": "px",
+     "help": "How big the stars are."
+    },
+    {
+     "id": "twinkle",
+     "label": "Twinkle",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "How much the stars sparkle."
+    },
+    {
+     "id": "speed",
+     "label": "Drift",
+     "type": "number",
+     "default": 12,
+     "softMin": -200,
+     "softMax": 200,
+     "unit": "px/s",
+     "help": "Drifts the stars sideways. Far stars move slower, giving depth."
+    },
+    {
+     "id": "warp",
+     "label": "Fly-through",
+     "type": "number",
+     "default": 0,
+     "softMin": -2,
+     "softMax": 2,
+     "help": "Flies through the stars toward you (positive) or away (negative). 0 turns it off."
+    },
+    {
+     "id": "starColor",
+     "label": "Star color",
+     "type": "color",
+     "default": [
+      1,
+      0.97,
+      0.92,
+      1
+     ],
+     "help": "The color of the stars."
+    },
+    {
+     "id": "nebula",
+     "label": "Nebula",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1.5,
+     "help": "How bright the cloudy nebula is. 0 hides it."
+    },
+    {
+     "id": "nebulaA",
+     "label": "Nebula color 1",
+     "type": "color",
+     "default": [
+      0.35,
+      0.12,
+      0.6,
+      1
+     ],
+     "help": "First nebula color."
+    },
+    {
+     "id": "nebulaB",
+     "label": "Nebula color 2",
+     "type": "color",
+     "default": [
+      0.05,
+      0.45,
+      0.65,
+      1
+     ],
+     "help": "Second nebula color."
+    },
+    {
+     "id": "space",
+     "label": "Space color",
+     "type": "color",
+     "default": [
+      0.01,
+      0.01,
+      0.03,
+      1
+     ],
+     "help": "The color of empty space."
+    },
+    {
+     "id": "nebulaScale",
+     "label": "Nebula size",
+     "type": "number",
+     "default": 420,
+     "min": 20,
+     "softMax": 3000,
+     "unit": "px",
+     "help": "How big the nebula clouds are."
+    },
+    {
+     "id": "mode",
+     "label": "Blend",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Replace"
+      },
+      {
+       "value": 1,
+       "label": "Over layer"
+      },
+      {
+       "value": 2,
+       "label": "Multiply"
+      },
+      {
+       "value": 3,
+       "label": "Screen"
+      },
+      {
+       "value": 4,
+       "label": "Overlay"
+      }
+     ],
+     "animatable": false,
+     "help": "How the pattern is combined with your layer. Replace shows only the pattern (inside the layer's shape). Over layer puts it on top. Multiply darkens, Screen lightens, Overlay adds contrast."
+    },
+    {
+     "id": "seed",
+     "label": "Seed",
+     "type": "number",
+     "default": 2,
+     "min": 0,
+     "max": 999,
+     "step": 1,
+     "animatable": false,
+     "help": "A different random starting point. Same look, different arrangement. Try a few numbers until you like it."
+    }
+   ]
+  },
+  {
+   "id": "color-adjust",
+   "name": "Color Adjust",
+   "category": "color",
+   "description": "Exposure, contrast, tones, white balance, saturation, vibrance and hue.",
+   "about": "All the basic photo adjustments in one place: brightness, contrast, warmth, color strength and more.",
+   "params": [
+    {
+     "id": "exposure",
+     "label": "Exposure",
+     "type": "number",
+     "default": 0,
+     "softMin": -4,
+     "softMax": 4,
+     "step": 0.01,
+     "unit": "EV",
+     "help": "Overall brightness, like opening or closing a camera's lens. +1 is twice as bright, −1 is half."
+    },
+    {
+     "id": "contrast",
+     "label": "Contrast",
+     "type": "number",
+     "default": 0,
+     "min": -1,
+     "max": 1,
+     "step": 0.005,
+     "help": "Difference between darks and lights. Up for punchy, down for flat and faded."
+    },
+    {
+     "id": "highlights",
+     "label": "Highlights",
+     "type": "number",
+     "default": 0,
+     "min": -1,
+     "max": 1,
+     "step": 0.005,
+     "help": "Brightens or darkens only the bright parts. Turn down to bring back detail in a bright sky."
+    },
+    {
+     "id": "shadows",
+     "label": "Shadows",
+     "type": "number",
+     "default": 0,
+     "min": -1,
+     "max": 1,
+     "step": 0.005,
+     "help": "Brightens or darkens only the dark parts. Turn up to see into the shadows."
+    },
+    {
+     "id": "whites",
+     "label": "Whites",
+     "type": "number",
+     "default": 0,
+     "min": -1,
+     "max": 1,
+     "step": 0.005,
+     "help": "Sets how bright the very brightest parts are."
+    },
+    {
+     "id": "blacks",
+     "label": "Blacks",
+     "type": "number",
+     "default": 0,
+     "min": -1,
+     "max": 1,
+     "step": 0.005,
+     "help": "Sets how dark the very darkest parts are. Up gives a faded, film look."
+    },
+    {
+     "id": "temperature",
+     "label": "Temperature",
+     "type": "number",
+     "default": 0,
+     "min": -1,
+     "max": 1,
+     "step": 0.005,
+     "help": "Warm or cool. Right is warmer (orange, sunset), left is cooler (blue, winter)."
+    },
+    {
+     "id": "tint",
+     "label": "Tint",
+     "type": "number",
+     "default": 0,
+     "min": -1,
+     "max": 1,
+     "step": 0.005,
+     "help": "Fixes or adds a green or pink color cast."
+    },
+    {
+     "id": "saturation",
+     "label": "Saturation",
+     "type": "number",
+     "default": 0,
+     "min": -1,
+     "max": 1,
+     "step": 0.005,
+     "help": "How strong all colors are. Far left is black and white."
+    },
+    {
+     "id": "vibrance",
+     "label": "Vibrance",
+     "type": "number",
+     "default": 0,
+     "min": -1,
+     "max": 1,
+     "step": 0.005,
+     "help": "Like saturation, but gentle: boosts dull colors more than ones that are already strong. Kind to skin."
+    },
+    {
+     "id": "gamma",
+     "label": "Gamma",
+     "type": "number",
+     "default": 1,
+     "min": 0.2,
+     "max": 3,
+     "step": 0.01,
+     "help": "Brightens or darkens the middle tones while leaving pure black and pure white alone."
+    },
+    {
+     "id": "hue",
+     "label": "Hue shift",
+     "type": "angle",
+     "default": 0,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "Spins every color around the color wheel: reds become yellows, blues become purples, and so on."
+    }
+   ]
+  },
+  {
+   "id": "duotone",
+   "name": "Duotone",
+   "category": "color",
+   "description": "Map shadows and highlights to two colors.",
+   "about": "Repaints the layer using just two colors: one for dark parts, one for bright parts. A popular poster look.",
+   "params": [
+    {
+     "id": "dark",
+     "label": "Shadows",
+     "type": "color",
+     "default": [
+      0.13,
+      0.05,
+      0.32,
+      1
+     ],
+     "help": "The color used for the dark parts."
+    },
+    {
+     "id": "light",
+     "label": "Highlights",
+     "type": "color",
+     "default": [
+      1,
+      0.62,
+      0.42,
+      1
+     ],
+     "help": "The color used for the bright parts."
+    },
+    {
+     "id": "contrast",
+     "label": "Contrast",
+     "type": "number",
+     "default": 1,
+     "min": 0.2,
+     "softMax": 3,
+     "step": 0.01,
+     "help": "How sharply it switches between the two colors. Higher is bolder."
+    }
+   ]
+  },
+  {
+   "id": "tritone",
+   "name": "Gradient Map",
+   "category": "color",
+   "description": "Three-color gradient map for shadows, midtones and highlights.",
+   "about": "Repaints the layer with three colors from dark to bright, like a color gradient laid over the image.",
+   "params": [
+    {
+     "id": "dark",
+     "label": "Shadows",
+     "type": "color",
+     "default": [
+      0.04,
+      0.09,
+      0.2,
+      1
+     ],
+     "help": "The color for the darkest parts."
+    },
+    {
+     "id": "mid",
+     "label": "Midtones",
+     "type": "color",
+     "default": [
+      0.82,
+      0.22,
+      0.42,
+      1
+     ],
+     "help": "The color for the in-between tones."
+    },
+    {
+     "id": "light",
+     "label": "Highlights",
+     "type": "color",
+     "default": [
+      1,
+      0.93,
+      0.62,
+      1
+     ],
+     "help": "The color for the brightest parts."
+    },
+    {
+     "id": "balance",
+     "label": "Midpoint",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0.05,
+     "max": 0.95,
+     "help": "Moves where the middle color sits. Lower makes more of the image use the bright colors."
+    }
+   ]
+  },
+  {
+   "id": "threshold",
+   "name": "Threshold",
+   "category": "color",
+   "description": "Two-tone cutoff with soft edges.",
+   "about": "Turns everything into two flat colors, like a stencil or a photocopy.",
+   "params": [
+    {
+     "id": "level",
+     "label": "Level",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "The cut-off point. Parts brighter than this become the light color, darker parts become the dark color."
+    },
+    {
+     "id": "softness",
+     "label": "Softness",
+     "type": "percent",
+     "default": 0.04,
+     "min": 0,
+     "max": 0.5,
+     "help": "Smooths the edge between the two colors. 0 is a hard edge."
+    },
+    {
+     "id": "dark",
+     "label": "Dark",
+     "type": "color",
+     "default": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "help": "Color for the dark side."
+    },
+    {
+     "id": "light",
+     "label": "Light",
+     "type": "color",
+     "default": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "help": "Color for the bright side."
+    }
+   ]
+  },
+  {
+   "id": "invert",
+   "name": "Invert & Solarize",
+   "category": "color",
+   "description": "Invert colors, lightness only, or solarize above a threshold.",
+   "about": "Flips colors to their opposites, like a photo negative.",
+   "params": [
+    {
+     "id": "mode",
+     "label": "Mode",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Invert RGB"
+      },
+      {
+       "value": 1,
+       "label": "Invert lightness"
+      },
+      {
+       "value": 2,
+       "label": "Solarize"
+      }
+     ],
+     "animatable": false,
+     "help": "Invert RGB flips every color (white↔black, blue↔orange). Invert lightness flips only light and dark but keeps the colors. Solarize flips only the brighter parts, for a trippy darkroom look."
+    },
+    {
+     "id": "threshold",
+     "label": "Solarize at",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "For Solarize: how bright a part must be before it gets flipped."
+    }
+   ]
+  },
+  {
+   "id": "levels",
+   "name": "Levels",
+   "category": "color",
+   "description": "Set black point, white point and midtone gamma.",
+   "about": "Controls exactly how dark the darks and how bright the brights are. Great for fixing washed-out footage.",
+   "params": [
+    {
+     "id": "inBlack",
+     "label": "Input black",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "Anything this dark or darker becomes pure black. Raise it to deepen the shadows."
+    },
+    {
+     "id": "inWhite",
+     "label": "Input white",
+     "type": "percent",
+     "default": 1,
+     "min": 0,
+     "max": 1,
+     "help": "Anything this bright or brighter becomes pure white. Lower it to make the image brighter and punchier."
+    },
+    {
+     "id": "gamma",
+     "label": "Midtones",
+     "type": "number",
+     "default": 1,
+     "min": 0.1,
+     "max": 5,
+     "step": 0.01,
+     "help": "Brightens (above 1) or darkens (below 1) the middle tones only."
+    },
+    {
+     "id": "outBlack",
+     "label": "Output black",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "The darkest the result is allowed to be. Raise it for a faded, matte look."
+    },
+    {
+     "id": "outWhite",
+     "label": "Output white",
+     "type": "percent",
+     "default": 1,
+     "min": 0,
+     "max": 1,
+     "help": "The brightest the result is allowed to be. Lower it to tame harsh whites."
+    }
+   ]
+  },
+  {
+   "id": "chroma-key",
+   "name": "Chroma Key",
+   "category": "color",
+   "description": "Remove a green or blue screen, with spill suppression.",
+   "about": "Removes a green screen (or any solid color background) so you can put something else behind the subject.",
+   "params": [
+    {
+     "id": "key",
+     "label": "Key color",
+     "type": "color",
+     "default": [
+      0.1,
+      0.85,
+      0.25,
+      1
+     ],
+     "help": "The background color to remove. Pick the green (or blue) of your screen."
+    },
+    {
+     "id": "tolerance",
+     "label": "Tolerance",
+     "type": "percent",
+     "default": 0.3,
+     "min": 0,
+     "max": 1,
+     "help": "How close a color must be to the key to be removed. Raise it if bits of background remain; lower it if the subject starts disappearing."
+    },
+    {
+     "id": "softness",
+     "label": "Edge softness",
+     "type": "percent",
+     "default": 0.12,
+     "min": 0,
+     "max": 1,
+     "help": "How soft the cut-out edge is. A little softness hides jagged edges and hair."
+    },
+    {
+     "id": "spill",
+     "label": "Spill removal",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "Removes the green glow that the screen reflects onto the subject's edges and skin."
+    }
+   ]
+  },
+  {
+   "id": "luma-key",
+   "name": "Luma Key",
+   "category": "color",
+   "description": "Make dark (or bright) areas transparent. Great for fire, smoke and light footage.",
+   "about": "Makes dark (or bright) parts see-through. Perfect for fire, sparks, smoke or light-leak footage shot on black.",
+   "params": [
+    {
+     "id": "mode",
+     "label": "Remove",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Darks"
+      },
+      {
+       "value": 1,
+       "label": "Brights"
+      }
+     ],
+     "animatable": false,
+     "help": "Darks removes dark parts (for footage on black). Brights removes bright parts (for footage on white)."
+    },
+    {
+     "id": "level",
+     "label": "Level",
+     "type": "percent",
+     "default": 0.15,
+     "min": 0,
+     "max": 1,
+     "help": "How dark (or bright) a part must be to disappear."
+    },
+    {
+     "id": "softness",
+     "label": "Softness",
+     "type": "percent",
+     "default": 0.2,
+     "min": 0,
+     "max": 1,
+     "help": "How gradually things fade out. Higher keeps soft glows looking natural."
+    }
+   ]
+  },
+  {
+   "id": "rounded-corners",
+   "name": "Rounded Corners",
+   "category": "geometry",
+   "description": "Round any layer with circular or continuous (squircle) corners. Later effects follow the new shape.",
+   "about": "Rounds off the corners of any layer: photos, videos, shapes. Effects added after this follow the new rounded shape.",
+   "params": [
+    {
+     "id": "radius",
+     "label": "Radius",
+     "type": "number",
+     "default": 64,
+     "min": 0,
+     "softMax": 600,
+     "unit": "px",
+     "help": "How round the corners are."
+    },
+    {
+     "id": "smoothing",
+     "label": "Continuous",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "Makes corners flow smoothly into the edges, like app icons on an iPhone. 0 is a plain circular corner."
+    },
+    {
+     "id": "feather",
+     "label": "Feather",
+     "type": "number",
+     "default": 0,
+     "min": 0,
+     "softMax": 60,
+     "unit": "px",
+     "help": "Softens the edges so they fade out instead of being crisp."
+    },
+    {
+     "id": "inset",
+     "label": "Inset",
+     "type": "number",
+     "default": 0,
+     "min": 0,
+     "softMax": 400,
+     "unit": "px",
+     "help": "Shrinks the layer inward from every side before rounding."
+    },
+    {
+     "id": "tl",
+     "label": "Top left",
+     "type": "percent",
+     "default": 1,
+     "min": 0,
+     "max": 1,
+     "help": "How much of the rounding the top-left corner gets. 0 keeps it square."
+    },
+    {
+     "id": "tr",
+     "label": "Top right",
+     "type": "percent",
+     "default": 1,
+     "min": 0,
+     "max": 1,
+     "help": "How much of the rounding the top-right corner gets. 0 keeps it square."
+    },
+    {
+     "id": "br",
+     "label": "Bottom right",
+     "type": "percent",
+     "default": 1,
+     "min": 0,
+     "max": 1,
+     "help": "How much of the rounding the bottom-right corner gets. 0 keeps it square."
+    },
+    {
+     "id": "bl",
+     "label": "Bottom left",
+     "type": "percent",
+     "default": 1,
+     "min": 0,
+     "max": 1,
+     "help": "How much of the rounding the bottom-left corner gets. 0 keeps it square."
+    }
+   ]
+  },
+  {
+   "id": "stroke",
+   "name": "Stroke",
+   "category": "geometry",
+   "description": "Outline that follows the exact shape. Stack several for layered outlines.",
+   "about": "Draws an outline that follows the exact shape of the layer, even text and cut-outs. Add several for layered outlines.",
+   "params": [
+    {
+     "id": "width",
+     "label": "Width",
+     "type": "number",
+     "default": 8,
+     "min": 0,
+     "softMax": 120,
+     "unit": "px",
+     "help": "How thick the outline is."
+    },
+    {
+     "id": "color",
+     "label": "Color",
+     "type": "color",
+     "default": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "help": "The outline's color."
+    },
+    {
+     "id": "position",
+     "label": "Position",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Outside"
+      },
+      {
+       "value": 1,
+       "label": "Center"
+      },
+      {
+       "value": 2,
+       "label": "Inside"
+      }
+     ],
+     "animatable": false,
+     "help": "Outside puts the line around the shape, Inside puts it within the shape, Center straddles the edge."
+    },
+    {
+     "id": "softness",
+     "label": "Softness",
+     "type": "number",
+     "default": 0,
+     "min": 0,
+     "softMax": 30,
+     "unit": "px",
+     "help": "Blurs the outline into a soft glow-like edge."
+    },
+    {
+     "id": "offset",
+     "label": "Gap",
+     "type": "number",
+     "default": 0,
+     "min": 0,
+     "softMax": 80,
+     "unit": "px",
+     "help": "Leaves a gap between the shape and the outline."
+    },
+    {
+     "id": "only",
+     "label": "Fill",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Keep fill"
+      },
+      {
+       "value": 1,
+       "label": "Stroke only"
+      }
+     ],
+     "animatable": false,
+     "help": "Keep fill shows the layer plus its outline. Stroke only hides the layer and keeps just the outline."
+    }
+   ]
+  },
+  {
+   "id": "kaleidoscope",
+   "name": "Kaleidoscope",
+   "category": "geometry",
+   "description": "Mirror wedges around a center into symmetric patterns.",
+   "about": "Mirrors slices of the layer around a point, making symmetrical kaleidoscope patterns.",
+   "params": [
+    {
+     "id": "segments",
+     "label": "Segments",
+     "type": "number",
+     "default": 6,
+     "min": 2,
+     "max": 48,
+     "step": 1,
+     "help": "How many mirrored slices. More slices make a busier pattern."
+    },
+    {
+     "id": "angle",
+     "label": "Rotation",
+     "type": "angle",
+     "default": 0,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "Turns the whole pattern. Animate it for a spinning kaleidoscope."
+    },
+    {
+     "id": "center",
+     "label": "Center",
+     "type": "point",
+     "default": [
+      0.5,
+      0.5
+     ],
+     "help": "The middle of the pattern. Drag the dot on the canvas."
+    },
+    {
+     "id": "zoom",
+     "label": "Zoom",
+     "type": "number",
+     "default": 1,
+     "min": 0.1,
+     "softMax": 4,
+     "step": 0.01,
+     "help": "Zooms into the source picture. Bigger shows less of it, more magnified."
+    },
+    {
+     "id": "offset",
+     "label": "Source offset",
+     "type": "point",
+     "default": [
+      0.5,
+      0.5
+     ],
+     "help": "Which part of the layer gets mirrored. Move it to find interesting patterns."
+    }
+   ]
+  },
+  {
+   "id": "mirror",
+   "name": "Mirror",
+   "category": "geometry",
+   "description": "Reflect one side of the layer across a line.",
+   "about": "Reflects one half of the layer onto the other half, across a line.",
+   "params": [
+    {
+     "id": "center",
+     "label": "Line point",
+     "type": "point",
+     "default": [
+      0.5,
+      0.5
+     ],
+     "help": "A point the mirror line passes through. Drag the dot on the canvas."
+    },
+    {
+     "id": "angle",
+     "label": "Line angle",
+     "type": "angle",
+     "default": 90,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "The direction of the mirror line. 90° is a vertical line (left/right mirror); 0° is horizontal (top/bottom mirror)."
+    }
+   ]
+  },
+  {
+   "id": "crop",
+   "name": "Crop",
+   "category": "geometry",
+   "description": "Trim edges non-destructively, with optional feathering. Animate for wipes.",
+   "about": "Hides the edges of the layer without deleting anything. Animate it for wipe reveals.",
+   "params": [
+    {
+     "id": "left",
+     "label": "Left",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "How much to hide from the left side."
+    },
+    {
+     "id": "right",
+     "label": "Right",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "How much to hide from the right side."
+    },
+    {
+     "id": "top",
+     "label": "Top",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "How much to hide from the top."
+    },
+    {
+     "id": "bottom",
+     "label": "Bottom",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "How much to hide from the bottom."
+    },
+    {
+     "id": "feather",
+     "label": "Feather",
+     "type": "number",
+     "default": 0,
+     "min": 0,
+     "softMax": 200,
+     "unit": "px",
+     "help": "Softens the cropped edges so they fade instead of cutting sharply."
+    }
+   ]
+  },
+  {
+   "id": "fractal-noise",
+   "name": "Fractal Noise",
+   "category": "generate",
+   "description": "Evolving clouds, smoke, marble and turbulence. Domain warp for liquid looks.",
+   "about": "Creates moving clouds, smoke, marble or liquid textures from scratch. Put it on a solid layer for an instant animated background.",
+   "params": [
+    {
+     "id": "scale",
+     "label": "Scale",
+     "type": "number",
+     "default": 360,
+     "min": 4,
+     "softMax": 3000,
+     "unit": "px",
+     "help": "How big the cloud shapes are."
+    },
+    {
+     "id": "detail",
+     "label": "Detail",
+     "type": "number",
+     "default": 5,
+     "min": 1,
+     "max": 8,
+     "step": 1,
+     "help": "Adds finer and finer layers of detail. Low is soft and blobby, high is crisp and complex."
+    },
+    {
+     "id": "roughness",
+     "label": "Roughness",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0.1,
+     "max": 0.9,
+     "help": "How strong the fine details are compared with the big shapes."
+    },
+    {
+     "id": "warp",
+     "label": "Warp",
+     "type": "number",
+     "default": 0.6,
+     "min": 0,
+     "softMax": 4,
+     "step": 0.01,
+     "help": "Swirls the pattern into itself for liquid, marble-like shapes."
+    },
+    {
+     "id": "contrast",
+     "label": "Contrast",
+     "type": "number",
+     "default": 1.2,
+     "min": 0.1,
+     "softMax": 4,
+     "step": 0.01,
+     "help": "How strong the difference is between the dark and light parts."
+    },
+    {
+     "id": "brightness",
+     "label": "Brightness",
+     "type": "number",
+     "default": 0,
+     "min": -1,
+     "max": 1,
+     "step": 0.005,
+     "help": "Makes the whole pattern lighter or darker."
+    },
+    {
+     "id": "evolve",
+     "label": "Evolution",
+     "type": "number",
+     "default": 0.15,
+     "softMin": 0,
+     "softMax": 2,
+     "unit": "/s",
+     "help": "How fast the pattern changes shape over time. 0 freezes it."
+    },
+    {
+     "id": "drift",
+     "label": "Drift",
+     "type": "point",
+     "default": [
+      0,
+      0
+     ],
+     "help": "Slides the whole pattern in a direction, like clouds blowing past."
+    },
+    {
+     "id": "colorA",
+     "label": "Dark",
+     "type": "color",
+     "default": [
+      0.04,
+      0.03,
+      0.08,
+      1
+     ],
+     "help": "The color of the darkest parts of the pattern."
+    },
+    {
+     "id": "colorB",
+     "label": "Light",
+     "type": "color",
+     "default": [
+      0.95,
+      0.72,
+      0.36,
+      1
+     ],
+     "help": "The color of the brightest parts of the pattern."
+    },
+    {
+     "id": "mode",
+     "label": "Blend",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Replace"
+      },
+      {
+       "value": 1,
+       "label": "Over layer"
+      },
+      {
+       "value": 2,
+       "label": "Multiply"
+      },
+      {
+       "value": 3,
+       "label": "Screen"
+      },
+      {
+       "value": 4,
+       "label": "Overlay"
+      }
+     ],
+     "animatable": false,
+     "help": "How the pattern is combined with your layer. Replace shows only the pattern (inside the layer's shape). Over layer puts it on top. Multiply darkens, Screen lightens, Overlay adds contrast."
+    },
+    {
+     "id": "seed",
+     "label": "Seed",
+     "type": "number",
+     "default": 1,
+     "min": 0,
+     "max": 999,
+     "step": 1,
+     "animatable": false,
+     "help": "A different random starting point. Same look, different arrangement. Try a few numbers until you like it."
+    }
+   ]
+  },
+  {
+   "id": "gradient",
+   "name": "Gradient",
+   "category": "generate",
+   "description": "Linear, radial or conic gradient, animatable, as a fill or an overlay.",
+   "about": "Fills the layer with a smooth blend between two colors.",
+   "params": [
+    {
+     "id": "kind",
+     "label": "Type",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Linear"
+      },
+      {
+       "value": 1,
+       "label": "Radial"
+      },
+      {
+       "value": 2,
+       "label": "Conic"
+      }
+     ],
+     "animatable": false,
+     "help": "Linear goes in a straight line. Radial goes out from the center in circles. Conic sweeps around the center like a clock hand."
+    },
+    {
+     "id": "start",
+     "label": "Start",
+     "type": "point",
+     "default": [
+      0.5,
+      0
+     ],
+     "help": "Where the first color is. Drag the dot on the canvas."
+    },
+    {
+     "id": "end",
+     "label": "End",
+     "type": "point",
+     "default": [
+      0.5,
+      1
+     ],
+     "help": "Where the second color is. Drag the dot on the canvas."
+    },
+    {
+     "id": "colorA",
+     "label": "Start color",
+     "type": "color",
+     "default": [
+      0.98,
+      0.42,
+      0.32,
+      1
+     ],
+     "help": "The color at the start point."
+    },
+    {
+     "id": "colorB",
+     "label": "End color",
+     "type": "color",
+     "default": [
+      0.3,
+      0.2,
+      0.75,
+      1
+     ],
+     "help": "The color at the end point."
+    },
+    {
+     "id": "midpoint",
+     "label": "Midpoint",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0.02,
+     "max": 0.98,
+     "help": "Where the two colors meet half-and-half. Slide it to give one color more room."
+    },
+    {
+     "id": "shift",
+     "label": "Cycle speed",
+     "type": "number",
+     "default": 0,
+     "softMin": -2,
+     "softMax": 2,
+     "unit": "/s",
+     "help": "Makes the colors flow along the gradient over time. 0 keeps it still."
+    },
+    {
+     "id": "repeat",
+     "label": "Repeat",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Clamp"
+      },
+      {
+       "value": 1,
+       "label": "Mirror"
+      }
+     ],
+     "animatable": false,
+     "help": "What happens past the end points. Clamp keeps the end colors. Mirror bounces back and forth for stripes."
+    },
+    {
+     "id": "mode",
+     "label": "Blend",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Replace"
+      },
+      {
+       "value": 1,
+       "label": "Over layer"
+      },
+      {
+       "value": 2,
+       "label": "Multiply"
+      },
+      {
+       "value": 3,
+       "label": "Screen"
+      },
+      {
+       "value": 4,
+       "label": "Overlay"
+      }
+     ],
+     "animatable": false,
+     "help": "How the pattern is combined with your layer. Replace shows only the pattern (inside the layer's shape). Over layer puts it on top. Multiply darkens, Screen lightens, Overlay adds contrast."
+    }
+   ]
+  },
+  {
+   "id": "voronoi",
+   "name": "Cells",
+   "category": "generate",
+   "description": "Animated Voronoi cells: crystals, organic tissue, stained glass.",
+   "about": "Draws a pattern of cells, like crystals, cracked earth, giraffe spots or stained glass.",
+   "params": [
+    {
+     "id": "scale",
+     "label": "Cell size",
+     "type": "number",
+     "default": 140,
+     "min": 4,
+     "softMax": 1000,
+     "unit": "px",
+     "help": "How big each cell is."
+    },
+    {
+     "id": "style",
+     "label": "Style",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Cells"
+      },
+      {
+       "value": 1,
+       "label": "Edges"
+      },
+      {
+       "value": 2,
+       "label": "Distance"
+      },
+      {
+       "value": 3,
+       "label": "Stained glass"
+      }
+     ],
+     "animatable": false,
+     "help": "Cells fills each cell with a color. Edges draws only the borders. Distance glows toward each cell's center. Stained glass gives each cell its own color with dark lead lines."
+    },
+    {
+     "id": "edge",
+     "label": "Edge width",
+     "type": "percent",
+     "default": 0.08,
+     "min": 0,
+     "max": 0.5,
+     "help": "How thick the borders between cells are."
+    },
+    {
+     "id": "speed",
+     "label": "Motion",
+     "type": "number",
+     "default": 0.3,
+     "softMin": 0,
+     "softMax": 3,
+     "unit": "/s",
+     "help": "How fast the cells drift and wobble. 0 freezes them."
+    },
+    {
+     "id": "colorA",
+     "label": "Color A",
+     "type": "color",
+     "default": [
+      0.08,
+      0.1,
+      0.16,
+      1
+     ],
+     "help": "First color of the pattern."
+    },
+    {
+     "id": "colorB",
+     "label": "Color B",
+     "type": "color",
+     "default": [
+      0.4,
+      0.8,
+      0.9,
+      1
+     ],
+     "help": "Second color of the pattern."
+    },
+    {
+     "id": "mode",
+     "label": "Blend",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Replace"
+      },
+      {
+       "value": 1,
+       "label": "Over layer"
+      },
+      {
+       "value": 2,
+       "label": "Multiply"
+      },
+      {
+       "value": 3,
+       "label": "Screen"
+      },
+      {
+       "value": 4,
+       "label": "Overlay"
+      }
+     ],
+     "animatable": false,
+     "help": "How the pattern is combined with your layer. Replace shows only the pattern (inside the layer's shape). Over layer puts it on top. Multiply darkens, Screen lightens, Overlay adds contrast."
+    }
+   ]
+  }
+ ],
+ "transitions": [
+  {
+   "id": "flare",
+   "name": "Optical Flare",
+   "description": "A bright anamorphic lens flare sweeps across and flashes the cut.",
+   "params": [
+    {
+     "id": "color",
+     "label": "Flare color",
+     "type": "color",
+     "default": [
+      1,
+      0.82,
+      0.55,
+      1
+     ],
+     "help": "The color of the flare light."
+    },
+    {
+     "id": "intensity",
+     "label": "Intensity",
+     "type": "number",
+     "default": 1.4,
+     "min": 0,
+     "softMax": 4,
+     "step": 0.01,
+     "help": "How bright the flare gets."
+    },
+    {
+     "id": "streak",
+     "label": "Streak length",
+     "type": "percent",
+     "default": 0.85,
+     "min": 0,
+     "max": 2,
+     "help": "How long the horizontal light streak is."
+    },
+    {
+     "id": "angle",
+     "label": "Angle",
+     "type": "angle",
+     "default": 0,
+     "softMin": -90,
+     "softMax": 90,
+     "unit": "°",
+     "help": "Tilts the streak."
+    },
+    {
+     "id": "height",
+     "label": "Height",
+     "type": "percent",
+     "default": 0.45,
+     "min": 0,
+     "max": 1,
+     "help": "How high up on the screen the flare travels."
+    },
+    {
+     "id": "ghosts",
+     "label": "Ghosts",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1.5,
+     "help": "The little colored circles a real lens adds along the flare."
+    },
+    {
+     "id": "halo",
+     "label": "Rainbow halo",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1.5,
+     "help": "A faint rainbow ring around the flare."
+    },
+    {
+     "id": "flash",
+     "label": "Flash",
+     "type": "percent",
+     "default": 0.7,
+     "min": 0,
+     "max": 1.5,
+     "help": "How much the whole screen flashes at the cut."
+    },
+    {
+     "id": "glow",
+     "label": "Bloom",
+     "type": "number",
+     "default": 50,
+     "min": 0,
+     "softMax": 300,
+     "unit": "px",
+     "help": "How much the picture blooms and glows during the flare."
+    },
+    {
+     "id": "direction",
+     "label": "Sweep",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Left → right"
+      },
+      {
+       "value": 1,
+       "label": "Right → left"
+      },
+      {
+       "value": 2,
+       "label": "Burst from center"
+      }
+     ],
+     "animatable": false,
+     "help": "Which way the flare travels, or burst from the middle."
+    },
+    {
+     "id": "ease",
+     "label": "Easing",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Smooth"
+      },
+      {
+       "value": 1,
+       "label": "Linear"
+      },
+      {
+       "value": 2,
+       "label": "Snappy"
+      }
+     ],
+     "animatable": false,
+     "help": "How the transition speeds up and slows down."
+    }
+   ]
+  },
+  {
+   "id": "morph",
+   "name": "Match-Cut Morph",
+   "description": "The first shape melts into the second: outlines morph, textures stretch to follow, colors cross over.",
+   "params": [
+    {
+     "id": "warp",
+     "label": "Texture warp",
+     "type": "percent",
+     "default": 0.8,
+     "min": 0,
+     "max": 1,
+     "help": "How much each picture stretches to follow the morphing outline."
+    },
+    {
+     "id": "edge",
+     "label": "Edge softness",
+     "type": "number",
+     "default": 1.5,
+     "min": 0,
+     "softMax": 40,
+     "unit": "px",
+     "help": "How soft the morphing outline is."
+    },
+    {
+     "id": "blur",
+     "label": "Motion blur",
+     "type": "number",
+     "default": 10,
+     "min": 0,
+     "softMax": 120,
+     "unit": "px",
+     "help": "Motion blur in the middle of the morph."
+    },
+    {
+     "id": "punch",
+     "label": "Zoom punch",
+     "type": "percent",
+     "default": 0.06,
+     "min": 0,
+     "max": 0.5,
+     "help": "A small zoom that pushes into the cut."
+    },
+    {
+     "id": "glow",
+     "label": "Edge glow",
+     "type": "percent",
+     "default": 0.4,
+     "min": 0,
+     "max": 2,
+     "help": "A glowing rim on the morphing outline."
+    },
+    {
+     "id": "glowColor",
+     "label": "Glow color",
+     "type": "color",
+     "default": [
+      1,
+      0.9,
+      0.7,
+      1
+     ],
+     "help": "The color of that rim."
+    },
+    {
+     "id": "ease",
+     "label": "Easing",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Smooth"
+      },
+      {
+       "value": 1,
+       "label": "Linear"
+      },
+      {
+       "value": 2,
+       "label": "Snappy"
+      }
+     ],
+     "animatable": false,
+     "help": "How the morph speeds up and slows down."
+    }
+   ]
+  },
+  {
+   "id": "dither",
+   "name": "Dither Dissolve",
+   "description": "Pixels flip from the first picture to the second in a dithered pattern, with a glowing edge.",
+   "params": [
+    {
+     "id": "pixel",
+     "label": "Pixel size",
+     "type": "number",
+     "default": 4,
+     "min": 1,
+     "softMax": 40,
+     "unit": "px",
+     "help": "How big the switching pixels are."
+    },
+    {
+     "id": "pattern",
+     "label": "Pattern",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Bayer"
+      },
+      {
+       "value": 1,
+       "label": "Noise"
+      },
+      {
+       "value": 2,
+       "label": "Top → bottom"
+      },
+      {
+       "value": 3,
+       "label": "Radial"
+      }
+     ],
+     "animatable": false,
+     "help": "The order pixels switch in."
+    },
+    {
+     "id": "edge",
+     "label": "Edge glow",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 2,
+     "help": "Glow where pixels are switching."
+    },
+    {
+     "id": "edgeColor",
+     "label": "Edge color",
+     "type": "color",
+     "default": [
+      1,
+      0.85,
+      0.5,
+      1
+     ],
+     "help": "Color of that glow."
+    },
+    {
+     "id": "ease",
+     "label": "Easing",
+     "type": "enum",
+     "default": 1,
+     "options": [
+      {
+       "value": 0,
+       "label": "Smooth"
+      },
+      {
+       "value": 1,
+       "label": "Linear"
+      },
+      {
+       "value": 2,
+       "label": "Snappy"
+      }
+     ],
+     "animatable": false,
+     "help": "Speed curve of the dissolve."
+    }
+   ]
+  },
+  {
+   "id": "zoom",
+   "name": "Zoom Through",
+   "description": "Punches into the first picture with a zoom blur and out of the second.",
+   "params": [
+    {
+     "id": "amount",
+     "label": "Zoom",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 2,
+     "help": "How far it zooms."
+    },
+    {
+     "id": "center",
+     "label": "Center",
+     "type": "point",
+     "default": [
+      0.5,
+      0.5
+     ],
+     "help": "The point it zooms into. Drag the dot on the canvas."
+    },
+    {
+     "id": "ease",
+     "label": "Easing",
+     "type": "enum",
+     "default": 2,
+     "options": [
+      {
+       "value": 0,
+       "label": "Smooth"
+      },
+      {
+       "value": 1,
+       "label": "Linear"
+      },
+      {
+       "value": 2,
+       "label": "Snappy"
+      }
+     ],
+     "animatable": false,
+     "help": "Speed curve of the zoom."
+    }
+   ]
+  },
+  {
+   "id": "whip",
+   "name": "Whip Pan",
+   "description": "A fast camera whip: the first picture smears off-screen and the second smears in.",
+   "params": [
+    {
+     "id": "angle",
+     "label": "Direction",
+     "type": "angle",
+     "default": 0,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "Which way the camera whips."
+    },
+    {
+     "id": "blur",
+     "label": "Smear",
+     "type": "percent",
+     "default": 0.7,
+     "min": 0,
+     "max": 2,
+     "help": "How much motion smear."
+    },
+    {
+     "id": "ease",
+     "label": "Easing",
+     "type": "enum",
+     "default": 2,
+     "options": [
+      {
+       "value": 0,
+       "label": "Smooth"
+      },
+      {
+       "value": 1,
+       "label": "Linear"
+      },
+      {
+       "value": 2,
+       "label": "Snappy"
+      }
+     ],
+     "animatable": false,
+     "help": "Speed curve of the whip."
+    }
+   ]
+  },
+  {
+   "id": "ink",
+   "name": "Ink Wipe",
+   "description": "An organic, noisy edge wipes the second picture over the first, like spreading ink or burning paper.",
+   "params": [
+    {
+     "id": "scale",
+     "label": "Blot size",
+     "type": "number",
+     "default": 220,
+     "min": 10,
+     "softMax": 1200,
+     "unit": "px",
+     "help": "How big the blotches in the edge are."
+    },
+    {
+     "id": "edge",
+     "label": "Edge width",
+     "type": "number",
+     "default": 18,
+     "min": 0,
+     "softMax": 200,
+     "unit": "px",
+     "help": "How thick the glowing edge is."
+    },
+    {
+     "id": "edgeColor",
+     "label": "Edge color",
+     "type": "color",
+     "default": [
+      1,
+      0.55,
+      0.15,
+      1
+     ],
+     "help": "The color of the edge."
+    },
+    {
+     "id": "direction",
+     "label": "From",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Center"
+      },
+      {
+       "value": 1,
+       "label": "Left"
+      },
+      {
+       "value": 2,
+       "label": "Bottom"
+      },
+      {
+       "value": 3,
+       "label": "Everywhere"
+      }
+     ],
+     "animatable": false,
+     "help": "Where the wipe starts."
+    },
+    {
+     "id": "ease",
+     "label": "Easing",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Smooth"
+      },
+      {
+       "value": 1,
+       "label": "Linear"
+      },
+      {
+       "value": 2,
+       "label": "Snappy"
+      }
+     ],
+     "animatable": false,
+     "help": "Speed curve of the wipe."
+    }
+   ]
+  }
+ ],
+ "textAnimations": [
+  {
+   "id": "bounce-in",
+   "name": "Bounce in",
+   "kind": "in",
+   "description": "Letters drop in one by one and bounce on landing.",
+   "defaults": {
+    "unit": "char",
+    "duration": 0.7,
+    "stagger": 0.05
+   }
+  },
+  {
+   "id": "pop-in",
+   "name": "Pop in",
+   "kind": "in",
+   "description": "Each letter pops up from nothing with a springy overshoot.",
+   "defaults": {
+    "unit": "char",
+    "duration": 0.45,
+    "stagger": 0.04
+   }
+  },
+  {
+   "id": "fade-up",
+   "name": "Fade up",
+   "kind": "in",
+   "description": "Letters rise gently into place while fading in.",
+   "defaults": {
+    "unit": "char",
+    "duration": 0.6,
+    "stagger": 0.035
+   }
+  },
+  {
+   "id": "typewriter",
+   "name": "Typewriter",
+   "kind": "in",
+   "description": "Letters appear one at a time, like typing.",
+   "defaults": {
+    "unit": "char",
+    "duration": 0.02,
+    "stagger": 0.06
+   }
+  },
+  {
+   "id": "scramble",
+   "name": "Decode",
+   "kind": "in",
+   "description": "Random characters flicker and lock into the real text, like a code being cracked.",
+   "defaults": {
+    "unit": "char",
+    "duration": 0.6,
+    "stagger": 0.04
+   }
+  },
+  {
+   "id": "spin-in",
+   "name": "Spin in",
+   "kind": "in",
+   "description": "Letters spin and grow into place.",
+   "defaults": {
+    "unit": "char",
+    "duration": 0.7,
+    "stagger": 0.05
+   }
+  },
+  {
+   "id": "slide-in",
+   "name": "Slide in",
+   "kind": "in",
+   "description": "Letters slide in from the left and fade up.",
+   "defaults": {
+    "unit": "char",
+    "duration": 0.6,
+    "stagger": 0.03
+   }
+  },
+  {
+   "id": "tracking-in",
+   "name": "Tracking in",
+   "kind": "in",
+   "description": "Letters start spread wide apart and glide together (a cinematic title classic).",
+   "defaults": {
+    "unit": "char",
+    "duration": 1.1,
+    "stagger": 0
+   }
+  },
+  {
+   "id": "word-drop",
+   "name": "Word drop",
+   "kind": "in",
+   "description": "Whole words drop in from above, one after another.",
+   "defaults": {
+    "unit": "word",
+    "duration": 0.6,
+    "stagger": 0.12
+   }
+  },
+  {
+   "id": "flash-in",
+   "name": "Flicker on",
+   "kind": "in",
+   "description": "Letters flicker on like a neon sign warming up.",
+   "defaults": {
+    "unit": "char",
+    "duration": 0.5,
+    "stagger": 0.03
+   }
+  },
+  {
+   "id": "fade-out",
+   "name": "Fade down",
+   "kind": "out",
+   "description": "Letters sink and fade away one by one.",
+   "defaults": {
+    "unit": "char",
+    "duration": 0.5,
+    "stagger": 0.03
+   }
+  },
+  {
+   "id": "scatter-out",
+   "name": "Scatter",
+   "kind": "out",
+   "description": "Letters fly apart in random directions, spinning as they fade.",
+   "defaults": {
+    "unit": "char",
+    "duration": 0.8,
+    "stagger": 0.02
+   }
+  },
+  {
+   "id": "drop-out",
+   "name": "Fall away",
+   "kind": "out",
+   "description": "Letters fall off the screen as if gravity just switched on.",
+   "defaults": {
+    "unit": "char",
+    "duration": 0.7,
+    "stagger": 0.04
+   }
+  },
+  {
+   "id": "wave",
+   "name": "Wave",
+   "kind": "loop",
+   "description": "Letters ripple up and down in a continuous wave.",
+   "defaults": {
+    "unit": "char",
+    "duration": 1.4,
+    "stagger": 0.08
+   }
+  },
+  {
+   "id": "bounce-loop",
+   "name": "Hop",
+   "kind": "loop",
+   "description": "Letters take turns hopping up.",
+   "defaults": {
+    "unit": "char",
+    "duration": 0.9,
+    "stagger": 0.07
+   }
+  },
+  {
+   "id": "swing",
+   "name": "Swing",
+   "kind": "loop",
+   "description": "Letters rock back and forth.",
+   "defaults": {
+    "unit": "char",
+    "duration": 1.6,
+    "stagger": 0.1
+   }
+  },
+  {
+   "id": "jitter",
+   "name": "Jitter",
+   "kind": "loop",
+   "description": "Letters shake nervously in random little jumps.",
+   "defaults": {
+    "unit": "char",
+    "duration": 0.08,
+    "stagger": 0
+   }
+  },
+  {
+   "id": "rainbow",
+   "name": "Rainbow",
+   "kind": "loop",
+   "description": "Colors flow through the letters in a rainbow.",
+   "defaults": {
+    "unit": "char",
+    "duration": 2,
+    "stagger": 0.08
+   }
+  },
+  {
+   "id": "flicker",
+   "name": "Flicker",
+   "kind": "loop",
+   "description": "Random letters dim and flicker like a failing sign.",
+   "defaults": {
+    "unit": "char",
+    "duration": 0.12,
+    "stagger": 0
+   }
+  }
+ ],
+ "looks": [
+  {
+   "id": "notepad",
+   "name": "Notepad+",
+   "group": "Shader looks",
+   "description": "Blue ballpoint cross-hatching on ruled notebook paper.",
+   "effects": [
+    {
+     "type": "sketch",
+     "params": {
+      "spacing": 5,
+      "width": 1,
+      "layers": 3,
+      "outline": 0.9,
+      "wobble": 1.3,
+      "boil": 8,
+      "ink": [
+       0.13,
+       0.22,
+       0.62,
+       1
+      ],
+      "paper": [
+       0.97,
+       0.97,
+       0.95,
+       1
+      ],
+      "ruled": 1,
+      "contrast": 1.4
+     }
+    }
+   ]
+  },
+  {
+   "id": "shaderverse-3",
+   "name": "Shaderverse 3 Tones",
+   "group": "Shader looks",
+   "description": "Three flat coral tones with a halftone dot shadow, like a screen print.",
+   "effects": [
+    {
+     "type": "palette-map",
+     "params": {
+      "count": 3,
+      "bands": 1,
+      "c1": [
+       0.55,
+       0.12,
+       0.2,
+       1
+      ],
+      "c2": [
+       0.93,
+       0.38,
+       0.38,
+       1
+      ],
+      "c3": [
+       1,
+       0.78,
+       0.72,
+       1
+      ],
+      "contrast": 1.3
+     }
+    },
+    {
+     "type": "halftone",
+     "params": {
+      "pattern": 0,
+      "cell": 7,
+      "colors": 1,
+      "softness": 0.15,
+      "contrast": 1.4
+     },
+     "mix": 0.45,
+     "blend": "multiply"
+    }
+   ]
+  },
+  {
+   "id": "heavy-metal",
+   "name": "Heavy Metal",
+   "group": "Shader looks",
+   "description": "Polished black-and-silver metal with bright mirror highlights.",
+   "effects": [
+    {
+     "type": "color-adjust",
+     "params": {
+      "saturation": -1,
+      "contrast": 0.3
+     }
+    },
+    {
+     "type": "palette-map",
+     "params": {
+      "count": 6,
+      "bands": 0,
+      "c1": [
+       0.02,
+       0.02,
+       0.03,
+       1
+      ],
+      "c2": [
+       0.75,
+       0.76,
+       0.8,
+       1
+      ],
+      "c3": [
+       0.12,
+       0.12,
+       0.14,
+       1
+      ],
+      "c4": [
+       0.95,
+       0.96,
+       1,
+       1
+      ],
+      "c5": [
+       0.35,
+       0.36,
+       0.4,
+       1
+      ],
+      "c6": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "contrast": 1.5
+     }
+    },
+    {
+     "type": "light-shade",
+     "params": {
+      "source": 0,
+      "bevel": 30,
+      "highlight": [
+       1,
+       1,
+       1,
+       0.8
+      ],
+      "shadow": [
+       0,
+       0,
+       0,
+       0.8
+      ],
+      "specular": 1.1,
+      "shininess": 70
+     }
+    }
+   ]
+  },
+  {
+   "id": "polka",
+   "name": "Polka Dots",
+   "group": "Shader looks",
+   "description": "Cartoon teal shading with pop-art polka dots in the shadows.",
+   "effects": [
+    {
+     "type": "light-shade",
+     "params": {
+      "steps": 2,
+      "highlight": [
+       1,
+       1,
+       0.8,
+       0.5
+      ],
+      "shadow": [
+       0,
+       0.2,
+       0.25,
+       0.7
+      ],
+      "specular": 0
+     }
+    },
+    {
+     "type": "palette-map",
+     "params": {
+      "count": 3,
+      "bands": 1,
+      "c1": [
+       0.08,
+       0.42,
+       0.45,
+       1
+      ],
+      "c2": [
+       0.35,
+       0.78,
+       0.58,
+       1
+      ],
+      "c3": [
+       0.95,
+       0.95,
+       0.62,
+       1
+      ]
+     }
+    },
+    {
+     "type": "halftone",
+     "params": {
+      "pattern": 0,
+      "cell": 12,
+      "colors": 0,
+      "ink": [
+       0.04,
+       0.28,
+       0.3,
+       1
+      ],
+      "paper": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "softness": 0.1,
+      "contrast": 1.6
+     },
+     "mix": 0.5,
+     "blend": "multiply"
+    }
+   ]
+  },
+  {
+   "id": "prism",
+   "name": "Prism",
+   "group": "Shader looks",
+   "description": "Iridescent rainbow foil with a glossy sweep.",
+   "effects": [
+    {
+     "type": "holographic",
+     "params": {
+      "intensity": 1.15,
+      "scale": 2.2,
+      "pastel": 0.15,
+      "keep": 0.1,
+      "speed": 0.15
+     }
+    },
+    {
+     "type": "light-shade",
+     "params": {
+      "highlight": [
+       1,
+       1,
+       1,
+       0.5
+      ],
+      "shadow": [
+       0.2,
+       0,
+       0.4,
+       0.4
+      ],
+      "specular": 0.8
+     }
+    },
+    {
+     "type": "gloss",
+     "params": {
+      "speed": 0.4,
+      "intensity": 0.8
+     }
+    }
+   ]
+  },
+  {
+   "id": "hope",
+   "name": "Hope",
+   "group": "Shader looks",
+   "description": "Four-color political poster: navy, red, steel blue and cream with line shading.",
+   "effects": [
+    {
+     "type": "color-adjust",
+     "params": {
+      "contrast": 0.35
+     }
+    },
+    {
+     "type": "palette-map",
+     "params": {
+      "count": 4,
+      "bands": 1,
+      "c1": [
+       0,
+       0.2,
+       0.3,
+       1
+      ],
+      "c2": [
+       0.84,
+       0.1,
+       0.13,
+       1
+      ],
+      "c3": [
+       0.44,
+       0.6,
+       0.63,
+       1
+      ],
+      "c4": [
+       0.99,
+       0.9,
+       0.65,
+       1
+      ]
+     }
+    },
+    {
+     "type": "halftone",
+     "params": {
+      "pattern": 1,
+      "cell": 6,
+      "angle": 0,
+      "colors": 1
+     },
+     "mix": 0.3,
+     "blend": "multiply"
+    },
+    {
+     "type": "stroke",
+     "params": {
+      "width": 10,
+      "color": [
+       0.84,
+       0.1,
+       0.13,
+       1
+      ],
+      "position": 0
+     }
+    }
+   ]
+  },
+  {
+   "id": "jaipur-noire",
+   "name": "Jaipur Noire",
+   "group": "Shader looks",
+   "description": "Glossy black lacquer with crisp white specular highlights.",
+   "effects": [
+    {
+     "type": "color-adjust",
+     "params": {
+      "saturation": -1,
+      "exposure": -2.2,
+      "contrast": 0.6
+     }
+    },
+    {
+     "type": "light-shade",
+     "params": {
+      "steps": 2,
+      "highlight": [
+       1,
+       1,
+       1,
+       0.35
+      ],
+      "shadow": [
+       0,
+       0,
+       0,
+       1
+      ],
+      "specular": 1.5,
+      "shininess": 140,
+      "rim": 0.5,
+      "rimColor": [
+       0.9,
+       0.9,
+       0.95,
+       1
+      ]
+     }
+    },
+    {
+     "type": "gloss",
+     "params": {
+      "speed": 0.25,
+      "width": 0.06,
+      "intensity": 0.9
+     }
+    }
+   ]
+  },
+  {
+   "id": "shaderverse",
+   "name": "Shaderverse",
+   "group": "Shader looks",
+   "description": "Lavender print with diagonal line halftone shading.",
+   "effects": [
+    {
+     "type": "palette-map",
+     "params": {
+      "count": 2,
+      "bands": 0.4,
+      "c1": [
+       0.3,
+       0.26,
+       0.6,
+       1
+      ],
+      "c2": [
+       0.62,
+       0.58,
+       0.95,
+       1
+      ],
+      "contrast": 1.4
+     }
+    },
+    {
+     "type": "halftone",
+     "params": {
+      "pattern": 1,
+      "cell": 7,
+      "angle": 35,
+      "colors": 0,
+      "ink": [
+       0.22,
+       0.18,
+       0.5,
+       1
+      ],
+      "paper": [
+       0.68,
+       0.64,
+       0.98,
+       1
+      ],
+      "contrast": 1.3
+     },
+     "mix": 0.85
+    }
+   ]
+  },
+  {
+   "id": "scribbles",
+   "name": "Scribbles",
+   "group": "Shader looks",
+   "description": "Messy black pen scribbles that boil like hand-drawn animation.",
+   "effects": [
+    {
+     "type": "sketch",
+     "params": {
+      "spacing": 6,
+      "width": 1.3,
+      "layers": 4,
+      "scribble": 0.8,
+      "outline": 1.2,
+      "wobble": 2.5,
+      "boil": 8,
+      "ink": [
+       0.06,
+       0.06,
+       0.07,
+       1
+      ],
+      "paper": [
+       0.98,
+       0.98,
+       0.97,
+       1
+      ],
+      "contrast": 1.5
+     }
+    }
+   ]
+  },
+  {
+   "id": "rocky",
+   "name": "Rocky VI",
+   "group": "Shader looks",
+   "description": "Cracked orange sandstone with chunky lighting.",
+   "effects": [
+    {
+     "type": "palette-map",
+     "params": {
+      "count": 3,
+      "bands": 0.3,
+      "c1": [
+       0.3,
+       0.12,
+       0.04,
+       1
+      ],
+      "c2": [
+       0.78,
+       0.43,
+       0.15,
+       1
+      ],
+      "c3": [
+       0.99,
+       0.74,
+       0.4,
+       1
+      ]
+     }
+    },
+    {
+     "type": "voronoi",
+     "params": {
+      "scale": 70,
+      "style": 1,
+      "edge": 0.06,
+      "speed": 0,
+      "colorA": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "colorB": [
+       0.25,
+       0.1,
+       0.03,
+       1
+      ],
+      "mode": 2
+     }
+    },
+    {
+     "type": "light-shade",
+     "params": {
+      "source": 1,
+      "bump": 6,
+      "bevel": 30,
+      "specular": 0.25,
+      "highlight": [
+       1,
+       0.95,
+       0.8,
+       0.45
+      ],
+      "shadow": [
+       0.15,
+       0.05,
+       0,
+       0.6
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "molly",
+   "name": "Molly",
+   "group": "Shader looks",
+   "description": "Electric stained-glass triangles with dark lead lines.",
+   "effects": [
+    {
+     "type": "lowpoly",
+     "params": {
+      "size": 34,
+      "colorMode": 1,
+      "mode": 2,
+      "edge": 1.6,
+      "edgeColor": [
+       0.05,
+       0.04,
+       0.08,
+       1
+      ],
+      "shading": 0.3,
+      "saturation": 1.3
+     }
+    }
+   ]
+  },
+  {
+   "id": "dither-1bit",
+   "name": "Dither",
+   "group": "Shader looks",
+   "description": "Black-and-white halftone dots, like a 1-bit printout.",
+   "effects": [
+    {
+     "type": "dither",
+     "params": {
+      "pattern": 5,
+      "palette": 0,
+      "pixel": 1,
+      "cell": 9,
+      "contrast": 1.3,
+      "colorA": [
+       0.04,
+       0.04,
+       0.05,
+       1
+      ],
+      "colorB": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "clear": 0
+     }
+    }
+   ]
+  },
+  {
+   "id": "hologram",
+   "name": "Hologram",
+   "group": "Shader looks",
+   "description": "See-through cyan projection with scanlines, edge glow and glitches.",
+   "effects": [
+    {
+     "type": "color-adjust",
+     "params": {
+      "saturation": -1,
+      "contrast": 0.3
+     }
+    },
+    {
+     "type": "palette-map",
+     "params": {
+      "count": 2,
+      "bands": 0,
+      "c1": [
+       0,
+       0.18,
+       0.24,
+       1
+      ],
+      "c2": [
+       0.55,
+       1,
+       1,
+       1
+      ]
+     }
+    },
+    {
+     "type": "edges",
+     "params": {
+      "mode": 0,
+      "strength": 3,
+      "width": 1.5,
+      "color": [
+       0.6,
+       1,
+       1,
+       1
+      ]
+     },
+     "blend": "screen"
+    },
+    {
+     "type": "crt",
+     "params": {
+      "curvature": 0,
+      "corner": 0,
+      "lines": 5,
+      "scan": 0.85,
+      "mask": 0,
+      "bloom": 0.6,
+      "vignette": 0,
+      "bezel": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "noise": 0.06,
+      "reflection": 0,
+      "rollBar": 0.35,
+      "roll": 0.4
+     }
+    },
+    {
+     "type": "glitch",
+     "params": {
+      "amount": 0.25,
+      "shift": 30,
+      "rgb": 4,
+      "slices": 18,
+      "blocks": 0
+     }
+    },
+    {
+     "type": "luma-key",
+     "params": {
+      "mode": 0,
+      "level": 0.02,
+      "softness": 0.6
+     }
+    }
+   ]
+  },
+  {
+   "id": "alpha",
+   "name": "Alpha",
+   "group": "Shader looks",
+   "description": "Peach halftone where the shadows dissolve into transparency.",
+   "effects": [
+    {
+     "type": "dither",
+     "params": {
+      "pattern": 5,
+      "palette": 0,
+      "pixel": 1,
+      "cell": 8,
+      "contrast": 1.3,
+      "colorA": [
+       0,
+       0,
+       0,
+       1
+      ],
+      "colorB": [
+       0.98,
+       0.72,
+       0.58,
+       1
+      ],
+      "clear": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "wind-waker",
+   "name": "Wind Waker",
+   "group": "Shader looks",
+   "description": "Cel-shaded slate toon with a bright rim and drifting wind streaks.",
+   "effects": [
+    {
+     "type": "light-shade",
+     "params": {
+      "steps": 2,
+      "highlight": [
+       0.9,
+       0.95,
+       1,
+       0.5
+      ],
+      "shadow": [
+       0,
+       0.05,
+       0.1,
+       0.8
+      ],
+      "rim": 0.8,
+      "rimColor": [
+       0.8,
+       0.95,
+       1,
+       1
+      ],
+      "specular": 0
+     }
+    },
+    {
+     "type": "palette-map",
+     "params": {
+      "count": 3,
+      "bands": 1,
+      "c1": [
+       0.1,
+       0.14,
+       0.17,
+       1
+      ],
+      "c2": [
+       0.24,
+       0.33,
+       0.37,
+       1
+      ],
+      "c3": [
+       0.62,
+       0.72,
+       0.76,
+       1
+      ]
+     }
+    },
+    {
+     "type": "line-mod",
+     "params": {
+      "spacing": 26,
+      "thickness": 0.2,
+      "minThick": 0,
+      "shift": 0,
+      "wobble": 6,
+      "wobbleSize": 300,
+      "jitter": 0,
+      "speed": 0.8,
+      "lineColor": [
+       0.95,
+       0.98,
+       1,
+       0.8
+      ],
+      "bg": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "keepColor": 0,
+      "contrast": 0.2
+     },
+     "blend": "screen",
+     "mix": 0.5
+    }
+   ]
+  },
+  {
+   "id": "aqua",
+   "name": "Aqua",
+   "group": "Shader looks",
+   "description": "Wet turquoise toon shading with glassy highlights.",
+   "effects": [
+    {
+     "type": "palette-map",
+     "params": {
+      "count": 3,
+      "bands": 1,
+      "c1": [
+       0.05,
+       0.45,
+       0.5,
+       1
+      ],
+      "c2": [
+       0.3,
+       0.85,
+       0.8,
+       1
+      ],
+      "c3": [
+       0.85,
+       1,
+       0.95,
+       1
+      ]
+     }
+    },
+    {
+     "type": "light-shade",
+     "params": {
+      "steps": 3,
+      "specular": 1,
+      "shininess": 80,
+      "highlight": [
+       1,
+       1,
+       1,
+       0.4
+      ],
+      "shadow": [
+       0,
+       0.2,
+       0.3,
+       0.5
+      ]
+     }
+    },
+    {
+     "type": "gloss",
+     "params": {
+      "speed": 0.3,
+      "width": 0.08
+     }
+    }
+   ]
+  },
+  {
+   "id": "blueprint",
+   "name": "Blueprint",
+   "group": "Shader looks",
+   "description": "White technical line drawing on a blueprint grid.",
+   "effects": [
+    {
+     "type": "color-adjust",
+     "params": {
+      "saturation": -1,
+      "contrast": 0.4
+     }
+    },
+    {
+     "type": "palette-map",
+     "params": {
+      "count": 2,
+      "bands": 0,
+      "c1": [
+       0.05,
+       0.2,
+       0.5,
+       1
+      ],
+      "c2": [
+       0.16,
+       0.36,
+       0.7,
+       1
+      ]
+     }
+    },
+    {
+     "type": "edges",
+     "params": {
+      "mode": 0,
+      "strength": 3.5,
+      "width": 1.4,
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ]
+     },
+     "blend": "screen"
+    },
+    {
+     "type": "grid",
+     "params": {
+      "style": 3,
+      "spacing": 24,
+      "width": 1,
+      "major": 5,
+      "color": [
+       0.85,
+       0.92,
+       1,
+       0.35
+      ],
+      "bg": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "mode": 1
+     }
+    },
+    {
+     "type": "stroke",
+     "params": {
+      "width": 3,
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "position": 2
+     }
+    }
+   ]
+  },
+  {
+   "id": "chroma",
+   "name": "Chroma",
+   "group": "Shader looks",
+   "description": "Inky black with rainbow chromatic highlights splitting off the edges.",
+   "effects": [
+    {
+     "type": "color-adjust",
+     "params": {
+      "exposure": -1.6,
+      "saturation": -0.8
+     }
+    },
+    {
+     "type": "light-shade",
+     "params": {
+      "highlight": [
+       1,
+       1,
+       1,
+       0.9
+      ],
+      "shadow": [
+       0,
+       0,
+       0,
+       1
+      ],
+      "specular": 1.4,
+      "shininess": 30
+     }
+    },
+    {
+     "type": "rgb-split",
+     "params": {
+      "amount": 12,
+      "mode": 1,
+      "falloff": 1.2,
+      "spectral": 1
+     }
+    },
+    {
+     "type": "glow",
+     "params": {
+      "threshold": 0.5,
+      "radius": 24,
+      "intensity": 1.4
+     }
+    }
+   ]
+  },
+  {
+   "id": "kismet",
+   "name": "Kismet",
+   "group": "Shader looks",
+   "description": "A glowing white wireframe mesh, nothing else.",
+   "effects": [
+    {
+     "type": "lowpoly",
+     "params": {
+      "size": 46,
+      "mode": 1,
+      "edge": 1.4,
+      "edgeColor": [
+       0.9,
+       0.97,
+       1,
+       1
+      ],
+      "colorMode": 2
+     }
+    },
+    {
+     "type": "glow",
+     "params": {
+      "source": 0,
+      "threshold": 0.2,
+      "radius": 18,
+      "intensity": 1.2
+     }
+    }
+   ]
+  },
+  {
+   "id": "ember",
+   "name": "Ember",
+   "group": "Shader looks",
+   "description": "Molten orange glow with flames licking off the top.",
+   "effects": [
+    {
+     "type": "palette-map",
+     "params": {
+      "count": 3,
+      "bands": 0,
+      "c1": [
+       0.55,
+       0.06,
+       0.02,
+       1
+      ],
+      "c2": [
+       1,
+       0.45,
+       0.1,
+       1
+      ],
+      "c3": [
+       1,
+       0.92,
+       0.6,
+       1
+      ]
+     }
+    },
+    {
+     "type": "fire",
+     "params": {
+      "height": 55,
+      "intensity": 1,
+      "burn": 0,
+      "embers": 0.4,
+      "scale": 40
+     }
+    },
+    {
+     "type": "glow",
+     "params": {
+      "threshold": 0.55,
+      "radius": 40,
+      "intensity": 1.1
+     }
+    }
+   ]
+  },
+  {
+   "id": "snow",
+   "name": "Snow (Hey Oh)",
+   "group": "Shader looks",
+   "description": "Dark slate figure with fresh snow settled on every top surface.",
+   "effects": [
+    {
+     "type": "palette-map",
+     "params": {
+      "count": 2,
+      "bands": 1,
+      "c1": [
+       0.13,
+       0.18,
+       0.25,
+       1
+      ],
+      "c2": [
+       0.28,
+       0.36,
+       0.45,
+       1
+      ]
+     }
+    },
+    {
+     "type": "light-shade",
+     "params": {
+      "light": -90,
+      "elevation": 22,
+      "steps": 1,
+      "highlight": [
+       0.97,
+       0.98,
+       1,
+       1
+      ],
+      "shadow": [
+       0,
+       0,
+       0,
+       0.3
+      ],
+      "specular": 0,
+      "bevel": 40
+     }
+    }
+   ]
+  },
+  {
+   "id": "inferno",
+   "name": "Inferno",
+   "group": "Shader looks",
+   "description": "Charred black silhouette burning from the edges.",
+   "effects": [
+    {
+     "type": "color-adjust",
+     "params": {
+      "exposure": -3,
+      "saturation": -0.5
+     }
+    },
+    {
+     "type": "fire",
+     "params": {
+      "height": 60,
+      "wrap": 1,
+      "intensity": 1.4,
+      "burn": 0.6,
+      "scale": 35,
+      "embers": 0.6
+     }
+    },
+    {
+     "type": "glow",
+     "params": {
+      "threshold": 0.5,
+      "radius": 30,
+      "intensity": 1.3
+     }
+    }
+   ]
+  },
+  {
+   "id": "ascii-art",
+   "name": "ASCII",
+   "group": "Shader looks",
+   "description": "White typewriter characters shaped like the image.",
+   "effects": [
+    {
+     "type": "ascii",
+     "params": {
+      "cell": 10,
+      "charset": 0,
+      "colorMode": 1,
+      "fg": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "bg": [
+       0,
+       0,
+       0,
+       0
+      ],
+      "contrast": 1.4
+     }
+    }
+   ]
+  },
+  {
+   "id": "cosmos",
+   "name": "Cosmos",
+   "group": "Shader looks",
+   "description": "A window into deep space, framed by a faint violet rim.",
+   "effects": [
+    {
+     "type": "starfield",
+     "params": {
+      "mode": 0,
+      "nebula": 0.9,
+      "density": 0.6,
+      "speed": 8
+     }
+    },
+    {
+     "type": "edge-glow",
+     "params": {
+      "color": [
+       0.65,
+       0.5,
+       1,
+       1
+      ],
+      "width": 2,
+      "spread": 30,
+      "intensity": 1,
+      "fill": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "outline",
+   "name": "Outline",
+   "group": "Shader looks",
+   "description": "Clean white contour lines on black, like a coloring book.",
+   "effects": [
+    {
+     "type": "edges",
+     "params": {
+      "mode": 0,
+      "strength": 2.6,
+      "width": 1.6,
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ]
+     }
+    },
+    {
+     "type": "stroke",
+     "params": {
+      "width": 4,
+      "color": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "position": 2,
+      "only": 0
+     }
+    }
+   ]
+  },
+  {
+   "id": "modulation-dither",
+   "name": "Modulation Dither",
+   "group": "Retro & screens",
+   "description": "Green oscilloscope scan lines that thicken with brightness, with dither, grain and a hint of color fringing.",
+   "effects": [
+    {
+     "type": "color-adjust",
+     "params": {
+      "contrast": 0.25
+     }
+    },
+    {
+     "type": "line-mod",
+     "params": {
+      "spacing": 6,
+      "thickness": 1.05,
+      "minThick": 0.12,
+      "shift": 4,
+      "wobble": 5,
+      "wobbleSize": 240,
+      "jitter": 2,
+      "detail": 4,
+      "speed": 0.35,
+      "lineColor": [
+       0.72,
+       0.95,
+       0.65,
+       1
+      ],
+      "bg": [
+       0.02,
+       0.06,
+       0.03,
+       1
+      ],
+      "keepColor": 0,
+      "contrast": 1.4
+     }
+    },
+    {
+     "type": "dither",
+     "params": {
+      "pattern": 2,
+      "palette": 1,
+      "levels": 6,
+      "pixel": 1,
+      "spread": 0.6,
+      "colorA": [
+       0.01,
+       0.04,
+       0.02,
+       1
+      ],
+      "colorB": [
+       0.82,
+       1,
+       0.78,
+       1
+      ]
+     },
+     "mix": 0.45
+    },
+    {
+     "type": "film-grain",
+     "params": {
+      "amount": 0.3,
+      "size": 1.4,
+      "color": 0.35
+     }
+    },
+    {
+     "type": "rgb-split",
+     "params": {
+      "amount": 1.6
+     }
+    },
+    {
+     "type": "vignette",
+     "params": {
+      "amount": 0.55
+     }
+    }
+   ]
+  },
+  {
+   "id": "vhs-memories",
+   "name": "VHS Memories",
+   "group": "Retro & screens",
+   "description": "Warm, worn home-video tape with tracking wobble and grain.",
+   "effects": [
+    {
+     "type": "color-adjust",
+     "params": {
+      "temperature": 0.25,
+      "saturation": -0.1,
+      "blacks": 0.15
+     }
+    },
+    {
+     "type": "vhs",
+     "params": {}
+    },
+    {
+     "type": "film-grain",
+     "params": {
+      "amount": 0.18
+     }
+    },
+    {
+     "type": "vignette",
+     "params": {
+      "amount": 0.4
+     }
+    }
+   ]
+  },
+  {
+   "id": "arcade",
+   "name": "Arcade CRT",
+   "group": "Retro & screens",
+   "description": "PICO-8 colors on a glowing curved arcade tube.",
+   "effects": [
+    {
+     "type": "dither",
+     "params": {
+      "palette": 5,
+      "pattern": 1,
+      "pixel": 4,
+      "spread": 1
+     }
+    },
+    {
+     "type": "crt",
+     "params": {
+      "maskType": 1,
+      "bloom": 0.7,
+      "lines": 4,
+      "scan": 0.55,
+      "curvature": 0.35,
+      "roll": 0.2
+     }
+    }
+   ]
+  },
+  {
+   "id": "gameboy",
+   "name": "Game Boy",
+   "group": "Retro & screens",
+   "description": "Four shades of olive green, chunky pixels and a soft LCD.",
+   "effects": [
+    {
+     "type": "dither",
+     "params": {
+      "palette": 3,
+      "pattern": 1,
+      "pixel": 5,
+      "spread": 0.9
+     }
+    },
+    {
+     "type": "crt",
+     "params": {
+      "curvature": 0,
+      "corner": 0.02,
+      "maskType": 3,
+      "mask": 0,
+      "scan": 0.25,
+      "lines": 5,
+      "bloom": 0.2,
+      "vignette": 0.2,
+      "reflection": 0
+     }
+    }
+   ]
+  },
+  {
+   "id": "matrix",
+   "name": "Matrix Code",
+   "group": "Retro & screens",
+   "description": "Falling green katakana code shaped by the picture.",
+   "effects": [
+    {
+     "type": "ascii",
+     "params": {
+      "charset": 4,
+      "colorMode": 2,
+      "rain": 1.2,
+      "cell": 12,
+      "glow": 0.6,
+      "bg": [
+       0,
+       0.02,
+       0,
+       1
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "comic",
+   "name": "Comic Print",
+   "group": "Retro & screens",
+   "description": "CMYK dots with bold ink outlines, like a printed comic.",
+   "effects": [
+    {
+     "type": "halftone",
+     "params": {
+      "pattern": 3,
+      "cell": 8,
+      "colors": 1
+     }
+    },
+    {
+     "type": "edges",
+     "params": {
+      "mode": 1,
+      "strength": 2,
+      "width": 1.6,
+      "color": [
+       0.05,
+       0.05,
+       0.08,
+       1
+      ]
+     },
+     "blend": "multiply"
+    }
+   ]
+  },
+  {
+   "id": "boss-gold",
+   "name": "Boss Title · Gold",
+   "group": "Boss titles",
+   "description": "A golden dithered gradient in the letters, glowing softly, revealed through a dither wipe while the letters drift together.",
+   "effects": [
+    {
+     "type": "gradient",
+     "params": {
+      "kind": 0,
+      "start": [
+       0.5,
+       0
+      ],
+      "end": [
+       0.5,
+       1
+      ],
+      "colorA": [
+       1,
+       0.93,
+       0.7,
+       1
+      ],
+      "colorB": [
+       0.62,
+       0.43,
+       0.14,
+       1
+      ],
+      "mode": 0
+     }
+    },
+    {
+     "type": "dither",
+     "params": {
+      "pattern": 2,
+      "palette": 8,
+      "levels": 5,
+      "pixel": 2,
+      "spread": 1
+     }
+    },
+    {
+     "type": "dither-fade",
+     "params": {
+      "direction": 4,
+      "width": 0.5,
+      "pixel": 3,
+      "edge": 0.6,
+      "edgeColor": [
+       1,
+       0.85,
+       0.5,
+       1
+      ]
+     },
+     "keys": {
+      "param": "progress",
+      "frames": [
+       [
+        0,
+        0
+       ],
+       [
+        1.6,
+        1
+       ]
+      ]
+     }
+    },
+    {
+     "type": "glow",
+     "params": {
+      "source": 1,
+      "radius": 40,
+      "intensity": 1.2,
+      "color": [
+       1,
+       0.75,
+       0.35,
+       0.8
+      ]
+     }
+    }
+   ],
+   "textAnims": [
+    {
+     "type": "tracking-in",
+     "duration": 2.2,
+     "amount": 0.35
+    }
+   ]
+  },
+  {
+   "id": "boss-crimson",
+   "name": "Boss Title · Crimson",
+   "group": "Boss titles",
+   "description": "Blood-red dithered type with dark vignette glow, swept in from the left.",
+   "effects": [
+    {
+     "type": "gradient",
+     "params": {
+      "kind": 0,
+      "start": [
+       0,
+       0.5
+      ],
+      "end": [
+       1,
+       0.5
+      ],
+      "colorA": [
+       0.95,
+       0.25,
+       0.18,
+       1
+      ],
+      "colorB": [
+       0.35,
+       0.02,
+       0.05,
+       1
+      ],
+      "mode": 0
+     }
+    },
+    {
+     "type": "dither",
+     "params": {
+      "pattern": 1,
+      "palette": 8,
+      "levels": 4,
+      "pixel": 2,
+      "spread": 1.2
+     }
+    },
+    {
+     "type": "dither-fade",
+     "params": {
+      "direction": 0,
+      "width": 0.6,
+      "pixel": 3,
+      "edge": 0.8,
+      "edgeColor": [
+       1,
+       0.35,
+       0.2,
+       1
+      ]
+     },
+     "keys": {
+      "param": "progress",
+      "frames": [
+       [
+        0,
+        0
+       ],
+       [
+        1.3,
+        1
+       ]
+      ]
+     }
+    },
+    {
+     "type": "glow",
+     "params": {
+      "source": 1,
+      "radius": 55,
+      "intensity": 1.3,
+      "color": [
+       0.9,
+       0.1,
+       0.05,
+       0.9
+      ]
+     }
+    }
+   ],
+   "textAnims": [
+    {
+     "type": "fade-up",
+     "duration": 1.2,
+     "stagger": 0.06,
+     "amount": 0.3
+    }
+   ]
+  },
+  {
+   "id": "boss-frost",
+   "name": "Boss Title · Moonlit",
+   "group": "Boss titles",
+   "description": "Pale blue-silver dithered letters that shimmer like cold moonlight.",
+   "effects": [
+    {
+     "type": "gradient",
+     "params": {
+      "kind": 1,
+      "start": [
+       0.5,
+       0.5
+      ],
+      "end": [
+       1,
+       1
+      ],
+      "colorA": [
+       0.92,
+       0.97,
+       1,
+       1
+      ],
+      "colorB": [
+       0.35,
+       0.48,
+       0.7,
+       1
+      ],
+      "mode": 0
+     }
+    },
+    {
+     "type": "dither",
+     "params": {
+      "pattern": 3,
+      "palette": 8,
+      "levels": 4,
+      "pixel": 2,
+      "spread": 1,
+      "animate": 8
+     }
+    },
+    {
+     "type": "dither-fade",
+     "params": {
+      "direction": 6,
+      "width": 0.4,
+      "pixel": 2,
+      "pattern": 1,
+      "edge": 0.4,
+      "edgeColor": [
+       0.7,
+       0.85,
+       1,
+       1
+      ]
+     },
+     "keys": {
+      "param": "progress",
+      "frames": [
+       [
+        0,
+        0
+       ],
+       [
+        2,
+        1
+       ]
+      ]
+     }
+    },
+    {
+     "type": "glow",
+     "params": {
+      "source": 1,
+      "radius": 45,
+      "intensity": 1,
+      "color": [
+       0.6,
+       0.75,
+       1,
+       0.8
+      ]
+     }
+    }
+   ],
+   "textAnims": [
+    {
+     "type": "flash-in",
+     "duration": 0.8,
+     "stagger": 0.05,
+     "order": "random"
+    }
+   ]
+  },
+  {
+   "id": "boss-backdrop",
+   "name": "Boss Backdrop",
+   "group": "Boss titles",
+   "description": "For the footage behind a title: darkens it, adds a dithered grade and vignette so the title pops.",
+   "effects": [
+    {
+     "type": "color-adjust",
+     "params": {
+      "exposure": -0.6,
+      "saturation": -0.4,
+      "contrast": 0.25
+     }
+    },
+    {
+     "type": "dither",
+     "params": {
+      "pattern": 2,
+      "palette": 8,
+      "levels": 6,
+      "pixel": 2,
+      "spread": 0.8
+     },
+     "mix": 0.6
+    },
+    {
+     "type": "vignette",
+     "params": {
+      "amount": 0.8,
+      "radius": 0.6
+     }
+    },
+    {
+     "type": "film-grain",
+     "params": {
+      "amount": 0.2
+     }
+    }
+   ]
+  },
+  {
+   "id": "chromatic-glass",
+   "name": "Chromatic Glass",
+   "group": "Glass & metal",
+   "description": "A thick frosted glass button whose rim splits light into a rainbow.",
+   "effects": [
+    {
+     "type": "glass",
+     "params": {
+      "thickness": 70,
+      "refraction": 110,
+      "dispersion": 1,
+      "frost": 12,
+      "edgeSoft": 0.5,
+      "tint": [
+       0.85,
+       0.9,
+       1,
+       0.18
+      ],
+      "brightness": 0.95,
+      "edge": 0.85,
+      "specular": 0.7,
+      "fresnel": 0.55,
+      "inner": 0.35
+     }
+    },
+    {
+     "type": "drop-shadow",
+     "params": {
+      "distance": 14,
+      "softness": 30,
+      "opacity": 0.35
+     }
+    }
+   ]
+  },
+  {
+   "id": "liquid-chrome",
+   "name": "Liquid Chrome",
+   "group": "Glass & metal",
+   "description": "Mirror-polished chrome with rippled reflections and a moving shine.",
+   "effects": [
+    {
+     "type": "chrome",
+     "params": {
+      "bevel": 22,
+      "depth": 1.8,
+      "bands": 3
+     }
+    },
+    {
+     "type": "gloss",
+     "params": {
+      "speed": 0.4
+     }
+    },
+    {
+     "type": "drop-shadow",
+     "params": {
+      "distance": 16,
+      "softness": 30
+     }
+    }
+   ]
+  },
+  {
+   "id": "neon",
+   "name": "Neon Sign",
+   "group": "Light & fire",
+   "description": "Glowing neon tube lettering that flickers to life.",
+   "effects": [
+    {
+     "type": "edge-glow",
+     "params": {
+      "color": [
+       1,
+       0.3,
+       0.7,
+       1
+      ],
+      "width": 5,
+      "spread": 50,
+      "intensity": 2,
+      "fill": 0.08
+     }
+    },
+    {
+     "type": "glow",
+     "params": {
+      "source": 0,
+      "threshold": 0.3,
+      "radius": 60,
+      "intensity": 1.2
+     }
+    }
+   ],
+   "textAnims": [
+    {
+     "type": "flash-in",
+     "duration": 0.7,
+     "stagger": 0.06,
+     "order": "random"
+    },
+    {
+     "type": "flicker",
+     "amount": 0.6
+    }
+   ]
+  },
+  {
+   "id": "god-rays",
+   "name": "Heavenly",
+   "group": "Light & fire",
+   "description": "Warm god rays pouring out of the layer, with bloom.",
+   "effects": [
+    {
+     "type": "light-rays",
+     "params": {
+      "length": 0.5,
+      "intensity": 1.3,
+      "center": [
+       0.5,
+       -0.3
+      ],
+      "threshold": 0.4
+     }
+    },
+    {
+     "type": "glow",
+     "params": {
+      "threshold": 0.6,
+      "radius": 50,
+      "intensity": 1.2
+     }
+    }
+   ]
+  }
+ ],
+ "fonts": [
+  {
+   "family": "Anton",
+   "category": "display",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Bebas Neue",
+   "category": "display",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Archivo Black",
+   "category": "display",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "League Gothic",
+   "category": "display",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Oswald",
+   "category": "display",
+   "weights": [
+    400,
+    600,
+    700
+   ]
+  },
+  {
+   "family": "Big Shoulders Display",
+   "category": "display",
+   "weights": [
+    400,
+    700,
+    900
+   ]
+  },
+  {
+   "family": "Barlow Condensed",
+   "category": "display",
+   "weights": [
+    500,
+    700,
+    900
+   ]
+  },
+  {
+   "family": "Teko",
+   "category": "display",
+   "weights": [
+    400,
+    600
+   ]
+  },
+  {
+   "family": "Bricolage Grotesque",
+   "category": "display",
+   "weights": [
+    400,
+    700,
+    800
+   ]
+  },
+  {
+   "family": "Syne",
+   "category": "display",
+   "weights": [
+    500,
+    700,
+    800
+   ]
+  },
+  {
+   "family": "Unbounded",
+   "category": "display",
+   "weights": [
+    400,
+    700,
+    900
+   ]
+  },
+  {
+   "family": "Climate Crisis",
+   "category": "display",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Rubik Mono One",
+   "category": "display",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Bungee",
+   "category": "display",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Russo One",
+   "category": "display",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Black Ops One",
+   "category": "display",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Orbitron",
+   "category": "display",
+   "weights": [
+    500,
+    700,
+    900
+   ]
+  },
+  {
+   "family": "Audiowide",
+   "category": "display",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Monoton",
+   "category": "display",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Righteous",
+   "category": "display",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Archivo",
+   "category": "sans",
+   "weights": [
+    400,
+    600,
+    800,
+    900
+   ]
+  },
+  {
+   "family": "Inter Tight",
+   "category": "sans",
+   "weights": [
+    400,
+    600,
+    800
+   ]
+  },
+  {
+   "family": "Space Grotesk",
+   "category": "sans",
+   "weights": [
+    400,
+    500,
+    700
+   ]
+  },
+  {
+   "family": "Manrope",
+   "category": "sans",
+   "weights": [
+    400,
+    700,
+    800
+   ]
+  },
+  {
+   "family": "Montserrat",
+   "category": "sans",
+   "weights": [
+    400,
+    700,
+    900
+   ]
+  },
+  {
+   "family": "Poppins",
+   "category": "sans",
+   "weights": [
+    400,
+    600,
+    800
+   ]
+  },
+  {
+   "family": "Outfit",
+   "category": "sans",
+   "weights": [
+    400,
+    600,
+    800
+   ]
+  },
+  {
+   "family": "Sora",
+   "category": "sans",
+   "weights": [
+    400,
+    600,
+    800
+   ]
+  },
+  {
+   "family": "Playfair Display",
+   "category": "serif",
+   "weights": [
+    400,
+    700,
+    900
+   ]
+  },
+  {
+   "family": "DM Serif Display",
+   "category": "serif",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Instrument Serif",
+   "category": "serif",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Fraunces",
+   "category": "serif",
+   "weights": [
+    400,
+    700,
+    900
+   ]
+  },
+  {
+   "family": "Bodoni Moda",
+   "category": "serif",
+   "weights": [
+    400,
+    700,
+    900
+   ]
+  },
+  {
+   "family": "Abril Fatface",
+   "category": "serif",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Cormorant Garamond",
+   "category": "serif",
+   "weights": [
+    500,
+    700
+   ]
+  },
+  {
+   "family": "Cinzel",
+   "category": "serif",
+   "weights": [
+    400,
+    700,
+    900
+   ]
+  },
+  {
+   "family": "Permanent Marker",
+   "category": "script",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Bangers",
+   "category": "script",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Pacifico",
+   "category": "script",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Lobster",
+   "category": "script",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Caveat",
+   "category": "script",
+   "weights": [
+    400,
+    700
+   ]
+  },
+  {
+   "family": "Rock Salt",
+   "category": "script",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "JetBrains Mono",
+   "category": "mono",
+   "weights": [
+    400,
+    700,
+    800
+   ]
+  },
+  {
+   "family": "Space Mono",
+   "category": "mono",
+   "weights": [
+    400,
+    700
+   ]
+  },
+  {
+   "family": "Press Start 2P",
+   "category": "mono",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "VT323",
+   "category": "mono",
+   "weights": [
+    400
+   ]
+  }
+ ],
+ "templates": {
+  "project": {
+   "schema": 1,
+   "id": "3eCp0txHFM0P",
+   "name": "Example",
+   "createdAt": 1792676051028,
+   "modifiedAt": 1792676051028,
+   "settings": {
+    "colorSpace": "srgb",
+    "previewQuality": "auto",
+    "snapping": true,
+    "showSafeZones": false
+   },
+   "compositions": {
+    "kwGoiLdhQHkF": {
+     "id": "kwGoiLdhQHkF",
+     "name": "Main",
+     "width": 1080,
+     "height": 1920,
+     "fps": 30,
+     "duration": 6,
+     "background": [
+      0.05,
+      0.05,
+      0.06,
+      1
+     ],
+     "layers": [],
+     "markers": [],
+     "workArea": null,
+     "loop": true
+    }
+   },
+   "mainCompId": "kwGoiLdhQHkF"
+  },
+  "layers": {
+   "text": {
+    "id": "kuOBt1In7P50",
+    "name": "Hello",
+    "kind": "text",
+    "label": 0,
+    "visible": true,
+    "locked": false,
+    "solo": false,
+    "muted": false,
+    "inPoint": 0,
+    "outPoint": 6,
+    "mediaStart": 0,
+    "speed": 1,
+    "transform": {
+     "position": {
+      "value": [
+       540,
+       960
+      ]
+     },
+     "scale": {
+      "value": [
+       1,
+       1
+      ]
+     },
+     "rotation": {
+      "value": [
+       0
+      ]
+     },
+     "anchor": {
+      "value": [
+       0,
+       0
+      ]
+     },
+     "opacity": {
+      "value": [
+       1
+      ]
+     },
+     "flipX": false,
+     "flipY": false
+    },
+    "blend": "normal",
+    "effects": [],
+    "text": {
+     "content": "Hello",
+     "font": "Archivo",
+     "weight": 800,
+     "italic": false,
+     "size": {
+      "value": [
+       119
+      ]
+     },
+     "tracking": {
+      "value": [
+       0
+      ]
+     },
+     "leading": {
+      "value": [
+       1.1
+      ]
+     },
+     "align": "center",
+     "textCase": "none",
+     "fill": {
+      "value": [
+       0.96,
+       0.95,
+       0.92,
+       1
+      ]
+     },
+     "stroke": {
+      "value": [
+       0,
+       0,
+       0,
+       1
+      ]
+     },
+     "strokeWidth": {
+      "value": [
+       0
+      ]
+     }
+    }
+   },
+   "shape": {
+    "id": "XDXFeLfjEsaR",
+    "name": "Rectangle",
+    "kind": "shape",
+    "label": 3,
+    "visible": true,
+    "locked": false,
+    "solo": false,
+    "muted": false,
+    "inPoint": 0,
+    "outPoint": 6,
+    "mediaStart": 0,
+    "speed": 1,
+    "transform": {
+     "position": {
+      "value": [
+       540,
+       960
+      ]
+     },
+     "scale": {
+      "value": [
+       1,
+       1
+      ]
+     },
+     "rotation": {
+      "value": [
+       0
+      ]
+     },
+     "anchor": {
+      "value": [
+       0,
+       0
+      ]
+     },
+     "opacity": {
+      "value": [
+       1
+      ]
+     },
+     "flipX": false,
+     "flipY": false
+    },
+    "blend": "normal",
+    "effects": [],
+    "shape": {
+     "kind": "rect",
+     "size": {
+      "value": [
+       432,
+       432
+      ]
+     },
+     "radius": {
+      "value": [
+       52
+      ]
+     },
+     "sides": {
+      "value": [
+       6
+      ]
+     },
+     "innerRatio": {
+      "value": [
+       0.45
+      ]
+     },
+     "fillOn": true,
+     "fill": {
+      "value": [
+       0.96,
+       0.72,
+       0.24,
+       1
+      ]
+     },
+     "strokeOn": false,
+     "stroke": {
+      "value": [
+       0.96,
+       0.95,
+       0.92,
+       1
+      ]
+     },
+     "strokeWidth": {
+      "value": [
+       12
+      ]
+     },
+     "roundCaps": true
+    }
+   },
+   "solid": {
+    "id": "Xe7GLAaXlrL2",
+    "name": "Solid",
+    "kind": "solid",
+    "label": 7,
+    "visible": true,
+    "locked": false,
+    "solo": false,
+    "muted": false,
+    "inPoint": 0,
+    "outPoint": 6,
+    "mediaStart": 0,
+    "speed": 1,
+    "transform": {
+     "position": {
+      "value": [
+       540,
+       960
+      ]
+     },
+     "scale": {
+      "value": [
+       1,
+       1
+      ]
+     },
+     "rotation": {
+      "value": [
+       0
+      ]
+     },
+     "anchor": {
+      "value": [
+       0,
+       0
+      ]
+     },
+     "opacity": {
+      "value": [
+       1
+      ]
+     },
+     "flipX": false,
+     "flipY": false
+    },
+    "blend": "normal",
+    "effects": [],
+    "solid": {
+     "color": {
+      "value": [
+       0.1,
+       0.1,
+       0.12,
+       1
+      ]
+     },
+     "width": 1080,
+     "height": 1920
+    }
+   },
+   "adjustment": {
+    "id": "8MInrIdGyXkl",
+    "name": "Adjustment",
+    "kind": "adjustment",
+    "label": 4,
+    "visible": true,
+    "locked": false,
+    "solo": false,
+    "muted": false,
+    "inPoint": 0,
+    "outPoint": 6,
+    "mediaStart": 0,
+    "speed": 1,
+    "transform": {
+     "position": {
+      "value": [
+       540,
+       960
+      ]
+     },
+     "scale": {
+      "value": [
+       1,
+       1
+      ]
+     },
+     "rotation": {
+      "value": [
+       0
+      ]
+     },
+     "anchor": {
+      "value": [
+       0,
+       0
+      ]
+     },
+     "opacity": {
+      "value": [
+       1
+      ]
+     },
+     "flipX": false,
+     "flipY": false
+    },
+    "blend": "normal",
+    "effects": []
+   },
+   "merge": {
+    "id": "QKaoQBhfEhI3",
+    "name": "Metaballs",
+    "kind": "merge",
+    "label": 4,
+    "visible": true,
+    "locked": false,
+    "solo": false,
+    "muted": false,
+    "inPoint": 0,
+    "outPoint": 6,
+    "mediaStart": 0,
+    "speed": 1,
+    "transform": {
+     "position": {
+      "value": [
+       540,
+       960
+      ]
+     },
+     "scale": {
+      "value": [
+       1,
+       1
+      ]
+     },
+     "rotation": {
+      "value": [
+       0
+      ]
+     },
+     "anchor": {
+      "value": [
+       0,
+       0
+      ]
+     },
+     "opacity": {
+      "value": [
+       1
+      ]
+     },
+     "flipX": false,
+     "flipY": false
+    },
+    "blend": "normal",
+    "effects": [],
+    "merge": {
+     "members": [
+      "<layer id>",
+      "<layer id>"
+     ],
+     "goo": {
+      "value": [
+       60
+      ]
+     },
+     "colorBlend": {
+      "value": [
+       0.5
+      ]
+     },
+     "softness": {
+      "value": [
+       1
+      ]
+     },
+     "grow": {
+      "value": [
+       0
+      ]
+     },
+     "wobble": {
+      "value": [
+       0
+      ]
+     },
+     "wobbleScale": {
+      "value": [
+       160
+      ]
+     },
+     "wobbleSpeed": {
+      "value": [
+       0.4
+      ]
+     },
+     "detail": {
+      "value": [
+       1
+      ]
+     },
+     "fillMode": "blend",
+     "color": {
+      "value": [
+       0.96,
+       0.72,
+       0.24,
+       1
+      ]
+     }
+    }
+   },
+   "transition": {
+    "id": "DL7X7tFqxPdM",
+    "name": "Optical Flare",
+    "kind": "transition",
+    "label": 4,
+    "visible": true,
+    "locked": false,
+    "solo": false,
+    "muted": false,
+    "inPoint": 0,
+    "outPoint": 6,
+    "mediaStart": 0,
+    "speed": 1,
+    "transform": {
+     "position": {
+      "value": [
+       540,
+       960
+      ]
+     },
+     "scale": {
+      "value": [
+       1,
+       1
+      ]
+     },
+     "rotation": {
+      "value": [
+       0
+      ]
+     },
+     "anchor": {
+      "value": [
+       0,
+       0
+      ]
+     },
+     "opacity": {
+      "value": [
+       1
+      ]
+     },
+     "flipX": false,
+     "flipY": false
+    },
+    "blend": "normal",
+    "effects": [],
+    "transition": {
+     "type": "flare",
+     "from": "<outgoing layer id>",
+     "to": "<incoming layer id>",
+     "params": {
+      "color": {
+       "value": [
+        1,
+        0.82,
+        0.55,
+        1
+       ]
+      },
+      "intensity": {
+       "value": [
+        1.4
+       ]
+      },
+      "streak": {
+       "value": [
+        0.85
+       ]
+      },
+      "angle": {
+       "value": [
+        0
+       ]
+      },
+      "height": {
+       "value": [
+        0.45
+       ]
+      },
+      "ghosts": {
+       "value": [
+        0.6
+       ]
+      },
+      "halo": {
+       "value": [
+        0.5
+       ]
+      },
+      "flash": {
+       "value": [
+        0.7
+       ]
+      },
+      "glow": {
+       "value": [
+        50
+       ]
+      },
+      "direction": {
+       "value": [
+        0
+       ]
+      },
+      "ease": {
+       "value": [
+        0
+       ]
+      }
+     }
+    }
+   }
+  },
+  "effect": {
+   "id": "oe5Nd3Fr",
+   "type": "glow",
+   "enabled": true,
+   "mix": {
+    "value": [
+     1
+    ]
+   },
+   "blend": "normal",
+   "params": {
+    "source": {
+     "value": [
+      0
+     ]
+    },
+    "threshold": {
+     "value": [
+      0.55
+     ]
+    },
+    "radius": {
+     "value": [
+      40
+     ]
+    },
+    "intensity": {
+     "value": [
+      1.4
+     ]
+    },
+    "color": {
+     "value": [
+      1,
+      1,
+      1,
+      0
+     ]
+    },
+    "saturation": {
+     "value": [
+      1
+     ]
+    }
+   },
+   "field": {
+    "mode": "none",
+    "falloff": "smooth",
+    "invert": false,
+    "center": {
+     "value": [
+      0.5,
+      0.5
+     ]
+    },
+    "radius": {
+     "value": [
+      0.5
+     ]
+    },
+    "feather": {
+     "value": [
+      0.5
+     ]
+    },
+    "aspect": {
+     "value": [
+      1
+     ]
+    },
+    "angle": {
+     "value": [
+      0
+     ]
+    },
+    "ring": {
+     "value": [
+      0.2
+     ]
+    }
+   }
+  },
+  "mask": {
+   "id": "9GbOacE3",
+   "name": "Mask",
+   "kind": "ellipse",
+   "enabled": true,
+   "mode": "add",
+   "invert": false,
+   "target": "layer",
+   "box": {
+    "value": [
+     100,
+     100,
+     400,
+     400
+    ]
+   },
+   "roundness": {
+    "value": [
+     0
+    ]
+   },
+   "path": {
+    "value": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "closed": true,
+   "feather": {
+    "value": [
+     0
+    ]
+   },
+   "expansion": {
+    "value": [
+     0
+    ]
+   },
+   "opacity": {
+    "value": [
+     1
+    ]
+   }
+  },
+  "textAnimator": {
+   "id": "<id>",
+   "type": "bounce-in",
+   "enabled": true,
+   "unit": "char",
+   "order": "forward",
+   "delay": 0,
+   "duration": 0.6,
+   "stagger": 0.05,
+   "amount": 1
+  },
+  "keyframedProp": {
+   "value": [
+    540,
+    960
+   ],
+   "keys": [
+    {
+     "id": "<id>",
+     "t": 0,
+     "v": [
+      540,
+      1400
+     ],
+     "ease": {
+      "type": "preset",
+      "name": "expo.out"
+     }
+    },
+    {
+     "id": "<id>",
+     "t": 1.2,
+     "v": [
+      540,
+      960
+     ],
+     "ease": {
+      "type": "preset",
+      "name": "cubic.inOut"
+     }
+    }
+   ]
+  },
+  "modifiedProp": {
+   "value": [
+    0
+   ],
+   "mods": [
+    {
+     "id": "<id>",
+     "type": "wiggle",
+     "enabled": true,
+     "label": "Shake",
+     "params": {
+      "freq": 8,
+      "amp": 6,
+      "octaves": 1,
+      "stepped": 0,
+      "seed": 1,
+      "linked": 0
+     }
+    }
+   ]
+  }
+ }
+}
