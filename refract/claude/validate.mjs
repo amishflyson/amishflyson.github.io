@@ -156,6 +156,13 @@ for (const [cid, c] of Object.entries(P.compositions)) {
         if (!fonts.has(t.font)) warn(w, `font "${t.font}" is not built in (fine only if it was uploaded on the device)`);
         for (const k of ['size', 'tracking', 'leading', 'strokeWidth']) checkProp(t[k], `${w}.text.${k}`, 1);
         checkProp(t.fill, `${w}.text.fill`, 4); checkProp(t.stroke, `${w}.text.stroke`, 4);
+        if (t.trace) {
+          const tr = t.trace;
+          for (const k of ['progress', 'overlap', 'jitter', 'noise', 'distress', 'width']) checkProp(tr[k], `${w}.text.trace.${k}`, 1);
+          if (!['forward', 'backward', 'center', 'random', 'together'].includes(tr.order)) err(w, `text.trace.order must be forward, backward, center, random or together`);
+          const d = { on: true, reverse: false, fillAfter: true, seed: 1 };
+          for (const [k, v] of Object.entries(d)) if (tr[k] === undefined) { if (fix) { tr[k] = v; fixed++; } else err(`${w}.text.trace`, `missing ${k}`); }
+        }
         for (const [i, a] of (t.animators ?? []).entries()) {
           a.id = claim(a.id, `${w}.animators[${i}]`);
           const def = textAnims.get(a.type);
@@ -169,9 +176,14 @@ for (const [cid, c] of Object.entries(P.compositions)) {
       const s = l.shape;
       if (!s) err(w, 'shape layer needs shape');
       else {
-        if (!['rect', 'ellipse', 'polygon', 'star', 'line'].includes(s.kind)) err(w, `unknown shape "${s.kind}"`);
+        if (!['rect', 'ellipse', 'polygon', 'star', 'line', 'cross', 'target', 'brackets', 'scribble'].includes(s.kind)) err(w, `unknown shape "${s.kind}"`);
         checkProp(s.size, `${w}.shape.size`, 2); checkProp(s.fill, `${w}.shape.fill`, 4); checkProp(s.stroke, `${w}.shape.stroke`, 4);
         for (const k of ['radius', 'sides', 'innerRatio', 'strokeWidth']) checkProp(s[k], `${w}.shape.${k}`, 1);
+        const trim = { trimStart: 0, trimEnd: 1, trimOffset: 0, rough: 0 };
+        for (const [k, v] of Object.entries(trim)) {
+          if (s[k] === undefined) { if (fix) { s[k] = { value: [v] }; fixed++; } }
+          else checkProp(s[k], `${w}.shape.${k}`, 1);
+        }
       }
     }
     if (l.kind === 'solid' && !l.solid) err(w, 'solid layer needs solid');
@@ -187,6 +199,9 @@ for (const [cid, c] of Object.entries(P.compositions)) {
       if (m.path?.value && m.path.value.length % 6) err(`${mw}.path`, 'path needs 6 numbers per point [x, y, inX, inY, outX, outY]');
     }
     if (l.matte && !layerIds.has(l.matte.layerId)) err(w, `matte layer "${l.matte.layerId}" not found`);
+    if (l.timeFps !== undefined && !(l.timeFps >= 0)) err(w, 'timeFps must be a number ≥ 0 (0 = off)');
+    if (l.motionBlur && !(l.motionBlur.shutter > 0 && l.motionBlur.samples >= 2)) err(w, 'motionBlur needs { on, shutter (degrees, e.g. 180), samples (2–32) }');
+    if (l.track !== undefined && typeof l.track !== 'string') err(w, 'track must be a string id shared by the clips on one row');
     if (l.kind === 'merge') {
       if (!l.merge) err(w, 'merge layer needs merge');
       else for (const id of l.merge.members ?? []) if (!layerIds.has(id)) err(w, `merge member "${id}" not found`);

@@ -120,9 +120,19 @@ Copy the templates in `catalog.templates.layers`:
 
 - `text` — `text.content` (use `\n` for lines), `font` (a family from `catalog.fonts`), `weight`,
   `size` (px), `tracking`, `leading`, `fill`, `stroke`, `strokeWidth`, `align`, `textCase`.
-- `shape` — `rect`, `ellipse`, `polygon` (`sides`), `star` (`sides`, `innerRatio`), `line`;
+  **Outline drawing** (letters trace themselves like a pen): add `text.trace = { "on": true,
+  "progress": Prop 0–1, "order": "forward"|"backward"|"center"|"random"|"together",
+  "overlap": Prop 0–1 (0 = one letter after another), "jitter": Prop, "noise": Prop px (hand wobble),
+  "distress": Prop 0–1 (missing stroke bits), "width": Prop px (0 = use strokeWidth),
+  "reverse": false, "fillAfter": true, "seed": 1 }`. Keyframe `progress` 0 → 1. For outline-only
+  type set the fill alpha to 0. Text animations `write-on` (handwriting) and `trace-in` exist too.
+- `shape` — `rect`, `ellipse`, `polygon` (`sides`), `star` (`sides`, `innerRatio`), `line`,
+  `cross` (`innerRatio` = arm thickness), `target` (`sides` = rings, even-odd fill),
+  `brackets` (frame corners, `innerRatio` = corner length), `scribble` (`sides` = loops, `seed`);
   `size [w, h]`, `radius` (rect corners), `fillOn`/`fill`, `strokeOn`/`stroke`/`strokeWidth`.
-  For a hollow outline use `fillOn: false, strokeOn: true` or the `hollow` effect.
+  **Trim paths**: `trimStart`, `trimEnd` (0–1) and `trimOffset` (turns) draw part of the outline —
+  animate `trimEnd` 0 → 1 to draw a shape on. `rough` (px) makes it hand-drawn; `roughBoil` (fps)
+  redraws the wobble. For a hollow outline use `fillOn: false, strokeOn: true` or the `hollow` effect.
 - `solid` — full-frame color (`solid.color`); a great base for generators like `fractal-noise`,
   `gradient`, `grid`, `starfield`.
 - `adjustment` — its effects apply to everything **below** it (color grades, CRT, VHS, grain).
@@ -135,9 +145,16 @@ Copy the templates in `catalog.templates.layers`:
 - `media` — photos/videos from the user's device (`assetId`). You can't add new media; keep the
   existing ones and their `assetId` exactly as they are.
 - **Track matte**: `layer.matte = { "layerId": "…", "mode": "alpha" | "alphaInverted" | "luma" |
-  "lumaInverted" }` shows the layer only where the matte layer is. The matte layer stops drawing.
-  Text matte + noise/gradient fill below it = textured type. Inverted alpha + a "boss" layer =
-  text that sits behind something.
+  "lumaInverted", "keep": false }` shows the layer only where the matte layer is. The matte layer
+  stops drawing (unless `keep: true`). Text matte + noise/gradient fill below it = textured type.
+  Inverted alpha + a "boss" layer = text that sits behind something. **Adjustment layers can have
+  a matte too**: their effects then apply only where the matte is — an animated shape reveals a
+  processed version of everything below. A layer with `"visible": false` still works as a matte.
+- **Clips on one row**: layers that share `track` (any string) and sit next to each other in
+  `layers` are drawn as clips on one timeline row (that's what Split makes). Don't overlap them.
+- **Time**: `timeFps` (e.g. 12 or 8) holds the layer between steps (posterize time). A clip with
+  `speed: 0` is a freeze frame. `motionBlur = { "on": true, "shutter": 180, "samples": 12 }` blurs
+  a layer along its own movement (not its texture).
 
 ## 6. CRT / VHS (`analog`) and other effects with presets
 
@@ -161,7 +178,24 @@ halation, glass, feedback). Work with it like this:
 - Keep defaults subtle: the default is ordinary home VHS on a good TV. Push `tapeAge`,
   `instability` or `signal` only when the brief asks for damage.
 
-## 7. Looks (multi-effect presets)
+## 7. Boss splash (animated-poster reveals)
+
+In the app, *Add → Boss splash* builds a whole "gameplay explodes into a poster" sequence from
+ordinary layers named `✦ …` (they share a `gen` id so they can be replaced as a set). When
+you build one by hand, the recipe is (top of the stack first, all adjustment layers unless noted):
+`Exit burn` (`overexpose`, cyan tint, amount ramps up at the end) · kept HUD layers ·
+`Impact` (`impact`) · `Print` (`dither` blue noise at ~40% mix + `print-texture`) · `Particles`
+(a solid with `particles`, mode "Particles only") · `Star glints` · geometry shapes (ring bursts,
+corners, bars, crosses, scribbles with trim paths, motion blur) · handwritten subtitle
+(`write-on`) · giant outlined title (`text.trace`, matte = boss mask *alphaInverted*, so it sits
+behind the boss) · `Boss colors` (`poster-map` boss palette + `edges`, matte = boss mask) · black
+ink sweeps (rough shapes) · `White-out` (`overexpose` 0 → 1 → back) · processed passes
+(`poster-map`, `posterize-pro`, `threshold`+`dither`) each matted by an animated shape or a
+`fractal-noise`+`threshold` solid · `Poster background` (`solarize` + `poster-map` + `edges`,
+matte = boss mask *alphaInverted*) · `Build-up` (`color-adjust` + `poster-map` ramping in) ·
+the boss mask (a hidden white solid with an ellipse/path mask). Keep the boss and the name readable.
+
+## 8. Looks (multi-effect presets)
 
 `catalog.looks` lists ~40 named looks (e.g. `boss-gold`, `chromatic-glass`, `modulation-dither`,
 `vhs-memories`, `arcade`, `neon`). Each is a list of effects with params (an entry may name an
@@ -169,7 +203,7 @@ effect `preset` to start from — apply that first, then its params; and sometim
 given as `[seconds after the layer starts, value]` — add the layer's `inPoint` when converting
 them to keyframes). To use one, append those effects to a layer as normal effect instances.
 
-## 8. Checklist before you hand it back
+## 9. Checklist before you hand it back
 
 - Run `validate.mjs` (with `--fix` once, then without) — it must say OK.
 - Layers sit inside `0…duration`; the comp `duration` covers everything.

@@ -1,7 +1,7 @@
 {
  "about": "Generated from the Refract Motion source. Everything a .refract.json project file can contain. See README.md for how to use it.",
- "generatedAt": "2026-10-22T18:40:42.285Z",
- "schema": 2,
+ "generatedAt": "2026-10-23T00:48:37.862Z",
+ "schema": 3,
  "fileFormat": {
   "format": "refract-project",
   "version": 2
@@ -811,6 +811,25 @@
      "min": 0,
      "max": 2,
      "help": "How colorful the glow is. 0 is a white glow, higher is more vivid."
+    },
+    {
+     "id": "hueRange",
+     "label": "Only this hue",
+     "type": "percent",
+     "default": 1,
+     "min": 0,
+     "max": 1,
+     "help": "Selective glow. 100% lets every color glow. Lower it so only colors near the Glow hue shine (for example only cyan lines and letters), not the whole picture."
+    },
+    {
+     "id": "hue",
+     "label": "Glow hue",
+     "type": "angle",
+     "default": 190,
+     "softMin": 0,
+     "softMax": 360,
+     "unit": "°",
+     "help": "Which color glows when Only this hue is below 100%. 190° is cyan, 280° violet, 320° magenta, 40° gold."
     }
    ]
   },
@@ -2171,8 +2190,8 @@
    "id": "edges",
    "name": "Edges & Emboss",
    "category": "stylize",
-   "description": "Sobel edge detection, ink outlines, or a raised emboss.",
-   "about": "Finds the outlines in the image: glowing lines, a pen drawing, or a raised stamped look.",
+   "description": "Edge extraction (Sobel, Laplacian or morphological) drawn as glowing lines, composited over the image or on black, as ink lines, or a raised emboss.",
+   "about": "Finds the outlines in the image: glowing lines, lines drawn back over the picture, a pen drawing, or a raised stamped look. Great for keeping details readable after heavy color effects.",
    "params": [
     {
      "id": "mode",
@@ -2185,6 +2204,18 @@
        "label": "Glowing edges"
       },
       {
+       "value": 3,
+       "label": "Edges over image"
+      },
+      {
+       "value": 4,
+       "label": "Edges on black"
+      },
+      {
+       "value": 5,
+       "label": "Dark lines over image"
+      },
+      {
        "value": 1,
        "label": "Ink drawing"
       },
@@ -2194,7 +2225,29 @@
       }
      ],
      "animatable": false,
-     "help": "Glowing edges makes bright lines on black. Ink drawing makes dark lines on white, like a sketch. Emboss makes it look pressed into metal or paper."
+     "help": "Glowing edges makes bright lines on black. Edges over image draws them on top of the picture. Edges on black keeps only the lines. Dark lines over image inks the outlines like an illustration. Ink drawing makes dark lines on white, like a sketch. Emboss makes it look pressed into metal or paper."
+    },
+    {
+     "id": "operator",
+     "label": "Detector",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Sobel"
+      },
+      {
+       "value": 1,
+       "label": "Laplacian"
+      },
+      {
+       "value": 2,
+       "label": "Morphological"
+      }
+     ],
+     "animatable": false,
+     "help": "How edges are found. Sobel is smooth and reliable. Laplacian catches fine detail and texture. Morphological gives thicker, bolder outlines."
     },
     {
      "id": "strength",
@@ -2208,7 +2261,7 @@
     },
     {
      "id": "width",
-     "label": "Width",
+     "label": "Edge width",
      "type": "number",
      "default": 1.5,
      "min": 0.5,
@@ -2217,8 +2270,36 @@
      "help": "How thick the lines are."
     },
     {
+     "id": "threshold",
+     "label": "Edge threshold",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "Ignore faint edges below this, so only the important outlines stay."
+    },
+    {
+     "id": "softness",
+     "label": "Edge softness",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "How gently lines fade in at the threshold. 0 is a hard cut."
+    },
+    {
+     "id": "brightness",
+     "label": "Edge brightness",
+     "type": "number",
+     "default": 1,
+     "min": 0,
+     "softMax": 4,
+     "step": 0.01,
+     "help": "How bright the lines are. Above 1 they can glow."
+    },
+    {
      "id": "color",
-     "label": "Color",
+     "label": "Edge color",
      "type": "color",
      "default": [
       1,
@@ -2227,6 +2308,25 @@
       1
      ],
      "help": "The color of the lines."
+    },
+    {
+     "id": "glow",
+     "label": "Edge glow",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 2,
+     "help": "A soft glow around the lines."
+    },
+    {
+     "id": "glowRadius",
+     "label": "Glow radius",
+     "type": "number",
+     "default": 14,
+     "min": 1,
+     "softMax": 120,
+     "unit": "px",
+     "help": "How far that glow spreads."
     },
     {
      "id": "angle",
@@ -5501,7 +5601,7 @@
    "id": "dither",
    "name": "Dither Pro",
    "category": "retro",
-   "description": "Reduce the image to a palette with a threshold pattern: Bayer, blue noise, halftone, lines, waves. 1-bit to Game Boy to PICO-8.",
+   "description": "Reduce the image to a palette with a threshold pattern: Bayer, blue noise, error diffusion, stochastic grain, halftone, lines. 1-bit to Game Boy to PICO-8. The pattern stays put on the image, so it reads as print texture rather than video noise.",
    "about": "Reduces the picture to a few colors and fakes the in-between shades with a pattern of dots or lines, like old computers, Game Boys and print.",
    "params": [
     {
@@ -5524,7 +5624,19 @@
       },
       {
        "value": 3,
+       "label": "Blue noise (fast)"
+      },
+      {
+       "value": 13,
        "label": "Blue noise"
+      },
+      {
+       "value": 11,
+       "label": "Error diffusion"
+      },
+      {
+       "value": 12,
+       "label": "Stochastic grain"
       },
       {
        "value": 4,
@@ -5556,7 +5668,7 @@
       }
      ],
      "animatable": false,
-     "help": "The dot pattern used to fake in-between shades. Bayer is the classic retro checker, Blue noise looks natural, Halftone/Lines/Waves make print-style patterns."
+     "help": "The dot pattern used to fake in-between shades. Bayer is the classic retro checker. Blue noise is fine and even, like good print. Error diffusion looks like a scanned newspaper. Stochastic grain clumps like film or photocopy toner. Halftone/Lines/Waves make print-style patterns."
     },
     {
      "id": "palette",
@@ -5566,7 +5678,7 @@
      "options": [
       {
        "value": 0,
-       "label": "Two colors"
+       "label": "Two colors (1-bit)"
       },
       {
        "value": 1,
@@ -5599,20 +5711,24 @@
       {
        "value": 8,
        "label": "Keep hues"
+      },
+      {
+       "value": 9,
+       "label": "Poster: cyan & violet"
       }
      ],
      "animatable": false,
-     "help": "Which colors are allowed. Two colors uses Dark and Light. Ramp shades between them. Color levels keeps color. Game Boy, CGA, PICO-8 and Sepia are classic palettes. Four colors uses all four color slots."
+     "help": "Which colors are allowed. Two colors (1-bit) uses Dark and Light. Ramp shades between them. Color levels keeps color. Game Boy, CGA, PICO-8 and Sepia are classic palettes. Four colors uses all four color slots. Poster: cyan & violet is a screen-print palette."
     },
     {
      "id": "pixel",
-     "label": "Pixel size",
+     "label": "Dither scale",
      "type": "number",
      "default": 2,
      "min": 1,
      "softMax": 24,
      "unit": "px",
-     "help": "How big each pixel is. Bigger is chunkier and more retro."
+     "help": "How big each dot is. Bigger is chunkier and more visible."
     },
     {
      "id": "cell",
@@ -5622,11 +5738,11 @@
      "min": 2,
      "softMax": 60,
      "unit": "px",
-     "help": "How big the halftone, line and wave patterns are."
+     "help": "How big the halftone, line, wave and grain patterns are."
     },
     {
      "id": "levels",
-     "label": "Levels",
+     "label": "Color quantization",
      "type": "number",
      "default": 2,
      "min": 2,
@@ -5636,12 +5752,21 @@
     },
     {
      "id": "spread",
-     "label": "Dither strength",
+     "label": "Dither amount",
      "type": "percent",
      "default": 1,
      "min": 0,
      "max": 2,
      "help": "How strongly the pattern mixes neighboring shades. 0 gives flat poster bands."
+    },
+    {
+     "id": "threshold",
+     "label": "Threshold",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "Where the cut between dark and light sits. Lower makes more of the picture light, higher makes more of it dark."
     },
     {
      "id": "contrast",
@@ -5694,6 +5819,15 @@
      "help": "Makes the pattern shimmer by changing it this many times per second. 0 keeps it still."
     },
     {
+     "id": "stability",
+     "label": "Temporal stability",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "With Shimmer on: how much of the pattern stays put each step. 100% barely changes (print texture that breathes); 0% changes completely (video noise)."
+    },
+    {
      "id": "colorA",
      "label": "Dark",
      "type": "color",
@@ -5742,6 +5876,24 @@
      "help": "Fourth color, used by the Four colors palette."
     },
     {
+     "id": "lumaW",
+     "label": "Luma weight",
+     "type": "percent",
+     "default": 1,
+     "min": 0,
+     "max": 2,
+     "help": "How much the pattern follows brightness."
+    },
+    {
+     "id": "chromaW",
+     "label": "Chroma weight",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 2,
+     "help": "How much the pattern also wobbles the colors separately, for richer colored dots (Color levels and palettes)."
+    },
+    {
      "id": "clear",
      "label": "Dark is clear",
      "type": "percent",
@@ -5749,6 +5901,17 @@
      "min": 0,
      "max": 1,
      "help": "Makes the darkest color see-through, so only the light dots remain on top of whatever is below."
+    },
+    {
+     "id": "seed",
+     "label": "Noise seed",
+     "type": "number",
+     "default": 0,
+     "min": 0,
+     "max": 999,
+     "step": 1,
+     "animatable": false,
+     "help": "A different random starting point. Same look, different arrangement. Try a few numbers until you like it."
     }
    ]
   },
@@ -8499,6 +8662,1736 @@
      "help": "How the pattern is combined with your layer. Replace shows only the pattern (inside the layer's shape). Over layer puts it on top. Multiply darkens, Screen lightens, Overlay adds contrast."
     }
    ]
+  },
+  {
+   "id": "overexpose",
+   "name": "Overexpose",
+   "category": "light",
+   "description": "Chemical overexposure: the brightest parts swell and eat the image until it burns to white, leaving only dark edges and fragments. Animate Destruction 0 → 1.",
+   "about": "Chemical overexposure: the brightest parts swell and eat the picture until it burns to white (or any color), leaving only dark edges and fragments. Animate Destruction from 0 to 100% and back.",
+   "params": [
+    {
+     "id": "amount",
+     "label": "Destruction",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "How far the burn has gone. 0 is untouched, 100% is almost entirely white with tiny dark remnants."
+    },
+    {
+     "id": "exposure",
+     "label": "Exposure push",
+     "type": "number",
+     "default": 2.2,
+     "min": 0,
+     "softMax": 6,
+     "step": 0.01,
+     "unit": "EV",
+     "help": "How much brighter the image gets as Destruction rises."
+    },
+    {
+     "id": "threshold",
+     "label": "Burn threshold",
+     "type": "percent",
+     "default": 0.72,
+     "min": 0,
+     "max": 1,
+     "help": "How bright something must be before it starts to burn away."
+    },
+    {
+     "id": "knee",
+     "label": "Burn softness",
+     "type": "percent",
+     "default": 0.12,
+     "min": 0.01,
+     "max": 0.5,
+     "help": "How soft the edge of the burn is."
+    },
+    {
+     "id": "spread",
+     "label": "Spread",
+     "type": "number",
+     "default": 36,
+     "min": 0,
+     "softMax": 300,
+     "unit": "px",
+     "help": "How far bright areas reach out and consume their neighbours."
+    },
+    {
+     "id": "tint",
+     "label": "Burn color",
+     "type": "color",
+     "default": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "help": "The color the image burns to. White for a flash, pale cyan for an electric burn."
+    },
+    {
+     "id": "remnants",
+     "label": "Keep dark edges",
+     "type": "percent",
+     "default": 0.75,
+     "min": 0,
+     "max": 1,
+     "help": "How long dark edges and silhouette fragments survive the burn."
+    },
+    {
+     "id": "bleach",
+     "label": "Bleach colors",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "How much the colors wash out as they get bright."
+    },
+    {
+     "id": "bloom",
+     "label": "Bloom",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 2,
+     "help": "Soft light spilling from the burn."
+    },
+    {
+     "id": "breakup",
+     "label": "Blotchy burn",
+     "type": "percent",
+     "default": 0.3,
+     "min": 0,
+     "max": 1,
+     "help": "Makes the burn blotchy, like overexposed film, instead of even."
+    },
+    {
+     "id": "scale",
+     "label": "Blotch size",
+     "type": "number",
+     "default": 120,
+     "min": 4,
+     "softMax": 800,
+     "unit": "px",
+     "help": "How big the blotches are."
+    },
+    {
+     "id": "seed",
+     "label": "Seed",
+     "type": "number",
+     "default": 3,
+     "min": 0,
+     "max": 999,
+     "step": 1,
+     "animatable": false,
+     "help": "A different random starting point. Same look, different arrangement. Try a few numbers until you like it."
+    }
+   ]
+  },
+  {
+   "id": "solarize",
+   "name": "Solarize",
+   "category": "color",
+   "description": "Partial tonal inversion: fold the highlights (or the shadows) back around a threshold, so a bright background collapses to dark while edges stay bright.",
+   "about": "Partial negative: the highlights (or the shadows) fold back around a threshold. A bright background can collapse to near black while bright edges stay bright.",
+   "params": [
+    {
+     "id": "threshold",
+     "label": "Threshold",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0.02,
+     "max": 0.98,
+     "help": "The brightness where the folding happens."
+    },
+    {
+     "id": "invertHighlights",
+     "label": "Invert highlights",
+     "type": "percent",
+     "default": 1,
+     "min": 0,
+     "max": 1,
+     "help": "How much of everything brighter than the threshold flips to dark."
+    },
+    {
+     "id": "invertShadows",
+     "label": "Invert shadows",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "How much of everything darker than the threshold flips to light."
+    },
+    {
+     "id": "curve",
+     "label": "Curve",
+     "type": "number",
+     "default": 1,
+     "min": 0.2,
+     "max": 4,
+     "step": 0.01,
+     "help": "The shape of the fold. Above 1 keeps more of the original near the threshold; below 1 flips harder."
+    },
+    {
+     "id": "blend",
+     "label": "Blend",
+     "type": "percent",
+     "default": 1,
+     "min": 0,
+     "max": 1,
+     "help": "Mix between the original (0%) and the solarized look (100%)."
+    },
+    {
+     "id": "mode",
+     "label": "Works on",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Brightness (keeps hues)"
+      },
+      {
+       "value": 1,
+       "label": "Each color channel"
+      }
+     ],
+     "animatable": false,
+     "help": "Brightness keeps each color's hue and only flips how light it is. Each color channel flips red, green and blue separately, for wilder color shifts."
+    },
+    {
+     "id": "contrast",
+     "label": "Contrast",
+     "type": "number",
+     "default": 1.2,
+     "min": 0.2,
+     "softMax": 3,
+     "step": 0.01,
+     "help": "Punch after solarizing."
+    },
+    {
+     "id": "saturation",
+     "label": "Saturation",
+     "type": "percent",
+     "default": 1.2,
+     "min": 0,
+     "max": 3,
+     "help": "How colorful the result is."
+    }
+   ]
+  },
+  {
+   "id": "poster-map",
+   "name": "Poster Palette",
+   "category": "color",
+   "description": "Screen-print color: brightness bands map to up to seven editable colors (black → midnight → violet → electric blue → cyan → white), as flat bands or smooth, with selective magenta intrusions.",
+   "about": "Screen-print color: every brightness range gets its own color from a palette of up to seven (deep shadow → shadow → lower mid → mid → upper mid → highlight → extreme highlight), as flat bands or smooth gradients, with optional accent color creeping in.",
+   "params": [
+    {
+     "id": "stops",
+     "label": "Colors used",
+     "type": "number",
+     "default": 7,
+     "min": 2,
+     "max": 7,
+     "step": 1,
+     "animatable": false,
+     "help": "How many of the seven palette colors are used."
+    },
+    {
+     "id": "bands",
+     "label": "Flat bands",
+     "type": "percent",
+     "default": 0.65,
+     "min": 0,
+     "max": 1,
+     "help": "Flat bands (100%) look screen-printed; 0% blends smoothly like a gradient map."
+    },
+    {
+     "id": "contrast",
+     "label": "Contrast",
+     "type": "number",
+     "default": 1.15,
+     "min": 0.2,
+     "softMax": 3,
+     "step": 0.01,
+     "help": "Spreads the image over more of the palette."
+    },
+    {
+     "id": "offset",
+     "label": "Shift",
+     "type": "number",
+     "default": 0,
+     "min": -1,
+     "max": 1,
+     "step": 0.005,
+     "help": "Shifts the whole image toward the dark or light colors."
+    },
+    {
+     "id": "simplify",
+     "label": "Simplify shapes",
+     "type": "number",
+     "default": 1.5,
+     "min": 0,
+     "softMax": 20,
+     "unit": "px",
+     "help": "Smooths small details first so big areas become solid color."
+    },
+    {
+     "id": "keepLuma",
+     "label": "Keep shading",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "Keeps some of the original shading under the new colors."
+    },
+    {
+     "id": "saturation",
+     "label": "Saturation",
+     "type": "percent",
+     "default": 1,
+     "min": 0,
+     "max": 2,
+     "help": "How colorful the result is."
+    },
+    {
+     "id": "c1",
+     "label": "Deep shadow",
+     "type": "color",
+     "default": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "help": "Color for the deepest shadows.",
+     "group": "stops"
+    },
+    {
+     "id": "c2",
+     "label": "Shadow",
+     "type": "color",
+     "default": [
+      0.03,
+      0.04,
+      0.17,
+      1
+     ],
+     "help": "Color for shadows.",
+     "group": "stops"
+    },
+    {
+     "id": "c3",
+     "label": "Lower mid",
+     "type": "color",
+     "default": [
+      0.33,
+      0.1,
+      0.58,
+      1
+     ],
+     "help": "Color for the lower midtones.",
+     "group": "stops"
+    },
+    {
+     "id": "c4",
+     "label": "Midtone",
+     "type": "color",
+     "default": [
+      0.12,
+      0.33,
+      1,
+      1
+     ],
+     "help": "Color for the midtones.",
+     "group": "stops"
+    },
+    {
+     "id": "c5",
+     "label": "Upper mid",
+     "type": "color",
+     "default": [
+      0.12,
+      0.86,
+      1,
+      1
+     ],
+     "help": "Color for the upper midtones.",
+     "group": "stops"
+    },
+    {
+     "id": "c6",
+     "label": "Highlight",
+     "type": "color",
+     "default": [
+      0.74,
+      0.97,
+      1,
+      1
+     ],
+     "help": "Color for highlights.",
+     "group": "stops"
+    },
+    {
+     "id": "c7",
+     "label": "Extreme highlight",
+     "type": "color",
+     "default": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "help": "Color for the very brightest parts.",
+     "group": "stops"
+    },
+    {
+     "id": "p1",
+     "label": "Deep shadow at",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "Where the deep-shadow color starts (brightness).",
+     "group": "stops"
+    },
+    {
+     "id": "p2",
+     "label": "Shadow at",
+     "type": "percent",
+     "default": 0.14,
+     "min": 0,
+     "max": 1,
+     "help": "Where the shadow color starts.",
+     "group": "stops"
+    },
+    {
+     "id": "p3",
+     "label": "Lower mid at",
+     "type": "percent",
+     "default": 0.3,
+     "min": 0,
+     "max": 1,
+     "help": "Where the lower-mid color starts.",
+     "group": "stops"
+    },
+    {
+     "id": "p4",
+     "label": "Midtone at",
+     "type": "percent",
+     "default": 0.46,
+     "min": 0,
+     "max": 1,
+     "help": "Where the midtone color starts.",
+     "group": "stops"
+    },
+    {
+     "id": "p5",
+     "label": "Upper mid at",
+     "type": "percent",
+     "default": 0.62,
+     "min": 0,
+     "max": 1,
+     "help": "Where the upper-mid color starts.",
+     "group": "stops"
+    },
+    {
+     "id": "p6",
+     "label": "Highlight at",
+     "type": "percent",
+     "default": 0.8,
+     "min": 0,
+     "max": 1,
+     "help": "Where the highlight color starts.",
+     "group": "stops"
+    },
+    {
+     "id": "p7",
+     "label": "Extreme highlight at",
+     "type": "percent",
+     "default": 0.95,
+     "min": 0,
+     "max": 1,
+     "help": "Where the extreme-highlight color starts.",
+     "group": "stops"
+    },
+    {
+     "id": "intrColor",
+     "label": "Intrusion color",
+     "type": "color",
+     "default": [
+      1,
+      0.18,
+      0.72,
+      1
+     ],
+     "help": "An accent color that creeps into chosen parts of the image (magenta or pink by default).",
+     "group": "intrusion"
+    },
+    {
+     "id": "intrAmount",
+     "label": "Amount",
+     "type": "percent",
+     "default": 0.4,
+     "min": 0,
+     "max": 1,
+     "help": "How strongly the accent color takes over where it appears.",
+     "group": "intrusion"
+    },
+    {
+     "id": "intrSource",
+     "label": "Where",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Reds & pinks in the source"
+      },
+      {
+       "value": 1,
+       "label": "Most saturated areas"
+      },
+      {
+       "value": 2,
+       "label": "Shadows"
+      },
+      {
+       "value": 3,
+       "label": "Highlights"
+      },
+      {
+       "value": 4,
+       "label": "Noise patches"
+      }
+     ],
+     "animatable": false,
+     "help": "Where the accent appears: where the source was red or pink, in the most colorful areas, in shadows, in highlights, or in drifting noise patches.",
+     "group": "intrusion"
+    },
+    {
+     "id": "intrRange",
+     "label": "Range",
+     "type": "percent",
+     "default": 0.45,
+     "min": 0,
+     "max": 1,
+     "help": "How much of the image counts (wider or narrower selection).",
+     "group": "intrusion"
+    },
+    {
+     "id": "intrScale",
+     "label": "Patch size",
+     "type": "number",
+     "default": 260,
+     "min": 8,
+     "softMax": 1500,
+     "unit": "px",
+     "help": "Size of the noise patches.",
+     "group": "intrusion"
+    },
+    {
+     "id": "intrSpeed",
+     "label": "Patch drift",
+     "type": "number",
+     "default": 0.2,
+     "min": 0,
+     "softMax": 3,
+     "help": "How fast the noise patches drift.",
+     "group": "intrusion"
+    },
+    {
+     "id": "seed",
+     "label": "Seed",
+     "type": "number",
+     "default": 5,
+     "min": 0,
+     "max": 999,
+     "step": 1,
+     "animatable": false,
+     "help": "A different random starting point. Same look, different arrangement. Try a few numbers until you like it.",
+     "group": "intrusion"
+    }
+   ],
+   "groups": [
+    {
+     "id": "stops",
+     "label": "Palette"
+    },
+    {
+     "id": "intrusion",
+     "label": "Color intrusion",
+     "seed": "seed"
+    }
+   ]
+  },
+  {
+   "id": "posterize-pro",
+   "name": "Posterize Pro",
+   "category": "color",
+   "description": "Illustrated, screen-printed tones: separate levels for brightness and color (or each RGB channel), edge-preserving smoothing so big shapes stay recognizable, soft band edges, optional outlines, and steady bands on video.",
+   "about": "Cuts the image into a few flat tones so it looks illustrated, with separate controls for brightness and color, smoothing that keeps big shapes recognizable, and bands that stay steady on video.",
+   "params": [
+    {
+     "id": "mode",
+     "label": "Levels for",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Brightness + color"
+      },
+      {
+       "value": 1,
+       "label": "Each RGB channel"
+      }
+     ],
+     "animatable": false,
+     "help": "Brightness + color quantizes lightness and color separately (keeps hues natural). Each RGB channel quantizes red, green and blue separately (more graphic color shifts)."
+    },
+    {
+     "id": "lumaLevels",
+     "label": "Brightness levels",
+     "type": "number",
+     "default": 5,
+     "min": 2,
+     "max": 32,
+     "step": 1,
+     "help": "How many brightness steps remain."
+    },
+    {
+     "id": "chromaLevels",
+     "label": "Color levels",
+     "type": "number",
+     "default": 4,
+     "min": 1,
+     "max": 32,
+     "step": 1,
+     "help": "How many color steps remain. Low numbers make colors flat and bold."
+    },
+    {
+     "id": "rLevels",
+     "label": "Red levels",
+     "type": "number",
+     "default": 4,
+     "min": 2,
+     "max": 32,
+     "step": 1,
+     "help": "How many steps of red remain."
+    },
+    {
+     "id": "gLevels",
+     "label": "Green levels",
+     "type": "number",
+     "default": 4,
+     "min": 2,
+     "max": 32,
+     "step": 1,
+     "help": "How many steps of green remain."
+    },
+    {
+     "id": "bLevels",
+     "label": "Blue levels",
+     "type": "number",
+     "default": 4,
+     "min": 2,
+     "max": 32,
+     "step": 1,
+     "help": "How many steps of blue remain."
+    },
+    {
+     "id": "smooth",
+     "label": "Smooth regions",
+     "type": "number",
+     "default": 3,
+     "min": 0,
+     "softMax": 16,
+     "unit": "px",
+     "help": "Smooths textures inside areas first so they become clean flat shapes."
+    },
+    {
+     "id": "edges",
+     "label": "Edge preservation",
+     "type": "percent",
+     "default": 0.7,
+     "min": 0,
+     "max": 1,
+     "help": "How well the smoothing respects outlines. High keeps silhouettes sharp."
+    },
+    {
+     "id": "softness",
+     "label": "Band softness",
+     "type": "percent",
+     "default": 0.06,
+     "min": 0,
+     "max": 0.5,
+     "help": "Soft or hard steps between bands."
+    },
+    {
+     "id": "stability",
+     "label": "Steady on video",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "On video: keeps each pixel on its band unless it really changes, so bands don't flicker."
+    },
+    {
+     "id": "outline",
+     "label": "Band outlines",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 1,
+     "help": "Draws thin lines where bands meet, like an illustration."
+    },
+    {
+     "id": "outlineColor",
+     "label": "Outline color",
+     "type": "color",
+     "default": [
+      0.02,
+      0.02,
+      0.05,
+      1
+     ],
+     "help": "Color of those lines."
+    }
+   ]
+  },
+  {
+   "id": "print-texture",
+   "name": "Print Texture",
+   "category": "stylize",
+   "description": "Imperfect printing: rough and eroded edges, ink spread, blotchy ink density, missing-ink specks and toner dots, grain, and a misregistered color plate. Strongest on black areas and type.",
+   "about": "Imperfect printing: rough eroded edges, ink spreading, blotchy ink, missing-ink specks and toner dots, grain, and a color plate printed slightly off. Strongest on black areas and type.",
+   "params": [
+    {
+     "id": "roughness",
+     "label": "Print roughness",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "How ragged every edge becomes."
+    },
+    {
+     "id": "erosion",
+     "label": "Edge erosion",
+     "type": "percent",
+     "default": 0.25,
+     "min": 0,
+     "max": 1,
+     "help": "Eats into the edges of ink, making shapes thinner and broken."
+    },
+    {
+     "id": "spread",
+     "label": "Ink spread",
+     "type": "percent",
+     "default": 0.15,
+     "min": 0,
+     "max": 1,
+     "help": "Ink bleeds outward, making shapes fatter."
+    },
+    {
+     "id": "density",
+     "label": "Ink density variation",
+     "type": "percent",
+     "default": 0.3,
+     "min": 0,
+     "max": 1,
+     "help": "Uneven ink: big soft lighter patches in dark areas."
+    },
+    {
+     "id": "registration",
+     "label": "Registration error",
+     "type": "number",
+     "default": 2,
+     "min": 0,
+     "softMax": 20,
+     "unit": "px",
+     "help": "How far the color plate is printed off from the black plate."
+    },
+    {
+     "id": "regAngle",
+     "label": "Registration direction",
+     "type": "angle",
+     "default": 25,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "Which way the color plate is off."
+    },
+    {
+     "id": "speckle",
+     "label": "Speckle",
+     "type": "percent",
+     "default": 0.35,
+     "min": 0,
+     "max": 1,
+     "help": "Tiny missing-ink specks in dark areas and stray toner dots in light ones."
+    },
+    {
+     "id": "grain",
+     "label": "Toner grain",
+     "type": "percent",
+     "default": 0.35,
+     "min": 0,
+     "max": 1,
+     "help": "Fine toner grain."
+    },
+    {
+     "id": "scale",
+     "label": "Texture scale",
+     "type": "number",
+     "default": 2.2,
+     "min": 0.5,
+     "softMax": 12,
+     "unit": "px",
+     "help": "Size of the grain and specks."
+    },
+    {
+     "id": "paper",
+     "label": "Paper color",
+     "type": "color",
+     "default": [
+      0.97,
+      0.96,
+      0.92,
+      1
+     ],
+     "help": "The paper color that shows through missing ink."
+    },
+    {
+     "id": "boil",
+     "label": "Boil",
+     "type": "number",
+     "default": 0,
+     "min": 0,
+     "softMax": 24,
+     "unit": "fps",
+     "help": "Re-prints the texture this many times per second (0 keeps it still and steady)."
+    },
+    {
+     "id": "seed",
+     "label": "Seed",
+     "type": "number",
+     "default": 7,
+     "min": 0,
+     "max": 999,
+     "step": 1,
+     "animatable": false,
+     "help": "A different random starting point. Same look, different arrangement. Try a few numbers until you like it."
+    }
+   ]
+  },
+  {
+   "id": "luma-reveal",
+   "name": "Luma Reveal",
+   "category": "color",
+   "description": "Reveal (or wipe away) the layer by its own brightness: bright parts first or dark parts first, broken up by noise, with an optional glowing burn edge. Animate Progress 0 → 1.",
+   "about": "Reveals the layer by its own brightness: bright parts appear first (or dark parts first), broken up by noise, with an optional glowing burn edge. Animate Progress from 0 to 100%.",
+   "params": [
+    {
+     "id": "progress",
+     "label": "Progress",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "0% hides everything, 100% shows everything."
+    },
+    {
+     "id": "order",
+     "label": "Order",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Bright parts first"
+      },
+      {
+       "value": 1,
+       "label": "Dark parts first"
+      }
+     ],
+     "animatable": false,
+     "help": "Whether bright or dark areas appear first."
+    },
+    {
+     "id": "feather",
+     "label": "Threshold feather",
+     "type": "percent",
+     "default": 0.08,
+     "min": 0,
+     "max": 0.5,
+     "help": "How soft the reveal edge is."
+    },
+    {
+     "id": "noise",
+     "label": "Noise modulation",
+     "type": "percent",
+     "default": 0.25,
+     "min": 0,
+     "max": 1,
+     "help": "Mixes in noise so the reveal is organic rather than following brightness exactly."
+    },
+    {
+     "id": "noiseScale",
+     "label": "Noise size",
+     "type": "number",
+     "default": 140,
+     "min": 4,
+     "softMax": 1200,
+     "unit": "px",
+     "help": "Size of the noise."
+    },
+    {
+     "id": "evolve",
+     "label": "Noise motion",
+     "type": "number",
+     "default": 0,
+     "min": 0,
+     "softMax": 4,
+     "help": "Makes the noise move while revealing."
+    },
+    {
+     "id": "edgeWidth",
+     "label": "Edge width",
+     "type": "percent",
+     "default": 0,
+     "min": 0,
+     "max": 0.3,
+     "help": "A glowing band right at the reveal edge. 0 turns it off."
+    },
+    {
+     "id": "edgeColor",
+     "label": "Edge color",
+     "type": "color",
+     "default": [
+      0.45,
+      1,
+      1,
+      1
+     ],
+     "help": "Color of that band."
+    },
+    {
+     "id": "seed",
+     "label": "Seed",
+     "type": "number",
+     "default": 1,
+     "min": 0,
+     "max": 999,
+     "step": 1,
+     "animatable": false,
+     "help": "A different random starting point. Same look, different arrangement. Try a few numbers until you like it."
+    }
+   ]
+  },
+  {
+   "id": "displace",
+   "name": "Displace",
+   "category": "distort",
+   "description": "Small, art-directed distortion: turbulence, a push along one direction, shifted scanlines, brightness-driven offsets or jumping blocks. Can step at a low frame rate. Use the effect field \"Inside masks\" for mask-driven displacement.",
+   "about": "Small, controlled distortion for chaotic moments: turbulence, a push in one direction, shifted scanlines, brightness-driven offsets or jumping blocks. Can update at a low frame rate for a choppy feel.",
+   "params": [
+    {
+     "id": "mode",
+     "label": "Type",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Turbulence"
+      },
+      {
+       "value": 1,
+       "label": "Directional"
+      },
+      {
+       "value": 2,
+       "label": "Scanlines"
+      },
+      {
+       "value": 3,
+       "label": "By brightness"
+      },
+      {
+       "value": 4,
+       "label": "Blocks"
+      }
+     ],
+     "animatable": false,
+     "help": "The kind of distortion."
+    },
+    {
+     "id": "amount",
+     "label": "Amount",
+     "type": "number",
+     "default": 10,
+     "min": 0,
+     "softMax": 120,
+     "unit": "px",
+     "help": "How far pixels move. Keep it small so things stay readable."
+    },
+    {
+     "id": "scale",
+     "label": "Size",
+     "type": "number",
+     "default": 160,
+     "min": 2,
+     "softMax": 1200,
+     "unit": "px",
+     "help": "Size of the distortion pattern."
+    },
+    {
+     "id": "angle",
+     "label": "Direction",
+     "type": "angle",
+     "default": 0,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "Direction for Directional, Scanlines and By brightness."
+    },
+    {
+     "id": "speed",
+     "label": "Speed",
+     "type": "number",
+     "default": 1,
+     "min": 0,
+     "softMax": 8,
+     "help": "How fast it changes."
+    },
+    {
+     "id": "steps",
+     "label": "Step rate",
+     "type": "number",
+     "default": 0,
+     "min": 0,
+     "softMax": 30,
+     "unit": "fps",
+     "help": "Updates this many times per second (0 = smooth). Low numbers give jumpy, stepped motion."
+    },
+    {
+     "id": "sparsity",
+     "label": "Sparse",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "How few lines or blocks are affected."
+    },
+    {
+     "id": "detail",
+     "label": "Detail",
+     "type": "number",
+     "default": 2,
+     "min": 1,
+     "max": 5,
+     "step": 1,
+     "help": "More layers of finer detail in the noise."
+    },
+    {
+     "id": "seed",
+     "label": "Seed",
+     "type": "number",
+     "default": 4,
+     "min": 0,
+     "max": 999,
+     "step": 1,
+     "animatable": false,
+     "help": "A different random starting point. Same look, different arrangement. Try a few numbers until you like it."
+    }
+   ]
+  },
+  {
+   "id": "impact",
+   "name": "Camera Impact",
+   "category": "distort",
+   "description": "The frame gets hit: a quick scale punch, a few frames of shake and a tiny rotation that settle. Put it on an adjustment layer and set when the hit lands (seconds after the layer starts).",
+   "about": "The frame gets hit: a quick zoom punch, a few frames of shake and a tiny tilt that settle. Put it on an adjustment layer above everything and set when the hit lands.",
+   "params": [
+    {
+     "id": "at",
+     "label": "Hit at",
+     "type": "number",
+     "default": 0,
+     "min": 0,
+     "softMax": 10,
+     "step": 0.01,
+     "unit": "s",
+     "help": "When the hit lands, in seconds after this layer starts."
+    },
+    {
+     "id": "punch",
+     "label": "Scale punch",
+     "type": "percent",
+     "default": 0.025,
+     "min": 0,
+     "max": 0.3,
+     "help": "How much the frame zooms in on the hit."
+    },
+    {
+     "id": "shake",
+     "label": "Shake",
+     "type": "number",
+     "default": 6,
+     "min": 0,
+     "softMax": 60,
+     "unit": "px",
+     "help": "How far it shakes."
+    },
+    {
+     "id": "rotate",
+     "label": "Rotation",
+     "type": "angle",
+     "default": 0.6,
+     "softMin": -10,
+     "softMax": 10,
+     "unit": "°",
+     "help": "How much it tilts."
+    },
+    {
+     "id": "settle",
+     "label": "Settle time",
+     "type": "number",
+     "default": 0.22,
+     "min": 0.02,
+     "softMax": 2,
+     "step": 0.01,
+     "unit": "s",
+     "help": "How long until it calms down."
+    },
+    {
+     "id": "frequency",
+     "label": "Shake speed",
+     "type": "number",
+     "default": 22,
+     "min": 1,
+     "softMax": 60,
+     "unit": "Hz",
+     "help": "How fast it shakes."
+    },
+    {
+     "id": "repeat",
+     "label": "Repeat every",
+     "type": "number",
+     "default": 0,
+     "min": 0,
+     "softMax": 4,
+     "step": 0.01,
+     "unit": "s",
+     "help": "Hit again every this many seconds (0 = once)."
+    },
+    {
+     "id": "edges",
+     "label": "Edges",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Mirror"
+      },
+      {
+       "value": 1,
+       "label": "Stretch"
+      },
+      {
+       "value": 2,
+       "label": "Transparent"
+      }
+     ],
+     "animatable": false,
+     "help": "What shows at the frame edges while shaking."
+    },
+    {
+     "id": "seed",
+     "label": "Seed",
+     "type": "number",
+     "default": 1,
+     "min": 0,
+     "max": 999,
+     "step": 1,
+     "animatable": false,
+     "help": "A different random starting point. Same look, different arrangement. Try a few numbers until you like it."
+    }
+   ]
+  },
+  {
+   "id": "frame-echo",
+   "name": "Frame Echo",
+   "category": "stylize",
+   "description": "Silhouettes from earlier frames, each offset and tinted (purple, then magenta…), like misregistered print layers rather than motion blur. Works on video and on adjustment layers; needs playback (echoes rebuild after a seek).",
+   "about": "Shows silhouettes from a few frames ago, each offset and tinted (purple, then magenta), like misregistered print layers. Use it on video or on an adjustment layer; echoes appear while playing and rebuild after you jump in time.",
+   "params": [
+    {
+     "id": "echoes",
+     "label": "Echo frames",
+     "type": "number",
+     "default": 2,
+     "min": 1,
+     "max": 4,
+     "step": 1,
+     "animatable": false,
+     "help": "How many earlier frames are shown."
+    },
+    {
+     "id": "lag",
+     "label": "Frame offset",
+     "type": "number",
+     "default": 1,
+     "min": 1,
+     "max": 3,
+     "step": 1,
+     "animatable": false,
+     "help": "How many frames apart the echoes are."
+    },
+    {
+     "id": "offset",
+     "label": "Spatial offset",
+     "type": "number",
+     "default": 6,
+     "min": 0,
+     "softMax": 60,
+     "unit": "px",
+     "help": "How far each echo is shifted."
+    },
+    {
+     "id": "angle",
+     "label": "Offset direction",
+     "type": "angle",
+     "default": 0,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "Which way the echoes are shifted."
+    },
+    {
+     "id": "color1",
+     "label": "Echo 1 color",
+     "type": "color",
+     "default": [
+      0.55,
+      0.25,
+      1,
+      1
+     ],
+     "help": "Color of the nearest echo."
+    },
+    {
+     "id": "color2",
+     "label": "Echo 2 color",
+     "type": "color",
+     "default": [
+      1,
+      0.22,
+      0.72,
+      1
+     ],
+     "help": "Color of the second echo."
+    },
+    {
+     "id": "color3",
+     "label": "Echo 3+ color",
+     "type": "color",
+     "default": [
+      0.2,
+      0.55,
+      1,
+      1
+     ],
+     "help": "Color of the third and fourth echoes."
+    },
+    {
+     "id": "tint",
+     "label": "Silhouette",
+     "type": "percent",
+     "default": 1,
+     "min": 0,
+     "max": 1,
+     "help": "100% turns echoes into solid-colored silhouettes; 0% keeps their real colors."
+    },
+    {
+     "id": "opacity",
+     "label": "Opacity",
+     "type": "percent",
+     "default": 0.85,
+     "min": 0,
+     "max": 1,
+     "help": "How strong the echoes are."
+    },
+    {
+     "id": "decay",
+     "label": "Opacity decay",
+     "type": "percent",
+     "default": 0.45,
+     "min": 0,
+     "max": 1,
+     "help": "How much weaker each older echo gets."
+    },
+    {
+     "id": "source",
+     "label": "Echo",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Layer shape"
+      },
+      {
+       "value": 1,
+       "label": "Bright areas"
+      }
+     ],
+     "animatable": false,
+     "help": "Echo the whole layer shape, or only its bright parts (for full-frame video)."
+    },
+    {
+     "id": "threshold",
+     "label": "Brightness threshold",
+     "type": "percent",
+     "default": 0.45,
+     "min": 0,
+     "max": 1,
+     "help": "For Bright areas: how bright a part must be to echo."
+    },
+    {
+     "id": "blend",
+     "label": "Place",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Behind"
+      },
+      {
+       "value": 1,
+       "label": "Screen over"
+      },
+      {
+       "value": 2,
+       "label": "Add over"
+      }
+     ],
+     "animatable": false,
+     "help": "Behind puts echoes under the layer; Screen and Add put light echoes on top."
+    }
+   ]
+  },
+  {
+   "id": "particles",
+   "name": "Particle Field",
+   "category": "generate",
+   "description": "Dust, stars and print speckle in clusters: points, little crosses, 4-point stars and scratches. Some stay put, some drift, some flicker and a few shoot across. Put it on a solid with \"Particles only\" for an overlay.",
+   "about": "A field of tiny luminous things in clusters: points, little crosses, 4-point stars and scratches. Some stay still, some drift, some flicker and a few shoot across. Put it on a solid with \"Particles only\" to lay it over everything.",
+   "params": [
+    {
+     "id": "density",
+     "label": "Density",
+     "type": "percent",
+     "default": 0.45,
+     "min": 0,
+     "max": 1,
+     "help": "How many particles."
+    },
+    {
+     "id": "cluster",
+     "label": "Clustering",
+     "type": "percent",
+     "default": 0.65,
+     "min": 0,
+     "max": 1,
+     "help": "How much they bunch into clusters instead of spreading evenly."
+    },
+    {
+     "id": "clusterScale",
+     "label": "Cluster size",
+     "type": "number",
+     "default": 360,
+     "min": 20,
+     "softMax": 2000,
+     "unit": "px",
+     "help": "Size of the clusters."
+    },
+    {
+     "id": "cell",
+     "label": "Spacing",
+     "type": "number",
+     "default": 26,
+     "min": 6,
+     "softMax": 160,
+     "unit": "px",
+     "help": "Minimum spacing between particles."
+    },
+    {
+     "id": "size",
+     "label": "Size",
+     "type": "number",
+     "default": 2.4,
+     "min": 0.3,
+     "softMax": 12,
+     "unit": "px",
+     "help": "Particle size."
+    },
+    {
+     "id": "sizeVar",
+     "label": "Size variation",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "How different the sizes are."
+    },
+    {
+     "id": "colorA",
+     "label": "Color",
+     "type": "color",
+     "default": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "help": "Main particle color."
+    },
+    {
+     "id": "colorB",
+     "label": "Second color",
+     "type": "color",
+     "default": [
+      0.35,
+      0.95,
+      1,
+      1
+     ],
+     "help": "Second particle color."
+    },
+    {
+     "id": "colorMix",
+     "label": "Second color share",
+     "type": "percent",
+     "default": 0.4,
+     "min": 0,
+     "max": 1,
+     "help": "How many particles use the second color."
+    },
+    {
+     "id": "crosses",
+     "label": "Crosses",
+     "type": "percent",
+     "default": 0.12,
+     "min": 0,
+     "max": 1,
+     "help": "Share of little crosses."
+    },
+    {
+     "id": "stars",
+     "label": "Stars",
+     "type": "percent",
+     "default": 0.1,
+     "min": 0,
+     "max": 1,
+     "help": "Share of 4-point stars."
+    },
+    {
+     "id": "scratches",
+     "label": "Scratches",
+     "type": "percent",
+     "default": 0.12,
+     "min": 0,
+     "max": 1,
+     "help": "Share of short scratches."
+    },
+    {
+     "id": "drift",
+     "label": "Drift",
+     "type": "number",
+     "default": 18,
+     "softMin": 0,
+     "softMax": 400,
+     "unit": "px/s",
+     "help": "How fast the drifting particles move."
+    },
+    {
+     "id": "driftAngle",
+     "label": "Drift direction",
+     "type": "angle",
+     "default": -100,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "Which way they drift."
+    },
+    {
+     "id": "fixed",
+     "label": "Fixed share",
+     "type": "percent",
+     "default": 0.4,
+     "min": 0,
+     "max": 1,
+     "help": "Share of particles that stay still."
+    },
+    {
+     "id": "shoot",
+     "label": "Shooting",
+     "type": "percent",
+     "default": 0.25,
+     "min": 0,
+     "max": 1,
+     "help": "How many fast shooting streaks there are."
+    },
+    {
+     "id": "shootSpeed",
+     "label": "Shoot speed",
+     "type": "number",
+     "default": 2200,
+     "min": 0,
+     "softMax": 8000,
+     "unit": "px/s",
+     "help": "How fast they shoot."
+    },
+    {
+     "id": "shootAngle",
+     "label": "Shoot direction",
+     "type": "angle",
+     "default": 12,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "Which way they shoot."
+    },
+    {
+     "id": "flicker",
+     "label": "Flicker",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 1,
+     "help": "How much particles flicker on and off."
+    },
+    {
+     "id": "flickerRate",
+     "label": "Flicker rate",
+     "type": "number",
+     "default": 12,
+     "min": 0,
+     "softMax": 30,
+     "unit": "fps",
+     "help": "How often they flicker."
+    },
+    {
+     "id": "glow",
+     "label": "Glow",
+     "type": "percent",
+     "default": 0.45,
+     "min": 0,
+     "max": 2,
+     "help": "Soft glow around each particle."
+    },
+    {
+     "id": "brightness",
+     "label": "Brightness",
+     "type": "number",
+     "default": 1.2,
+     "min": 0,
+     "softMax": 4,
+     "step": 0.01,
+     "help": "Overall brightness."
+    },
+    {
+     "id": "mode",
+     "label": "Blend",
+     "type": "enum",
+     "default": 0,
+     "options": [
+      {
+       "value": 0,
+       "label": "Particles only"
+      },
+      {
+       "value": 1,
+       "label": "Add over layer"
+      },
+      {
+       "value": 2,
+       "label": "Screen over layer"
+      }
+     ],
+     "animatable": false,
+     "help": "Particles only makes everything else see-through. Add and Screen put them over the layer."
+    },
+    {
+     "id": "seed",
+     "label": "Seed",
+     "type": "number",
+     "default": 9,
+     "min": 0,
+     "max": 999,
+     "step": 1,
+     "animatable": false,
+     "help": "A different random starting point. Same look, different arrangement. Try a few numbers until you like it."
+    }
+   ]
+  },
+  {
+   "id": "star-glints",
+   "name": "Star Glints",
+   "category": "light",
+   "description": "Small 4-, 6- or 8-point star highlights that pop on the brightest spots: celestial sparkle on bright lines, letters and edges.",
+   "about": "Small 4-, 6- or 8-point star highlights that pop on the brightest spots: celestial sparkle on bright lines, letters and edges.",
+   "params": [
+    {
+     "id": "threshold",
+     "label": "Brightness needed",
+     "type": "percent",
+     "default": 0.8,
+     "min": 0,
+     "max": 1,
+     "help": "How bright a spot must be to get a star."
+    },
+    {
+     "id": "points",
+     "label": "Points",
+     "type": "enum",
+     "default": 4,
+     "options": [
+      {
+       "value": 4,
+       "label": "4"
+      },
+      {
+       "value": 6,
+       "label": "6"
+      },
+      {
+       "value": 8,
+       "label": "8"
+      }
+     ],
+     "animatable": false,
+     "help": "Number of points on each star."
+    },
+    {
+     "id": "length",
+     "label": "Ray length",
+     "type": "number",
+     "default": 44,
+     "min": 2,
+     "softMax": 300,
+     "unit": "px",
+     "help": "How long the rays are."
+    },
+    {
+     "id": "thickness",
+     "label": "Ray thickness",
+     "type": "number",
+     "default": 1.2,
+     "min": 0.3,
+     "softMax": 8,
+     "unit": "px",
+     "help": "How thick the rays are."
+    },
+    {
+     "id": "intensity",
+     "label": "Intensity",
+     "type": "number",
+     "default": 2,
+     "min": 0,
+     "softMax": 6,
+     "step": 0.01,
+     "help": "How bright the stars are."
+    },
+    {
+     "id": "glow",
+     "label": "Glow",
+     "type": "percent",
+     "default": 0.5,
+     "min": 0,
+     "max": 2,
+     "help": "Soft glow around each star."
+    },
+    {
+     "id": "rotation",
+     "label": "Rotation",
+     "type": "angle",
+     "default": 0,
+     "softMin": -180,
+     "softMax": 180,
+     "unit": "°",
+     "help": "Turns the stars."
+    },
+    {
+     "id": "spin",
+     "label": "Spin",
+     "type": "number",
+     "default": 0,
+     "softMin": -360,
+     "softMax": 360,
+     "unit": "°/s",
+     "help": "Keeps the stars turning (degrees per second)."
+    },
+    {
+     "id": "flicker",
+     "label": "Flicker",
+     "type": "percent",
+     "default": 0.35,
+     "min": 0,
+     "max": 1,
+     "help": "How much they twinkle."
+    },
+    {
+     "id": "cell",
+     "label": "Spacing",
+     "type": "number",
+     "default": 90,
+     "min": 12,
+     "softMax": 600,
+     "unit": "px",
+     "help": "Spacing: at most one star per area this big."
+    },
+    {
+     "id": "chance",
+     "label": "How many",
+     "type": "percent",
+     "default": 0.6,
+     "min": 0,
+     "max": 1,
+     "help": "How many eligible spots actually get a star."
+    },
+    {
+     "id": "color",
+     "label": "Tint",
+     "type": "color",
+     "default": [
+      1,
+      1,
+      1,
+      0
+     ],
+     "help": "Star color. At 0% opacity each star takes the color of its spot."
+    },
+    {
+     "id": "seed",
+     "label": "Seed",
+     "type": "number",
+     "default": 3,
+     "min": 0,
+     "max": 999,
+     "step": 1,
+     "animatable": false,
+     "help": "A different random starting point. Same look, different arrangement. Try a few numbers until you like it."
+    }
+   ]
   }
  ],
  "transitions": [
@@ -9107,6 +11000,28 @@
     "unit": "char",
     "duration": 0.5,
     "stagger": 0.03
+   }
+  },
+  {
+   "id": "write-on",
+   "name": "Write on",
+   "kind": "in",
+   "description": "Each letter is written from left to right, like a quick hand with a pen. Great with script fonts.",
+   "defaults": {
+    "unit": "char",
+    "duration": 0.16,
+    "stagger": 0.045
+   }
+  },
+  {
+   "id": "trace-in",
+   "name": "Outline draw",
+   "kind": "in",
+   "description": "The outline of each letter traces itself like a pen, then the letter fills in. For full control (keyframed progress, order, wobble), use Outline drawing in the Text tab.",
+   "defaults": {
+    "unit": "char",
+    "duration": 0.5,
+    "stagger": 0.05
    }
   },
   {
@@ -11033,6 +12948,186 @@
    ]
   },
   {
+   "id": "boss-outline",
+   "name": "Boss Title · Traced Outline",
+   "group": "Boss titles",
+   "description": "Giant outlined name whose letters trace themselves like a pen in random order, then a cyan glow and print grit. (For full control, use Outline drawing in the Text tab.)",
+   "effects": [
+    {
+     "type": "glow",
+     "params": {
+      "threshold": 0.3,
+      "radius": 50,
+      "intensity": 1,
+      "hueRange": 1
+     }
+    },
+    {
+     "type": "print-texture",
+     "params": {
+      "roughness": 0.6,
+      "erosion": 0.3,
+      "speckle": 0.3,
+      "registration": 0,
+      "density": 0.2
+     }
+    }
+   ],
+   "textAnims": [
+    {
+     "type": "trace-in",
+     "duration": 0.5,
+     "stagger": 0.07,
+     "order": "random"
+    }
+   ]
+  },
+  {
+   "id": "boss-poster",
+   "name": "Boss Poster · Screen Print",
+   "group": "Boss titles",
+   "description": "Turns footage into a screen-printed poster: the background folds to near black, colors snap to cyan, blue and violet bands with magenta intrusions, outlines glow, then dither and print grit.",
+   "effects": [
+    {
+     "type": "solarize",
+     "params": {
+      "threshold": 0.45,
+      "invertHighlights": 1,
+      "contrast": 1.4,
+      "saturation": 1.3
+     }
+    },
+    {
+     "type": "poster-map",
+     "params": {
+      "bands": 0.75,
+      "contrast": 1.25,
+      "intrAmount": 0.45
+     }
+    },
+    {
+     "type": "edges",
+     "params": {
+      "mode": 3,
+      "strength": 3,
+      "width": 1.5,
+      "threshold": 0.12,
+      "softness": 0.15,
+      "color": [
+       0.3,
+       0.95,
+       1,
+       1
+      ],
+      "glow": 0.5
+     }
+    },
+    {
+     "type": "dither",
+     "params": {
+      "pattern": 13,
+      "palette": 2,
+      "levels": 4,
+      "pixel": 2,
+      "chromaW": 0.35
+     },
+     "mix": 0.45
+    },
+    {
+     "type": "print-texture",
+     "params": {
+      "roughness": 0.5,
+      "registration": 2,
+      "speckle": 0.2
+     }
+    }
+   ]
+  },
+  {
+   "id": "boss-whiteout",
+   "name": "Boss Flash · White-out",
+   "group": "Boss titles",
+   "description": "The image chemically burns to white and comes back: highlights swell and eat everything, dark fragments survive, then it rebuilds. Put it on an adjustment layer at the moment of the reveal.",
+   "effects": [
+    {
+     "type": "overexpose",
+     "params": {
+      "tint": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "remnants": 0.85,
+      "breakup": 0.45,
+      "bloom": 0.7
+     },
+     "keys": {
+      "param": "amount",
+      "frames": [
+       [
+        0,
+        0
+       ],
+       [
+        0.3,
+        1
+       ],
+       [
+        0.45,
+        1
+       ],
+       [
+        0.9,
+        0
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "boss-exit",
+   "name": "Boss Flash · Cyan Burn",
+   "group": "Boss titles",
+   "description": "An electric cyan-white burn that destroys the frame: for the end of a splash, before cutting back to gameplay.",
+   "effects": [
+    {
+     "type": "overexpose",
+     "params": {
+      "tint": [
+       0.65,
+       1,
+       1,
+       1
+      ],
+      "exposure": 2.6,
+      "remnants": 0.55,
+      "breakup": 0.45,
+      "bloom": 0.9,
+      "spread": 60
+     },
+     "keys": {
+      "param": "amount",
+      "frames": [
+       [
+        0,
+        0
+       ],
+       [
+        0.3,
+        0.5
+       ],
+       [
+        0.5,
+        1
+       ]
+      ]
+     }
+    }
+   ]
+  },
+  {
    "id": "chromatic-glass",
    "name": "Chromatic Glass",
    "group": "Glass & metal",
@@ -11466,6 +13561,22 @@
    ]
   },
   {
+   "family": "Cinzel Decorative",
+   "category": "serif",
+   "weights": [
+    400,
+    700,
+    900
+   ]
+  },
+  {
+   "family": "Marcellus SC",
+   "category": "serif",
+   "weights": [
+    400
+   ]
+  },
+  {
    "family": "Permanent Marker",
    "category": "script",
    "weights": [
@@ -11509,6 +13620,34 @@
    ]
   },
   {
+   "family": "Mrs Saint Delafield",
+   "category": "script",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Great Vibes",
+   "category": "script",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Homemade Apple",
+   "category": "script",
+   "weights": [
+    400
+   ]
+  },
+  {
+   "family": "Reenie Beanie",
+   "category": "script",
+   "weights": [
+    400
+   ]
+  },
+  {
    "family": "JetBrains Mono",
    "category": "mono",
    "weights": [
@@ -11542,11 +13681,11 @@
  ],
  "templates": {
   "project": {
-   "schema": 2,
-   "id": "doPojeDQrRQl",
+   "schema": 3,
+   "id": "oUr0yWIABcxn",
    "name": "Example",
-   "createdAt": 1792694442285,
-   "modifiedAt": 1792694442285,
+   "createdAt": 1792716517862,
+   "modifiedAt": 1792716517862,
    "settings": {
     "colorSpace": "srgb",
     "previewQuality": "auto",
@@ -11554,8 +13693,8 @@
     "showSafeZones": false
    },
    "compositions": {
-    "Ch60AA9J6Kl9": {
-     "id": "Ch60AA9J6Kl9",
+    "RdNkkV0WcptM": {
+     "id": "RdNkkV0WcptM",
      "name": "Main",
      "width": 1080,
      "height": 1920,
@@ -11573,11 +13712,11 @@
      "loop": true
     }
    },
-   "mainCompId": "Ch60AA9J6Kl9"
+   "mainCompId": "RdNkkV0WcptM"
   },
   "layers": {
    "text": {
-    "id": "2byu60gGpbQC",
+    "id": "8sCHBjcBfqBp",
     "name": "Hello",
     "kind": "text",
     "label": 0,
@@ -11669,7 +13808,7 @@
     }
    },
    "shape": {
-    "id": "TbjzXHZV5J6X",
+    "id": "EuYO9X5BOsbJ",
     "name": "Rectangle",
     "kind": "shape",
     "label": 3,
@@ -11761,11 +13900,33 @@
        12
       ]
      },
-     "roundCaps": true
+     "roundCaps": true,
+     "trimStart": {
+      "value": [
+       0
+      ]
+     },
+     "trimEnd": {
+      "value": [
+       1
+      ]
+     },
+     "trimOffset": {
+      "value": [
+       0
+      ]
+     },
+     "rough": {
+      "value": [
+       0
+      ]
+     },
+     "roughBoil": 0,
+     "seed": 1
     }
    },
    "solid": {
-    "id": "MKtYiUz8ipHS",
+    "id": "ivKvjFpQ4xf5",
     "name": "Solid",
     "kind": "solid",
     "label": 7,
@@ -11825,7 +13986,7 @@
     }
    },
    "adjustment": {
-    "id": "3CWQWDASMvwv",
+    "id": "JdGtjYNVNXAy",
     "name": "Adjustment",
     "kind": "adjustment",
     "label": 4,
@@ -11873,7 +14034,7 @@
     "effects": []
    },
    "merge": {
-    "id": "On7ONv2OpdUy",
+    "id": "7kbo8OWsyFRm",
     "name": "Metaballs",
     "kind": "merge",
     "label": 4,
@@ -11976,7 +14137,7 @@
     }
    },
    "transition": {
-    "id": "Y16iKDQgVP4V",
+    "id": "DN02y9FMOFc9",
     "name": "Optical Flare",
     "kind": "transition",
     "label": 4,
@@ -12090,7 +14251,7 @@
    }
   },
   "effect": {
-   "id": "6M5z6Kia",
+   "id": "yImjSsGv",
    "type": "glow",
    "enabled": true,
    "mix": {
@@ -12132,6 +14293,16 @@
      "value": [
       1
      ]
+    },
+    "hueRange": {
+     "value": [
+      1
+     ]
+    },
+    "hue": {
+     "value": [
+      190
+     ]
     }
    },
    "field": {
@@ -12172,7 +14343,7 @@
    }
   },
   "mask": {
-   "id": "1qQjnpPj",
+   "id": "diWQhgIn",
    "name": "Mask",
    "kind": "ellipse",
    "enabled": true,

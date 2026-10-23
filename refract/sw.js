@@ -1,5 +1,5 @@
 // Offline app shell for the self-hosted (PWA) build.
-const CACHE = 'refract-v3';
+const CACHE = 'refract-v4';
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(['./', './index.html', './manifest.webmanifest'])).then(() => self.skipWaiting()));
 });
