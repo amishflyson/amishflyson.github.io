@@ -1,6 +1,6 @@
 {
  "about": "Generated from the Refract Motion source. Everything a .refract.json project file can contain. See README.md for how to use it.",
- "generatedAt": "2026-10-23T00:48:37.862Z",
+ "generatedAt": "2026-10-23T00:53:10.788Z",
  "schema": 3,
  "fileFormat": {
   "format": "refract-project",
@@ -13682,10 +13682,10 @@
  "templates": {
   "project": {
    "schema": 3,
-   "id": "oUr0yWIABcxn",
+   "id": "u0XNauR9EMdr",
    "name": "Example",
-   "createdAt": 1792716517862,
-   "modifiedAt": 1792716517862,
+   "createdAt": 1792716790788,
+   "modifiedAt": 1792716790788,
    "settings": {
     "colorSpace": "srgb",
     "previewQuality": "auto",
@@ -13693,8 +13693,8 @@
     "showSafeZones": false
    },
    "compositions": {
-    "RdNkkV0WcptM": {
-     "id": "RdNkkV0WcptM",
+    "1OGYtRJ2W7mp": {
+     "id": "1OGYtRJ2W7mp",
      "name": "Main",
      "width": 1080,
      "height": 1920,
@@ -13712,11 +13712,11 @@
      "loop": true
     }
    },
-   "mainCompId": "RdNkkV0WcptM"
+   "mainCompId": "1OGYtRJ2W7mp"
   },
   "layers": {
    "text": {
-    "id": "8sCHBjcBfqBp",
+    "id": "KHyzEFPxrrtm",
     "name": "Hello",
     "kind": "text",
     "label": 0,
@@ -13808,7 +13808,7 @@
     }
    },
    "shape": {
-    "id": "EuYO9X5BOsbJ",
+    "id": "cQKkzNpPSa45",
     "name": "Rectangle",
     "kind": "shape",
     "label": 3,
@@ -13926,7 +13926,7 @@
     }
    },
    "solid": {
-    "id": "ivKvjFpQ4xf5",
+    "id": "CgleJupBB6x1",
     "name": "Solid",
     "kind": "solid",
     "label": 7,
@@ -13986,7 +13986,7 @@
     }
    },
    "adjustment": {
-    "id": "JdGtjYNVNXAy",
+    "id": "elMxYN58UpVD",
     "name": "Adjustment",
     "kind": "adjustment",
     "label": 4,
@@ -14034,7 +14034,7 @@
     "effects": []
    },
    "merge": {
-    "id": "7kbo8OWsyFRm",
+    "id": "xs8C1u5hfgHX",
     "name": "Metaballs",
     "kind": "merge",
     "label": 4,
@@ -14137,7 +14137,7 @@
     }
    },
    "transition": {
-    "id": "DN02y9FMOFc9",
+    "id": "tKDxYXFhMdGF",
     "name": "Optical Flare",
     "kind": "transition",
     "label": 4,
@@ -14251,7 +14251,7 @@
    }
   },
   "effect": {
-   "id": "yImjSsGv",
+   "id": "oP7Ghuis",
    "type": "glow",
    "enabled": true,
    "mix": {
@@ -14343,7 +14343,7 @@
    }
   },
   "mask": {
-   "id": "diWQhgIn",
+   "id": "BorFP7Pn",
    "name": "Mask",
    "kind": "ellipse",
    "enabled": true,
